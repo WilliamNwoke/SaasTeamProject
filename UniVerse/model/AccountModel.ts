@@ -24,7 +24,7 @@ class AccountModel {
                 email: String,
                 department: String
             }, {collection: 'accounts'} // TODO: review what this line is for
-        )
+        );
     }
 
     public createModel(): void {
@@ -36,7 +36,7 @@ class AccountModel {
     }
 
     public viewAccount(): any {
-        
+
     }
 }
 export {AccountModel};

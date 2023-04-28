@@ -5,7 +5,7 @@ interface INotificationModel extends Mongoose.Document {
     postId: number;
     author: string;
     description: string;
-    commentDate: any;
+    commentDate: Date;
     likes: number;
     dislikes: number;
 }
