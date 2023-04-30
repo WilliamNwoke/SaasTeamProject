@@ -11,11 +11,20 @@ Make sure you install the node.js server and Mongo DB sofware from the side.  En
 
 To execute the server db and then the node server with the following commands:
 
+### Setup Node version 20.0.0 and above
+to check node version: node --version
+
 //create the db file directory
-0. md db
+0. mkdir db
 
 //Starts the DB server on port 3000
 1. start.toDoSample.cmd
+
+// mac edition
+chmod +x start.toDoSample.sh
+./start.toDoSample.sh
+
+// -----------
 
 //populate the DB server with sample data
 2. startdbClient.toDoSample2.cmd

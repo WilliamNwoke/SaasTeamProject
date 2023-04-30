@@ -4,6 +4,8 @@ class DataAccess {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
     static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@localhost:3000/toDoSample?authSource=admin';
+    // Added this line to make the unified topology true per error
+    static OPTION = {useUnifiedTopology: true };
     
     constructor () {
         DataAccess.connect();
@@ -17,7 +19,7 @@ class DataAccess {
             console.log("Connected to mongodb.");
         });
         
-        this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
+        this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING, this.OPTION);
         return this.mongooseInstance;
     }
     

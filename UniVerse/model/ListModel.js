@@ -1,5 +1,6 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ListModel = void 0;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("./../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
@@ -13,7 +14,7 @@ var ListModel = /** @class */ (function () {
         this.schema = new Mongoose.Schema({
             name: String,
             description: String,
-            listId: Number,
+            listId: String,
             due: String,
             state: String,
             owner: String
@@ -26,6 +27,14 @@ var ListModel = /** @class */ (function () {
         var query = this.model.find({});
         query.exec(function (err, itemArray) {
             response.json(itemArray);
+        });
+    };
+    ListModel.prototype.retrieveListCount = function (response) {
+        console.log("retrieve List Count ...");
+        var query = this.model.estimatedDocumentCount();
+        query.exec(function (err, numberOfLists) {
+            console.log("numberOfLists: " + numberOfLists);
+            response.json(numberOfLists);
         });
     };
     return ListModel;
