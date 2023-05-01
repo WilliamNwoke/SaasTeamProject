@@ -1,13 +1,17 @@
+var uuid = require("uuid");
 //UniVerse DatabaseSetup
-db = db.getSiblingDB('universe');
+db = db.getSiblingDB('uniVerse');
 
+//Drop Existing for reseed
+db.dropDatabase("uniVerse");
 //Account
 db.createCollection('account')
-account.Collection = db.getCollection("account");
+accountCollection = db.getCollection("account");
 accountCollection.remove({})
+accountId1 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      accountId: 001,
+      id: accountId1,
       userName: "edoe",
       firstName: "Ernest",
       lastName: "Doe",
@@ -16,9 +20,10 @@ accountCollection.insert(
 
 }
 )
+accountId2 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      accountId: 002,
+      id: accountId2,
       userName: "jsmith",
       firstName: "Janet",
       lastName: "Smith",
@@ -27,9 +32,10 @@ accountCollection.insert(
 
 }
 )
+accountId3 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      accountId: 003,
+      id: accountId3,
       userName: "srodriguez",
       firstName: "Santiago",
       lastName: "Rodriguez",
@@ -38,9 +44,10 @@ accountCollection.insert(
 
 }
 )
+accountId4 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      accountId: 004,
+      id: accountId4,
       userName: "kcruz24",
       firstName: "Kayleigh",
       lastName: "Cruz",
@@ -49,9 +56,10 @@ accountCollection.insert(
 
 }
 )
+accountId5 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      accountId: 005,
+      id: accountId5,
       userName: "kennyj",
       firstName: "Kenneth",
       lastName: "Jones",
@@ -60,15 +68,21 @@ accountCollection.insert(
 
 }
 )
+commentId1 = (0, uuid.v4)()
+commentId2 = (0, uuid.v4)()
+commentId3 = (0, uuid.v4)()
+commentId4 = (0, uuid.v4)()
+commentId5 = (0, uuid.v4)()
 
 //Post
-db.createCollection('postEntry')
-postEntryCollection = db.getCollection("postEntry")
-postEntryCollection.remove({})
-postEntryCollection.insert(
+db.createCollection('post')
+postCollection = db.getCollection("post")
+postCollection.remove({})
+postId1 = (0, uuid.v4)()
+postCollection.insert(
 {
-    accountId: 001,
-    postId: 01,
+    id: postId1,
+    postId: postId1,
     title: "Textbook inquiry",
     author: "Ernest Doe",
     isAnonymous: false,
@@ -77,13 +91,14 @@ postEntryCollection.insert(
     dateTime: 02-13-2023,
     likes: 3,
     dislikes: 0,
-    comments: [1]
+    comments: [commentId1]
 }
 )
-postEntryCollection.insert(
+postId2 = (0, uuid.v4)()
+postCollection.insert(
 {
-    accountId: 002,
-    postId: 02,
+    id: postId2,
+    postId: postId2,
     title: "Experiential Learning Tips",
     author: "Janet Smith",
     isAnonymous: true,
@@ -92,13 +107,14 @@ postEntryCollection.insert(
     dateTime: 02-24-2023,
     likes: 4,
     dislikes: 0,
-    comments: [2],
+    comments: [commentId2],
 }
 )
-postEntryCollection.insert(
+postId3 = (0, uuid.v4)()
+postCollection.insert(
 {
-    accountId: 003,
-    postId: 03,
+    id: postId3,
+    postId: postId3,
     title: "Hangout in the Game Lounge",
     author: "Santiago Rodriguez",
     isAnonymous: false,
@@ -107,37 +123,39 @@ postEntryCollection.insert(
     dateTime: 02-17-2023,
     likes: 3,
     dislikes: 1,
-    comments: [1],
+    comments: [commentId1],
 }
 )
-postEntryCollection.insert(
+postId4 = (0, uuid.v4)()
+postCollection.insert(
 {
-    accountId: 004,
-    postId: 04,
+    id: postId4,
+    postId: postId4,
     title: "Hackathon Open for All",
     author: "Kayleigh Cruz",
-    isAnonymous: False,
-    isEdited: False,
+    isAnonymous: false,
+    isEdited: false,
     description:"Fellow students, the Computer Science Society will be hosting a Hackathon on campus this evening at 8pm. Join in to stand the chance of winning some cool prizes. Free pizza will be served too!",
     dateTime: 03-13-2023,
     likes: 5,
     dislikes: 2,
-    comments: [3],
+    comments: [commentId3],
 }
 )
-postEntryCollection.insert(
+postId5 = (0, uuid.v4)()
+postCollection.insert(
 {
-    accountId: 005,
-    postId: 05,
+    id: postId5,
+    postId: postId5,
     title: "Taken CH 2300?",
     author: "Kenneth Jones",
-    isAnonymous: False,
-    isEdited: False,
+    isAnonymous: false,
+    isEdited: false,
     description:"I'm planning on enrolling in CH 2300 next quarter. Has anyone taken that course with Dr. Ortega? I would want to know waht is like taking that course with her.",
     dateTime: 03-15-2023,
     likes: 1,
     dislikes: 0,
-    comments: [3],
+    comments: [commentId1],
 }
 )
 
@@ -147,31 +165,33 @@ commentCollection = db.getCollection("comment")
 commentCollection.remove({})
 commentCollection.insert(
 {
-    postId : 01,
-    commmentId: 0001,
-    author: "Jane Smith",
+    id: commentId1,
+    postId : postId1,
+    authorId: accountId2,
     description: "Human Anotomy by A.H Henson is a good supplementar textbook. It should support you through clinicals",
     dateTime: 02-14-2023,
     likes: 3,
     dislikes: 0,
 }
 )
+
 commentCollection.insert(
 {
-    postId : 02,
-    commmentId: 0002,
-    author: "Kenneth Jones",
+    id: commentId2,
+    postId : postId2,
+    authorId: accountId5,
     description: "I concur, I always remember asking for feedback during my internship at the pharmaceutical company. I interned at last summer.",
     dateTime: 02-24-2023,
     likes: 3,
     dislikes: 0,
 }
 )
+
 commentCollection.insert(
 {
-    postId : 03,
-    commmentId: 0003,
-    author: "Kayleigh Cruz",
+    id: commentId3,
+    postId : postId4,
+    authorId: accountId4,
     description: "How about we meet around 8:00pm. I should be finished with homework by then. Plus my roommates wanna join in too",
     dateTime: 02-18-2023,
     likes: 3,
@@ -180,9 +200,9 @@ commentCollection.insert(
 )
 commentCollection.insert(
 {
-    postId : 04,
-    commmentId: 0004,
-    author: "Kenneth Jones",
+    id: commentId4,
+    postId : postId4,
+    authorId: accountId5,
     description: "Yay! Hackathons are back. How I missed in-person hackathon since the pandemic caused us to experience them virtually",
     dateTime: 03-14-2023,
     likes: 2,
@@ -191,9 +211,9 @@ commentCollection.insert(
 )
 commentCollection.insert(
 {
-    postId : 05,
-    commmentId: 0005,
-    author: "Santiago Rodriguez",
+    id: commentId5,
+    postId : postId5,
+    authorId: accountId3,
     description: "I haven't had any courses with Dr. Ortega. However, from what I've heard from my bestfriend, who is a Chemistry major, she's a fun professor. Expect to learn a ton in her courses!",
     dateTime: 03-15-2023,
     likes: 1,
@@ -205,51 +225,56 @@ commentCollection.insert(
 db.createCollection('notification')
 notificationCollection = db.getCollection("notification")
 notificationCollection.remove({})
+notificationId1 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    notificationId: 00001,
-    accountId: 001,
-    postId: 01,
+    id: notificationId1,
+    accountId: accountId1,
+    postId: postId1,
     title:"Like and comment received.",
     description: "Jane Smith liked and commented on your post.",
     dateTime: 02-14-2023,
 }
 )
+notificationId2 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    notificationId: 00002,
-    accountId: 002,
-    postId: 02,
+    id: notificationId2,
+    accountId: accountId2,
+    postId: postId2,
     title:"Like and comment received.",
     description: "Kenneth Jones liked and commented on your post.",
     dateTime: 02-24-2023,
 }
 )
+notificationId3 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    notificationId: 00003,
-    accountId: 003,
-    postId: 03,
+    id: notificationId3,
+    accountId: accountId3,
+    postId: postId3,
     title:"Like and comment received",
     description: "Kayleigh Cruz liked and commented on your post.",
     dateTime: 02-18-2023,
 }
 )
+notificationId4 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    notificationId: 00004,
-    accountId: 004,
-    postId: 04,
+    id: notificationId4,
+    accountId: accountId4,
+    postId: postId4,
     title:"Like and comment received",
     description: "Kenneth Jones liked and commented on your post.",
     dateTime: 03-14-2023,
 }
 )
+notificationId5 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    notificationId: 00005,
-    accountId: 005,
-    postId: 04,
+    id: notificationId5,
+    accountId: accountId5,
+    postId: postId4,
     title:"Like and comment received",
     description: "Santiago Rodriguez liked and commented on your post =.",
     dateTime: 03-15-2023,
