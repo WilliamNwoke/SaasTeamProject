@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 var express = require("express");
 var bodyParser = require("body-parser");
+var PostModel_1 = require("./model/PostModel");
 var ListModel_1 = require("./model/ListModel");
 var TaskModel_1 = require("./model/TaskModel");
 var crypto = require("crypto");
@@ -13,6 +14,10 @@ var App = /** @class */ (function () {
         this.expressApp = express();
         this.middleware();
         this.routes();
+        //UniVerse Models
+        this.Posts = new PostModel_1.ListModel();
+
+        //Professor's Models
         this.Lists = new ListModel_1.ListModel();
         this.Tasks = new TaskModel_1.TaskModel();
     }
@@ -25,6 +30,24 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
+        
+        //UniVerse Routes
+
+        //Post: Get all posts
+        router.post('/app/posts/', function (req, res) {
+            var id = crypto.randomBytes(16).toString("hex");
+            console.log(req.body);
+            var jsonObj = req.body;
+            jsonObj.postId = id;
+            _this.Posts.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send('{"id":"' + id + '"}');
+        });
+
+        // toDoApp Routes
         router.get('/app/list/:listId/count', function (req, res) {
             var id = req.params.listId;
             console.log('Query single list with id: ' + id);

@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import {PostModel} from './model/PostModel';
 import {ListModel} from './model/ListModel';
 import {TaskModel} from './model/TaskModel';
 import * as crypto from 'crypto';
@@ -9,6 +10,9 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
+  //UniVerse Models
+  public Posts:PostModel;
+  //toDoSample Models
   public Lists:ListModel;
   public Tasks:TaskModel;
 
@@ -17,6 +21,10 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
+
+    //UniVerse Models
+    this.Posts = new PostModel();
+    //toDoSample Models
     this.Lists = new ListModel();
     this.Tasks = new TaskModel();
   }
@@ -30,11 +38,6 @@ class App {
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-    router.get('/app/list/:listId/count', (req, res) => {
-        var id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksCount(res, {listId: id});
-    });
 
     router.post('/app/list/', (req, res) => {
       const id = crypto.randomBytes(16).toString("hex");
@@ -47,6 +50,27 @@ class App {
             }
         });
         res.send('{"id":"' + id + '"}');
+    });
+
+    // UniVerse Routes
+    router.post('/app/account/', (req, res) => {
+      const id = crypto.randomBytes(16).toString("hex");
+      console.log(req.body);
+        var jsonObj = req.body;
+        jsonObj.id = id;
+        this.Lists.model.create([jsonObj], (err) => {
+            if (err) {
+                console.log('object creation failed');
+            }
+        });
+        res.send('{"id":"' + id + '"}');
+    });
+
+    // toDoSample Routes
+    router.get('/app/list/:listId/count', (req, res) => {
+        var id = req.params.listId;
+        console.log('Query single list with id: ' + id);
+        this.Tasks.retrieveTasksCount(res, {listId: id});
     });
 
     router.post('/app/list2/', (req, res) => {

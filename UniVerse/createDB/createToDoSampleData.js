@@ -1,3 +1,72 @@
+//UniVerse Setup
+const { v4: uuidv4 } = require('uuid');
+db = db.getSiblingDB('uniVerse')
+
+//Accounts
+db.createCollection('accounts')
+accountsCollection = db.getCollection("accounts")
+accountsCollection.remove({})
+accountsCollection.insert(
+{
+	  id: uuidv4(),
+	  name: "Grocery List",
+	  description: "Grocery List for home.",
+	  listId: 1,
+	  due: "04-27-2015",
+	  state: "A",
+	  owner: "israelh"
+}
+)
+
+//Posts
+db.createCollection('posts')
+postsCollection = db.getCollection("posts")
+postsCollection.remove({})
+postsCollection.insert(
+{
+	  id: uuidv4(),
+	  name: "Grocery List",
+	  description: "Grocery List for home.",
+	  listId: 1,
+	  due: "04-27-2015",
+	  state: "A",
+	  owner: "israelh"
+}
+)
+
+//Comments
+db.createCollection('comments')
+commentsCollection = db.getCollection("comments")
+commentsCollection.remove({})
+commentsCollection.insert(
+{
+	  id: uuidv4(),
+	  name: "Grocery List",
+	  description: "Grocery List for home.",
+	  listId: 1,
+	  due: "04-27-2015",
+	  state: "A",
+	  owner: "israelh"
+}
+)
+
+//Notifications
+db.createCollection('notifications')
+notificationsCollection = db.getCollection("notifications")
+notificationsCollection.remove({})
+notificationsCollection.insert(
+{
+	  id: uuidv4(),
+	  name: "Grocery List",
+	  description: "Grocery List for home.",
+	  listId: 1,
+	  due: "04-27-2015",
+	  state: "A",
+	  owner: "israelh"
+}
+)
+
+// toDoSample Script
 db = db.getSiblingDB('toDoSample')
 db.createCollection('lists')
 listsCollection = db.getCollection("lists")
