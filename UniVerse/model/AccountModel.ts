@@ -17,7 +17,7 @@ class AccountModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                Id: Number,
+                id: String,
                 username: String,
                 fname: String,
                 lname: String,

@@ -4,6 +4,7 @@ import {PostModel} from './model/PostModel';
 import {ListModel} from './model/ListModel';
 import {TaskModel} from './model/TaskModel';
 import * as crypto from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -39,6 +40,31 @@ class App {
   private routes(): void {
     let router = express.Router();
 
+    // Post Single Element
+    router.post('/app/post/', (req, res) => {
+
+      // GUIDs (Globally Unique Identifiers)
+      const id = uuidv4();
+      console.log(req.body);
+        var newPostData  = req.body;
+        newPostData.id = id;
+        this.Posts.model.createPost(res, [newPostData], (err) => {
+          if (err) {
+              console.log('object creation failed');
+          }
+      });
+
+        // Return id back to client
+        res.send('{"id":"' + id + '"}');
+    });
+
+    // Get Single Element
+    // TODO
+
+    // Get Multi Element
+    // TODO
+    
+    // toDoSample Routes
     router.post('/app/list/', (req, res) => {
       const id = crypto.randomBytes(16).toString("hex");
       console.log(req.body);
@@ -52,21 +78,6 @@ class App {
         res.send('{"id":"' + id + '"}');
     });
 
-    // UniVerse Routes
-    router.post('/app/account/', (req, res) => {
-      const id = crypto.randomBytes(16).toString("hex");
-      console.log(req.body);
-        var jsonObj = req.body;
-        jsonObj.id = id;
-        this.Lists.model.create([jsonObj], (err) => {
-            if (err) {
-                console.log('object creation failed');
-            }
-        });
-        res.send('{"id":"' + id + '"}');
-    });
-
-    // toDoSample Routes
     router.get('/app/list/:listId/count', (req, res) => {
         var id = req.params.listId;
         console.log('Query single list with id: ' + id);

@@ -17,7 +17,7 @@ class NotifcationModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                id: Number,
+                id: String,
                 postId: Number,
                 author: String,
                 description: String,

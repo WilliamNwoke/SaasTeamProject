@@ -1,11 +1,11 @@
 import Mongoose = require("mongoose");
 
 interface IAccountModel extends Mongoose.Document {
-    Id: number;
-    username: string;
-    fname: string;
-    lname: string;
-    email: string;
-    department: string;
+    id: String,
+    username: String,
+    fname: String,
+    lname: String,
+    email: String,
+    department: String
 }
 export {IAccountModel};

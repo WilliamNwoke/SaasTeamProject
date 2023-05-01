@@ -1,13 +1,13 @@
 import Mongoose = require("mongoose");
 
 interface IPostModel extends Mongoose.Document {
-    id: number;
-    accountId: number;
-    title: string;
-    author: string;
-    isAnonymous: boolean;
-    likes: number;
-    dislikes: number;
-    comments: string[];
+    id: String,
+    accountId: Number,
+    title: String,
+    author: String,
+    isAnonymous: Boolean,
+    likes: Number,
+    dislikes: Number,
+    comments: [String]
 }
 export {IPostModel};

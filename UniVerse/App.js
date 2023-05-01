@@ -7,6 +7,7 @@ var PostModel_1 = require("./model/PostModel");
 var ListModel_1 = require("./model/ListModel");
 var TaskModel_1 = require("./model/TaskModel");
 var crypto = require("crypto");
+var uuid_1 = require("uuid");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -15,9 +16,8 @@ var App = /** @class */ (function () {
         this.middleware();
         this.routes();
         //UniVerse Models
-        this.Posts = new PostModel_1.ListModel();
-
-        //Professor's Models
+        this.Posts = new PostModel_1.PostModel();
+        //toDoSample Models
         this.Lists = new ListModel_1.ListModel();
         this.Tasks = new TaskModel_1.TaskModel();
     }
@@ -30,29 +30,26 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
-        
-        //UniVerse Routes
-
-        //Post: Get all posts
-        router.post('/app/posts/', function (req, res) {
-            var id = crypto.randomBytes(16).toString("hex");
+        // Post Single Element
+        router.post('/app/post/', function (req, res) {
+            // GUIDs (Globally Unique Identifiers)
+            var id = (0, uuid_1.v4)();
             console.log(req.body);
-            var jsonObj = req.body;
-            jsonObj.postId = id;
-            _this.Posts.model.create([jsonObj], function (err) {
+            var newPostData = req.body;
+            newPostData.id = id;
+            _this.Posts.model.createPost(res, [newPostData], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }
             });
+            // Return id back to client
             res.send('{"id":"' + id + '"}');
         });
-
-        // toDoApp Routes
-        router.get('/app/list/:listId/count', function (req, res) {
-            var id = req.params.listId;
-            console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksCount(res, { listId: id });
-        });
+        // Get Single Element
+        // TODO
+        // Get Multi Element
+        // TODO
+        // toDoSample Routes
         router.post('/app/list/', function (req, res) {
             var id = crypto.randomBytes(16).toString("hex");
             console.log(req.body);
@@ -64,6 +61,11 @@ var App = /** @class */ (function () {
                 }
             });
             res.send('{"id":"' + id + '"}');
+        });
+        router.get('/app/list/:listId/count', function (req, res) {
+            var id = req.params.listId;
+            console.log('Query single list with id: ' + id);
+            _this.Tasks.retrieveTasksCount(res, { listId: id });
         });
         router.post('/app/list2/', function (req, res) {
             var id = crypto.randomBytes(16).toString("hex");

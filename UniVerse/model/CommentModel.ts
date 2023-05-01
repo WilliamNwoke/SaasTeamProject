@@ -18,7 +18,7 @@ class CommentModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                commentId: Number,
+                id: String,
                 postId: Number,
                 author: String,
                 description: String,

@@ -17,7 +17,7 @@ class PostModel {
     public createSchemas(): void {
         this.schema = new Mongoose.Schema(
             {
-                id: Number,
+                id: String,
                 accountId: Number,
                 title: String,
                 author: String,
@@ -33,7 +33,18 @@ class PostModel {
         this.model = mongooseConnection.model<IPostModel>("Posts", this.schema);
     }
 
-    public createPost(response: any){}
+    public createPost(response: any, newPostData: any): void {
+        const newPost = new this.model(newPostData);
+    
+        newPost.save((err: any, post: any) => {
+            if (err) {
+                response.status(500).send(err);
+            } else {
+                response.json(post);
+            }
+        });
+    }
+
     public updatePost(response: any){}
     public deletePost(response: any){}
     public viewPost(response: any){}
