@@ -82,7 +82,7 @@ postId1 = (0, uuid.v4)()
 postCollection.insert(
 {
     id: postId1,
-    postId: postId1,
+    accountId: accountId1,
     title: "Textbook inquiry",
     author: "Ernest Doe",
     isAnonymous: false,
@@ -98,7 +98,7 @@ postId2 = (0, uuid.v4)()
 postCollection.insert(
 {
     id: postId2,
-    postId: postId2,
+    accountId: accountId2,
     title: "Experiential Learning Tips",
     author: "Janet Smith",
     isAnonymous: true,
@@ -114,7 +114,7 @@ postId3 = (0, uuid.v4)()
 postCollection.insert(
 {
     id: postId3,
-    postId: postId3,
+    accountId: accountId3,
     title: "Hangout in the Game Lounge",
     author: "Santiago Rodriguez",
     isAnonymous: false,
@@ -130,7 +130,7 @@ postId4 = (0, uuid.v4)()
 postCollection.insert(
 {
     id: postId4,
-    postId: postId4,
+    accountId: accountId4,
     title: "Hackathon Open for All",
     author: "Kayleigh Cruz",
     isAnonymous: false,
@@ -146,7 +146,7 @@ postId5 = (0, uuid.v4)()
 postCollection.insert(
 {
     id: postId5,
-    postId: postId5,
+    accountId: accountId5,
     title: "Taken CH 2300?",
     author: "Kenneth Jones",
     isAnonymous: false,
