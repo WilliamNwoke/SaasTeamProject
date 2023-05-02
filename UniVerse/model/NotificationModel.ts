@@ -23,7 +23,8 @@ class NotifcationModel {
                 description: String,
                 commentDate: Date,
                 likes: Number,
-                dislikes: Number
+                dislikes: Number,
+
             }, {collection: 'notifications'}
         );
     }
@@ -32,9 +33,56 @@ class NotifcationModel {
         this.model = mongooseConnection.model<INotificationModel>("Notifcations", this.schema);
     }
 
-    public createNotification(): void{}
-    public removeNotification(): void{}
-    public viewNotification(): void{}
-    public viewAllNotifications(): void{}
-    public notificationTimer(): void{}
+    // async createNotification(response: any, commentData: Object): Promise<any>{
+    //     var commentMod = new this.model(commentData);
+    //     return commentMod.save((err, comment) => {
+    //         if(err){
+    //             console.log("Error saving comment");
+    //         } else {
+    //             console.log("Commented successfully added");
+    //             response.json(comment);
+    //         }
+    //     });
+    // }
+    // public createNotification(): void{}
+
+    public removeNotification(response: any, filter: Object): void{
+        var query = this.model.findOne(filter);
+        query.exec((err, notification) => {
+            if (err) {
+                console.log("Error finding notification");
+            } else {
+                notification.remove((err, notification) => {
+                    console.log("removed");
+                });
+                
+            }
+        });
+    }
+
+    public viewNotification(response:any, filter:Object): any{
+        var query = this.model.findOne(filter);
+        query.exec((err, notification) => {
+            if (err) {
+                console.log("Error finding notification");
+            } else {
+                console.log("viewed ");
+                response.json(notification);
+            }
+        });
+    }
+    public viewAllNotifications(response:any, filter:Object): any{
+        var query = this.model.find(filter);
+        query.exec((err, notification) => {
+            if (err) {
+                console.log("Error finding notification");
+            } else {
+                console.log("viewed ");
+                response.json(notification);
+            }
+        });
+    }
+
+    // TODO: complete this method to have notification time
+    public notificationTimer(): any{}
 }

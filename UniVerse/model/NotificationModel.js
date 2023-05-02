@@ -17,16 +17,62 @@ var NotifcationModel = /** @class */ (function () {
             description: String,
             commentDate: Date,
             likes: Number,
-            dislikes: Number
+            dislikes: Number,
         }, { collection: 'notifications' });
     };
     NotifcationModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Notifcations", this.schema);
     };
-    NotifcationModel.prototype.createNotification = function () { };
-    NotifcationModel.prototype.removeNotification = function () { };
-    NotifcationModel.prototype.viewNotification = function () { };
-    NotifcationModel.prototype.viewAllNotifications = function () { };
+    // async createNotification(response: any, commentData: Object): Promise<any>{
+    //     var commentMod = new this.model(commentData);
+    //     return commentMod.save((err, comment) => {
+    //         if(err){
+    //             console.log("Error saving comment");
+    //         } else {
+    //             console.log("Commented successfully added");
+    //             response.json(comment);
+    //         }
+    //     });
+    // }
+    // public createNotification(): void{}
+    NotifcationModel.prototype.removeNotification = function (response, filter) {
+        var query = this.model.findOne(filter);
+        query.exec(function (err, notification) {
+            if (err) {
+                console.log("Error finding notification");
+            }
+            else {
+                notification.remove(function (err, notification) {
+                    console.log("removed");
+                });
+            }
+        });
+    };
+    NotifcationModel.prototype.viewNotification = function (response, filter) {
+        var query = this.model.findOne(filter);
+        query.exec(function (err, notification) {
+            if (err) {
+                console.log("Error finding notification");
+            }
+            else {
+                console.log("viewed ");
+                response.json(notification);
+            }
+        });
+    };
+    NotifcationModel.prototype.viewAllNotifications = function (response, filter) {
+        var query = this.model.find(filter);
+        query.exec(function (err, notification) {
+            if (err) {
+                console.log("Error finding notification");
+            }
+            else {
+                console.log("viewed ");
+                response.json(notification);
+            }
+        });
+    };
+    // TODO: complete this method to have notification time
     NotifcationModel.prototype.notificationTimer = function () { };
     return NotifcationModel;
 }());
