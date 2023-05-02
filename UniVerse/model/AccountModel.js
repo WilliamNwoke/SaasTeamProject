@@ -24,6 +24,7 @@ var AccountModel = /** @class */ (function () {
     //  accountDocument = IaccountModel 
     // Account = Mongoose.model<IaccountModel> = this.model
     AccountModel.prototype.createModel = function () {
+        console.log("Inside createModel");
         this.model = mongooseConnection.model("Accounts", this.schema);
     };
     AccountModel.prototype.createAccount = function (res, accountData, callback) {

@@ -39,7 +39,7 @@ var App = /** @class */ (function () {
             var accountJsonObj = req.body;
             accountJsonObj.id = id;
             console.log("calling createAccount()");
-            _this.Accounts.model.createAccount([accountJsonObj], function (err) {
+            _this.Accounts.model.create([accountJsonObj], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }

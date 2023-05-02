@@ -3,7 +3,7 @@ import Mongoose = require("mongoose");
 class DataAccess {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
-    static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@localhost:3000/toDoSample?authSource=admin';
+    static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@localhost:3000/uniVerse?authSource=admin';
     // Added this line to make the unified topology true per error
     static OPTION = {useUnifiedTopology: true };
     

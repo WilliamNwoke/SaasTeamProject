@@ -31,6 +31,7 @@ class AccountModel {
     // Account = Mongoose.model<IaccountModel> = this.model
 
     public createModel(): void {
+        console.log("Inside createModel")
         this.model = mongooseConnection.model<IAccountModel>("Accounts", this.schema);
     }
 
