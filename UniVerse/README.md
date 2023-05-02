@@ -42,6 +42,4 @@ chmod +x start.Universe.sh
 5. node AppServer.js 
 
 To test server #3, try the following URL on the browser, while the server is running:
-* http://localhost:8080/
-* http://localhost:8080/app/list
-* http://localhost:8080/app/list/1
+* http://localhost:8080/posts/
