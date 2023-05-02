@@ -13,7 +13,7 @@ var PostModel = /** @class */ (function () {
     PostModel.prototype.createSchemas = function () {
         this.schema = new Mongoose.Schema({
             id: String,
-            accountId: Number,
+            authorId: String,
             title: String,
             author: String,
             isAnonymous: Boolean,
@@ -24,17 +24,6 @@ var PostModel = /** @class */ (function () {
     };
     PostModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Posts", this.schema);
-    };
-    PostModel.prototype.createPost = function (response, newPostData) {
-        var newPost = new this.model(newPostData);
-        newPost.save(function (err, post) {
-            if (err) {
-                response.status(500).send(err);
-            }
-            else {
-                response.json(post);
-            }
-        });
     };
     PostModel.prototype.updatePost = function (response) { };
     PostModel.prototype.deletePost = function (response) { };

@@ -38,15 +38,7 @@ var App = /** @class */ (function () {
             console.log(req.body);
             var accountJsonObj = req.body;
             accountJsonObj.id = id;
-            var account = {
-                "id": id,
-                "username": accountJsonObj.username,
-                "fname": accountJsonObj.fname,
-                "lname": accountJsonObj.lname,
-                "email": accountJsonObj.email,
-                "department": accountJsonObj.department
-            };
-            _this.Accounts.model.create([account], function (err) {
+            _this.Accounts.model.create([accountJsonObj], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }
@@ -58,14 +50,13 @@ var App = /** @class */ (function () {
             // GUIDs (Globally Unique Identifiers)
             var id = (0, uuid_1.v4)();
             console.log(req.body);
-            var newPostData = req.body;
-            newPostData.id = id;
-            _this.Posts.model.createPost([newPostData], function (err) {
+            var postJsonObj = req.body;
+            postJsonObj.id = id;
+            _this.Posts.model.create([postJsonObj], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }
             });
-            // Return id back to client
             res.send('{"id":"' + id + '"}');
         });
         // Get Single Element

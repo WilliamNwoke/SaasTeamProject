@@ -27,14 +27,6 @@ var AccountModel = /** @class */ (function () {
         console.log("Inside createModel");
         this.model = mongooseConnection.model("Accounts", this.schema);
     };
-    AccountModel.prototype.createAccount = function (res, accountData, callback) {
-        console.log("Inside createAccount()");
-        var newAccount = new this.model(accountData);
-        newAccount.save(function (err, savedAccount) {
-            console.log("account saved");
-            accountData.json(savedAccount);
-        });
-    };
     AccountModel.prototype.viewAccount = function (accountId) {
         var query = this.model.findOne({ _id: accountId });
         query.exec(function (err, userAccount) {

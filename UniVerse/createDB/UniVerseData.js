@@ -167,7 +167,15 @@ commentCollection.insert(
 {
     id: commentId1,
     postId : postId1,
-    authorId: accountId2,
+    author: {
+        accountId: 005,
+        userName: "kennyj",
+        firstName: "Kenneth",
+        lastName: "Jones",
+        email: "kjones@seattleu.edu",
+        department: "Chemistry Department",
+  
+  },
     description: "Human Anotomy by A.H Henson is a good supplementar textbook. It should support you through clinicals",
     dateTime: 02-14-2023,
     likes: 3,
@@ -179,7 +187,14 @@ commentCollection.insert(
 {
     id: commentId2,
     postId : postId2,
-    authorId: accountId5,
+    author: {
+        accountId: 003,
+        userName: "srodriguez",
+        firstName: "Santiago",
+        lastName: "Rodriguez",
+        email: "srodriguez@seattleu.edu",
+        department: "College of Arts",
+  },
     description: "I concur, I always remember asking for feedback during my internship at the pharmaceutical company. I interned at last summer.",
     dateTime: 02-24-2023,
     likes: 3,
@@ -190,7 +205,15 @@ commentCollection.insert(
 {
     id: commentId3,
     postId : postId4,
-    authorId: accountId4,
+    author: {
+        accountId: 004,
+        userName: "kcruz24",
+        firstName: "Kayleigh",
+        lastName: "Cruz",
+        email: "kayleighc@seattleu.edu",
+        department: "College of Science and Engineering",
+  
+  },
     description: "How about we meet around 8:00pm. I should be finished with homework by then. Plus my roommates wanna join in too",
     dateTime: 02-18-2023,
     likes: 3,
@@ -201,7 +224,15 @@ commentCollection.insert(
 {
     id: commentId4,
     postId : postId4,
-    authorId: accountId5,
+    author: {
+        accountId: 005,
+        userName: "kennyj",
+        firstName: "Kenneth",
+        lastName: "Jones",
+        email: "kjones@seattleu.edu",
+        department: "Chemistry Department",
+  
+  },
     description: "Yay! Hackathons are back. How I missed in-person hackathon since the pandemic caused us to experience them virtually",
     dateTime: 03-14-2023,
     likes: 2,
@@ -212,7 +243,15 @@ commentCollection.insert(
 {
     id: commentId5,
     postId : postId5,
-    authorId: accountId3,
+    author: {
+        accountId: 003,
+        userName: "srodriguez",
+        firstName: "Santiago",
+        lastName: "Rodriguez",
+        email: "srodriguez@seattleu.edu",
+        department: "College of Arts",
+  
+  },
     description: "I haven't had any courses with Dr. Ortega. However, from what I've heard from my bestfriend, who is a Chemistry major, she's a fun professor. Expect to learn a ton in her courses!",
     dateTime: 03-15-2023,
     likes: 1,

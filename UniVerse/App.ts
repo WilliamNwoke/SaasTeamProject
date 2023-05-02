@@ -49,17 +49,7 @@ class App {
       console.log(req.body);
         var accountJsonObj  = req.body;
         accountJsonObj.id = id;
-        
-        var account = {
-          "id": id,
-          "username": accountJsonObj.username,
-          "fname": accountJsonObj.fname,
-          "lname": accountJsonObj.lname,
-          "email": accountJsonObj.email,
-          "department": accountJsonObj.department
-      }
-
-        this.Accounts.model.create([account], (err) => {
+        this.Accounts.model.create([accountJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');
           }
@@ -73,15 +63,13 @@ class App {
       // GUIDs (Globally Unique Identifiers)
       const id = uuidv4();
       console.log(req.body);
-        var newPostData  = req.body;
-        newPostData.id = id;
-        this.Posts.model.createPost([newPostData], (err) => {
+        var postJsonObj  = req.body;
+        postJsonObj.id = id;
+        this.Posts.model.create([postJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');
           }
       });
-
-        // Return id back to client
         res.send('{"id":"' + id + '"}');
     });
 
