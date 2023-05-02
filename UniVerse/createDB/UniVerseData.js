@@ -168,7 +168,7 @@ commentCollection.insert(
     id: commentId1,
     postId : postId1,
     author: {
-        accountId: 005,
+        accountId: accountId5,
         userName: "kennyj",
         firstName: "Kenneth",
         lastName: "Jones",
@@ -188,7 +188,7 @@ commentCollection.insert(
     id: commentId2,
     postId : postId2,
     author: {
-        accountId: 003,
+        accountId: accountId3,
         userName: "srodriguez",
         firstName: "Santiago",
         lastName: "Rodriguez",
@@ -206,7 +206,7 @@ commentCollection.insert(
     id: commentId3,
     postId : postId4,
     author: {
-        accountId: 004,
+        accountId: accountId4,
         userName: "kcruz24",
         firstName: "Kayleigh",
         lastName: "Cruz",
@@ -225,7 +225,7 @@ commentCollection.insert(
     id: commentId4,
     postId : postId4,
     author: {
-        accountId: 005,
+        accountId: accountId5,
         userName: "kennyj",
         firstName: "Kenneth",
         lastName: "Jones",
@@ -244,7 +244,7 @@ commentCollection.insert(
     id: commentId5,
     postId : postId5,
     author: {
-        accountId: 003,
+        accountId: accountId3,
         userName: "srodriguez",
         firstName: "Santiago",
         lastName: "Rodriguez",
