@@ -18,7 +18,7 @@ var AccountModel = /** @class */ (function () {
             lname: String,
             email: String,
             department: String
-        }, { collection: 'account' } // TODO: review what this line is for
+        }, { collection: 'accounts' } // TODO: review what this line is for
         );
     };
     //  accountDocument = IaccountModel 

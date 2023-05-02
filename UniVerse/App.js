@@ -38,7 +38,7 @@ var App = /** @class */ (function () {
             console.log(req.body);
             var newAccountData = req.body;
             newAccountData.id = id;
-            _this.Accounts.model.createAccount(res, [newAccountData], function (err) {
+            _this.Accounts.model.createAccount([newAccountData], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }

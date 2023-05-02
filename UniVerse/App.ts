@@ -49,7 +49,7 @@ class App {
       console.log(req.body);
         var newAccountData  = req.body;
         newAccountData.id = id;
-        this.Accounts.model.createAccount(res, [newAccountData], (err) => {
+        this.Accounts.model.createAccount([newAccountData], (err) => {
           if (err) {
               console.log('object creation failed');
           }
@@ -65,7 +65,7 @@ class App {
       console.log(req.body);
         var newPostData  = req.body;
         newPostData.id = id;
-        this.Posts.model.createPost(res, [newPostData], (err) => {
+        this.Posts.model.createPost([newPostData], (err) => {
           if (err) {
               console.log('object creation failed');
           }
