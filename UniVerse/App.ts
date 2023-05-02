@@ -79,7 +79,7 @@ class App {
       var postId = req.params.id;
       console.log('Query single post with id: ' + postId);
       this.Posts.retrievePostsDetails(res, {id: postId});
-  });
+    });
     router.get('/posts/', (req, res) => {
       console.log('Query All Posts');
       this.Posts.retrieveAllPosts(res);
