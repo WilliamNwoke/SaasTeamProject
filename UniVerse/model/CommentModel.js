@@ -13,7 +13,7 @@ var CommentModel = /** @class */ (function () {
     CommentModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             id: String,
-            postId: Number,
+            postId: Mongoose.Types.ObjectId,
             author: String,
             description: String,
             commentDate: Date,
@@ -24,7 +24,7 @@ var CommentModel = /** @class */ (function () {
     CommentModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Comments", this.schema);
     };
-    CommentModel.prototype.addComment = function (response) { };
+    CommentModel.prototype.addComment = function (response, filter) { };
     CommentModel.prototype.retrieveAllComments = function (response) {
         var query = this.model.find({});
         query.exec(function (err, itemArray) {

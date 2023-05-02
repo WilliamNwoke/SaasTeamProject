@@ -75,15 +75,16 @@ class App {
       });
         res.send('{"id":"' + id + '"}');
     });
+    router.get('/posts/:id', (req, res) => {
+      var postId = req.params.id;
+      console.log('Query single post with id: ' + postId);
+      this.Posts.retrievePostsDetails(res, {id: postId});
+  });
     router.get('/posts/', (req, res) => {
       console.log('Query All Posts');
       this.Posts.retrieveAllPosts(res);
     });
-    router.get('/posts/:postId', (req, res) => {
-      var id = req.params.postId;
-      console.log('Query single post with id: ' + id);
-      this.Posts.retrievePostsDetails(res, {postId: id});
-  });
+
 
     // COMMENTS
     router.post('/comments/', (req, res) => {

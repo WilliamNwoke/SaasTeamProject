@@ -35,8 +35,8 @@ class CommentModel {
     }
 
     public addComment(response: any, filter:Object): any{}
-    public retrieveAllComments(response: any, filter:Object): any{
-        var query = this.model.find(filter);
+    public retrieveAllComments(response: any): any{
+        var query = this.model.find({});
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
         });

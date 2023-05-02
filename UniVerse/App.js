@@ -61,14 +61,14 @@ var App = /** @class */ (function () {
             });
             res.send('{"id":"' + id + '"}');
         });
+        router.get('/posts/:id', function (req, res) {
+            var postId = req.params.id;
+            console.log('Query single post with id: ' + postId);
+            _this.Posts.retrievePostsDetails(res, { id: postId });
+        });
         router.get('/posts/', function (req, res) {
             console.log('Query All Posts');
             _this.Posts.retrieveAllPosts(res);
-        });
-        router.get('/posts/:postId', function (req, res) {
-            var id = req.params.postId;
-            console.log('Query single post with id: ' + id);
-            _this.Posts.retrievePostsDetails(res, { postId: id });
         });
         // COMMENTS
         router.post('/comments/', function (req, res) {
