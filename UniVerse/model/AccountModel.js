@@ -26,7 +26,8 @@ var AccountModel = /** @class */ (function () {
     AccountModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Accounts", this.schema);
     };
-    AccountModel.prototype.createAccount = function (accountData) {
+    AccountModel.prototype.createAccount = function (res, accountData, callback) {
+        console.log("Inside createAccount()");
         var newAccount = new this.model(accountData);
         newAccount.save(function (err, savedAccount) {
             console.log("account saved");

@@ -34,7 +34,8 @@ class AccountModel {
         this.model = mongooseConnection.model<IAccountModel>("Accounts", this.schema);
     }
 
-    public createAccount(accountData: any): any {
+    public createAccount(res: any, accountData: any, callback: any): any {
+        console.log("Inside createAccount()")
         const newAccount = new this.model(accountData);
         newAccount.save((err, savedAccount) => {
             console.log("account saved");

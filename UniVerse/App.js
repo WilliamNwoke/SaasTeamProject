@@ -33,12 +33,13 @@ var App = /** @class */ (function () {
         var _this = this;
         var router = express.Router();
         // Account: Post Single Element
-        router.post('/app/accounts/', function (req, res) {
+        router.post('/accounts/', function (req, res) {
             var id = (0, uuid_1.v4)();
             console.log(req.body);
-            var newAccountData = req.body;
-            newAccountData.id = id;
-            _this.Accounts.model.createAccount([newAccountData], function (err) {
+            var accountJsonObj = req.body;
+            accountJsonObj.id = id;
+            console.log("calling createAccount()");
+            _this.Accounts.model.createAccount([accountJsonObj], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }
@@ -46,13 +47,13 @@ var App = /** @class */ (function () {
             res.send('{"id":"' + id + '"}');
         });
         // Post: Post Single Element
-        router.post('/app/posts/', function (req, res) {
+        router.post('/posts/', function (req, res) {
             // GUIDs (Globally Unique Identifiers)
             var id = (0, uuid_1.v4)();
             console.log(req.body);
             var newPostData = req.body;
             newPostData.id = id;
-            _this.Posts.model.createPost(res, [newPostData], function (err) {
+            _this.Posts.model.createPost([newPostData], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }

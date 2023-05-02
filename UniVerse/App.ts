@@ -44,12 +44,13 @@ class App {
     let router = express.Router();
 
     // Account: Post Single Element
-    router.post('/app/accounts/', (req, res) => {
+    router.post('/accounts/', (req, res) => {
       const id = uuidv4();
       console.log(req.body);
-        var newAccountData  = req.body;
-        newAccountData.id = id;
-        this.Accounts.model.createAccount([newAccountData], (err) => {
+        var accountJsonObj  = req.body;
+        accountJsonObj.id = id;
+        console.log("calling createAccount()")
+        this.Accounts.model.createAccount([accountJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');
           }
@@ -58,7 +59,7 @@ class App {
     });
 
     // Post: Post Single Element
-    router.post('/app/posts/', (req, res) => {
+    router.post('/posts/', (req, res) => {
 
       // GUIDs (Globally Unique Identifiers)
       const id = uuidv4();
