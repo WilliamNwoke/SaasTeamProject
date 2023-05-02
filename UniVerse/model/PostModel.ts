@@ -24,6 +24,8 @@ class PostModel {
                 author: String,
                 isAnonymous: Boolean,
                 isEdited: Boolean,
+                description: String,
+                dateTime: Date,
                 likes: Number,
                 dislikes: Number,
                 comments: [String]
