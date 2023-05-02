@@ -52,7 +52,7 @@ var CommentModel = /** @class */ (function () {
             postId: { type: String, required: true },
             author: { type: String, required: true },
             description: { type: String, required: true },
-            commentDate: { type: Date, required: true },
+            dateTime: { type: Date, required: true },
             likes: { type: Number, required: true },
             dislikes: { type: Number, required: true }
         }, { collection: 'comments' });

@@ -80,6 +80,8 @@ var App = /** @class */ (function () {
                     console.log('object creation failed');
                 }
             });
+            // RETRIEVE post
+            _this.Posts.updatePostComment(res, commentJsonObj.postId, id);
             res.send('{"id":"' + id + '"}');
         });
         router.get('/comments/:postId', function (req, res) {

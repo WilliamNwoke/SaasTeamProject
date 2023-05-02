@@ -88,14 +88,16 @@ class App {
     router.post('/comments/', (req, res) => {
       const id = uuidv4();
       console.log(req.body);
-        var commentJsonObj  = req.body;
+        var commentJsonObj = req.body;
         commentJsonObj.id = id;
         this.Comments.model.create([commentJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');
           }
       });
-        res.send('{"id":"' + id + '"}');
+      // RETRIEVE post
+      this.Posts.updatePostComment(res, commentJsonObj.postId, id);
+      res.send('{"id":"' + id + '"}');
     });
 
     router.get('/comments/:postId', (req, res) => {

@@ -49,30 +49,47 @@ class PostModel {
         });
     }
 
-    public updatePost(response: any, filter:Object): any{
-        var query = this.model.findOne(filter);
-        query.exec((err, post) => {
-            if(err){
-                console.log("Error finding post");
-            } else {
-                post.title = response.title;
-                post.author = response.author;
-                post.isAnonymous = response.isAnonymous;
-                post.likes = response.likes;
-                post.dislikes = response.dislikes;
-                post.comments = response.comments;
-                post.save((err, post) => {
-                    if(err){
-                        console.log("Error saving post");
-                    } else {
-                        console.log("Post saved successfully");
-                        response.json(post);
+    public updatePost(post:any, response:any) : any {
+        // var query = this.model.findOne(filter);
+        // var query = this.model.findOneAndUpdate(post.userId, user, {
+        //     new : true
+        // });
 
-                    }
-                });
-            }
-        });
+        // query.exec((err, item) => {
+        //     if(err){
+        //         console.log("Update user failed");
+        //     }
+        //     else{
+        //         console.log("Updated user");
+        //         response.send(item);
+        //     }
+        // })
     }
+
+    // public updatePost(response: any, filter:Object): any{
+    //     var query = this.model.findOne(filter);
+    //     query.exec((err, post) => {
+    //         if(err){
+    //             console.log("Error finding post");
+    //         } else {
+    //             post.title = response.title;
+    //             post.author = response.author;
+    //             post.isAnonymous = response.isAnonymous;
+    //             post.likes = response.likes;
+    //             post.dislikes = response.dislikes;
+    //             post.comments = response.comments;
+    //             post.save((err, post) => {
+    //                 if(err){
+    //                     console.log("Error saving post");
+    //                 } else {
+    //                     console.log("Post saved successfully");
+    //                     response.json(post);
+
+    //                 }
+    //             });
+    //         }
+    //     });
+    // }
 
     public deletePost(response: any, filter:Object): any{
         var query = this.model.findOne(filter);
@@ -116,6 +133,31 @@ class PostModel {
             response.json(postArray) ;
         });
     }
+
+    public updatePostComment(response: any, postId: String, commentId: string) {
+        // Define the query to find the post object with the specified 'postId'
+        const filter = { id: postId };
+      
+        // Define the update operation using the $push operator to append the 'commentId' to the 'comments' array
+        const update = { $push: { comments: commentId } };
+      
+        // Use the findOneAndUpdate() method to perform the update operation on the post object matching the query
+        this.model.findOneAndUpdate(filter, update, { new: true }, (err, post) => {
+          if (err) {
+            // Handle the error
+            console.error(err);
+            response.status(500).json({ error: 'An error occurred while updating the post' });
+          } else if (!post) {
+            // Handle the case where no post was found with the specified 'postId'
+            response.status(404).json({ error: `No post was found with postId ${postId}` });
+          } else {
+            // Return the updated post object
+            console.log(post)
+          }
+        });
+      }
+
+
     public retrievePostsDetails(response:any, filter:Object) {
         var query = this.model.findOne(filter);
         query.exec( (err, postArray) => {
