@@ -13,7 +13,7 @@ var PostModel = /** @class */ (function () {
     PostModel.prototype.createSchemas = function () {
         this.schema = new Mongoose.Schema({
             id: String,
-            authorId: String,
+            accountId: String,
             title: String,
             author: String,
             isAnonymous: Boolean,
@@ -28,7 +28,18 @@ var PostModel = /** @class */ (function () {
     PostModel.prototype.updatePost = function (response) { };
     PostModel.prototype.deletePost = function (response) { };
     PostModel.prototype.viewPost = function (response) { };
-    PostModel.prototype.viewAllPosts = function (response) { };
+    PostModel.prototype.retrieveAllPosts = function (response) {
+        var query = this.model.find({});
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
+    PostModel.prototype.retrievePostsDetails = function (response, filter) {
+        var query = this.model.findOne(filter);
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
     return PostModel;
 }());
 exports.PostModel = PostModel;

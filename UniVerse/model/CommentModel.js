@@ -25,7 +25,12 @@ var CommentModel = /** @class */ (function () {
         this.model = mongooseConnection.model("Comments", this.schema);
     };
     CommentModel.prototype.addComment = function (response) { };
-    CommentModel.prototype.viewAllComments = function (response) { };
+    CommentModel.prototype.retrieveAllComments = function (response) {
+        var query = this.model.find({});
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
     return CommentModel;
 }());
 exports.CommentModel = CommentModel;

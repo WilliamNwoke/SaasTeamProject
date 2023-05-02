@@ -36,6 +36,17 @@ class PostModel {
     public updatePost(response: any){}
     public deletePost(response: any){}
     public viewPost(response: any){}
-    public viewAllPosts(response: any){}
+    public retrieveAllPosts(response: any){
+        var query = this.model.find({});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
+    public retrievePostsDetails(response:any, filter:Object) {
+        var query = this.model.findOne(filter);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray);
+        });
+    }
 }
 export {PostModel};

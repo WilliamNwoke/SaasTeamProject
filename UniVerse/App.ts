@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {PostModel} from './model/PostModel';
 import {AccountModel} from './model/AccountModel';
+import {CommentModel} from './model/CommentModel';
 import {ListModel} from './model/ListModel';
 import {TaskModel} from './model/TaskModel';
 import * as crypto from 'crypto';
@@ -15,6 +16,7 @@ class App {
   //UniVerse Models
   public Posts:PostModel;
   public Accounts:AccountModel;
+  public Comments:CommentModel;
   //toDoSample Models
   public Lists:ListModel;
   public Tasks:TaskModel;
@@ -28,6 +30,7 @@ class App {
     //UniVerse Models
     this.Posts = new PostModel();
     this.Accounts = new AccountModel();
+    this.Comments = new CommentModel();
     //toDoSample Models
     this.Lists = new ListModel();
     this.Tasks = new TaskModel();
@@ -43,7 +46,7 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    // Account: Post Single Element
+    // ACCOUNT
     router.post('/accounts/', (req, res) => {
       const id = uuidv4();
       console.log(req.body);
@@ -57,7 +60,7 @@ class App {
         res.send('{"id":"' + id + '"}');
     });
 
-    // Post: Post Single Element
+    // POST
     router.post('/posts/', (req, res) => {
 
       // GUIDs (Globally Unique Identifiers)
@@ -72,12 +75,35 @@ class App {
       });
         res.send('{"id":"' + id + '"}');
     });
+    router.get('/posts/', (req, res) => {
+      console.log('Query All Posts');
+      this.Posts.retrieveAllPosts(res);
+    });
+    router.get('/posts/:postId', (req, res) => {
+      var id = req.params.postId;
+      console.log('Query single post with id: ' + id);
+      this.Posts.retrievePostsDetails(res, {postId: id});
+  });
 
-    // Get Single Element
-    // TODO
-
-    // Get Multi Element
-    // TODO
+    // COMMENTS
+    router.post('/comments/', (req, res) => {
+      const id = uuidv4();
+      console.log(req.body);
+        var commentJsonObj  = req.body;
+        commentJsonObj.id = id;
+        this.Comments.model.create([commentJsonObj], (err) => {
+          if (err) {
+              console.log('object creation failed');
+          }
+      });
+        res.send('{"id":"' + id + '"}');
+    });
+    // Comment
+    router.get('/comments/', (req, res) => {
+      console.log('Query All Comments');
+      this.Comments.retrieveAllComments(res);
+    });
+    
     
     // toDoSample Routes
     router.post('/app/list/', (req, res) => {
