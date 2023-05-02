@@ -4,6 +4,7 @@ exports.App = void 0;
 var express = require("express");
 var bodyParser = require("body-parser");
 var PostModel_1 = require("./model/PostModel");
+var AccountModel_1 = require("./model/AccountModel");
 var ListModel_1 = require("./model/ListModel");
 var TaskModel_1 = require("./model/TaskModel");
 var crypto = require("crypto");
@@ -17,6 +18,7 @@ var App = /** @class */ (function () {
         this.routes();
         //UniVerse Models
         this.Posts = new PostModel_1.PostModel();
+        this.Accounts = new AccountModel_1.AccountModel();
         //toDoSample Models
         this.Lists = new ListModel_1.ListModel();
         this.Tasks = new TaskModel_1.TaskModel();
@@ -30,8 +32,21 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
-        // Post Single Element
-        router.post('/app/post/', function (req, res) {
+        // Account: Post Single Element
+        router.post('/app/accounts/', function (req, res) {
+            var id = (0, uuid_1.v4)();
+            console.log(req.body);
+            var newAccountData = req.body;
+            newAccountData.id = id;
+            _this.Accounts.model.createAccount(res, [newAccountData], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send('{"id":"' + id + '"}');
+        });
+        // Post: Post Single Element
+        router.post('/app/posts/', function (req, res) {
             // GUIDs (Globally Unique Identifiers)
             var id = (0, uuid_1.v4)();
             console.log(req.body);

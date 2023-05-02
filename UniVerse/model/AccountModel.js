@@ -18,15 +18,27 @@ var AccountModel = /** @class */ (function () {
             lname: String,
             email: String,
             department: String
-        }, { collection: 'accounts' } // TODO: review what this line is for
+        }, { collection: 'account' } // TODO: review what this line is for
         );
     };
+    //  accountDocument = IaccountModel 
+    // Account = Mongoose.model<IaccountModel> = this.model
     AccountModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Accounts", this.schema);
     };
-    AccountModel.prototype.createAccount = function () {
+    AccountModel.prototype.createAccount = function (accountData) {
+        var newAccount = new this.model(accountData);
+        newAccount.save(function (err, savedAccount) {
+            console.log("account saved");
+            accountData.json(savedAccount);
+        });
     };
-    AccountModel.prototype.viewAccount = function () {
+    AccountModel.prototype.viewAccount = function (accountId) {
+        var query = this.model.findOne({ _id: accountId });
+        query.exec(function (err, userAccount) {
+            console.log("Username is " + userAccount);
+            accountId.json(userAccount);
+        });
     };
     return AccountModel;
 }());

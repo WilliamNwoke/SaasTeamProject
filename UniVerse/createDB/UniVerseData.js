@@ -5,8 +5,8 @@ db = db.getSiblingDB('uniVerse');
 //Drop Existing for reseed
 db.dropDatabase("uniVerse");
 //Account
-db.createCollection('account')
-accountCollection = db.getCollection("account");
+db.createCollection('accounts')
+accountCollection = db.getCollection("accounts");
 accountCollection.remove({})
 accountId1 = (0, uuid.v4)()
 accountCollection.insert(
@@ -75,8 +75,8 @@ commentId4 = (0, uuid.v4)()
 commentId5 = (0, uuid.v4)()
 
 //Post
-db.createCollection('post')
-postCollection = db.getCollection("post")
+db.createCollection('posts')
+postCollection = db.getCollection("posts")
 postCollection.remove({})
 postId1 = (0, uuid.v4)()
 postCollection.insert(
@@ -160,8 +160,8 @@ postCollection.insert(
 )
 
 //Comment
-db.createCollection('comment')
-commentCollection = db.getCollection("comment")
+db.createCollection('comments')
+commentCollection = db.getCollection("comments")
 commentCollection.remove({})
 commentCollection.insert(
 {
@@ -186,7 +186,6 @@ commentCollection.insert(
     dislikes: 0,
 }
 )
-
 commentCollection.insert(
 {
     id: commentId3,
@@ -222,8 +221,8 @@ commentCollection.insert(
 )
 
 //Notification
-db.createCollection('notification')
-notificationCollection = db.getCollection("notification")
+db.createCollection('notifications')
+notificationCollection = db.getCollection("notifications")
 notificationCollection.remove({})
 notificationId1 = (0, uuid.v4)()
 notificationCollection.insert(

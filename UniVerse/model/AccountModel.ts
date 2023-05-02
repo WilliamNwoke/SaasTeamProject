@@ -17,13 +17,13 @@ class AccountModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                Id: Number,
+                id: String,
                 username: String,
                 fname: String,
                 lname: String,
                 email: String,
                 department: String
-            }, {collection: 'accounts'} // TODO: review what this line is for
+            }, {collection: 'account'} // TODO: review what this line is for
         );
     }
 

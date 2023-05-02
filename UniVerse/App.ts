@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {PostModel} from './model/PostModel';
+import {AccountModel} from './model/AccountModel';
 import {ListModel} from './model/ListModel';
 import {TaskModel} from './model/TaskModel';
 import * as crypto from 'crypto';
@@ -13,6 +14,7 @@ class App {
   public expressApp: express.Application;
   //UniVerse Models
   public Posts:PostModel;
+  public Accounts:AccountModel;
   //toDoSample Models
   public Lists:ListModel;
   public Tasks:TaskModel;
@@ -25,6 +27,7 @@ class App {
 
     //UniVerse Models
     this.Posts = new PostModel();
+    this.Accounts = new AccountModel();
     //toDoSample Models
     this.Lists = new ListModel();
     this.Tasks = new TaskModel();
@@ -40,8 +43,22 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    // Post Single Element
-    router.post('/app/post/', (req, res) => {
+    // Account: Post Single Element
+    router.post('/app/accounts/', (req, res) => {
+      const id = uuidv4();
+      console.log(req.body);
+        var newAccountData  = req.body;
+        newAccountData.id = id;
+        this.Accounts.model.createAccount(res, [newAccountData], (err) => {
+          if (err) {
+              console.log('object creation failed');
+          }
+      });
+        res.send('{"id":"' + id + '"}');
+    });
+
+    // Post: Post Single Element
+    router.post('/app/posts/', (req, res) => {
 
       // GUIDs (Globally Unique Identifiers)
       const id = uuidv4();

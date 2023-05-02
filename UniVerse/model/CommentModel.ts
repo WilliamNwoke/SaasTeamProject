@@ -25,12 +25,12 @@ class CommentModel {
                 commentDate: Date,
                 likes: Number,
                 dislikes: Number
-            }, {collection: 'comments'}
+            }, {collection: 'comment'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<ICommentModel>("Comments", this.schema);
+        this.model = mongooseConnection.model<ICommentModel>("Comment", this.schema);
     }
 
     public addComment(response: any): any{}
