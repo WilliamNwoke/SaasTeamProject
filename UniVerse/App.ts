@@ -75,7 +75,7 @@ class App {
       });
         res.send('{"id":"' + id + '"}');
     });
-    router.get('/posts/:id', (req, res) => {
+    router.get('/post/:id', (req, res) => {
       var postId = req.params.id;
       console.log('Query single post with id: ' + postId);
       this.Posts.retrievePostsDetails(res, {id: postId});
@@ -84,7 +84,11 @@ class App {
       console.log('Query All Posts');
       this.Posts.retrieveAllPosts(res);
     });
-
+    router.get('/posts/:accountId', (req, res) => {
+      const id = req.params.accountId;
+      console.log('Query All My posts using my accountId');
+      this.Posts.retrieveAllMyPosts(res, {accountId: id});
+    });
 
     // COMMENTS
     router.post('/comments/', (req, res) => {

@@ -61,7 +61,7 @@ var App = /** @class */ (function () {
             });
             res.send('{"id":"' + id + '"}');
         });
-        router.get('/posts/:id', function (req, res) {
+        router.get('/post/:id', function (req, res) {
             var postId = req.params.id;
             console.log('Query single post with id: ' + postId);
             _this.Posts.retrievePostsDetails(res, { id: postId });
@@ -69,6 +69,11 @@ var App = /** @class */ (function () {
         router.get('/posts/', function (req, res) {
             console.log('Query All Posts');
             _this.Posts.retrieveAllPosts(res);
+        });
+        router.get('/posts/:accountId', function (req, res) {
+            var id = req.params.accountId;
+            console.log('Query All My posts using my accountId');
+            _this.Posts.retrieveAllMyPosts(res, { accountId: id });
         });
         // COMMENTS
         router.post('/comments/', function (req, res) {

@@ -102,7 +102,13 @@ class PostModel {
             }
         });
     }
-
+    public retrieveAllMyPosts(response: any, filter:Object): any{
+        console.log("id:" + filter)
+        var query = this.model.find(filter);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
 
     public retrieveAllPosts(response: any){
         var query = this.model.find({});

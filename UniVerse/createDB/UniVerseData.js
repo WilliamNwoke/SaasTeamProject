@@ -11,9 +11,9 @@ accountCollection.remove({})
 accountId1 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      id: accountId1,
-      userName: "edoe",
-      firstName: "Ernest",
+      id: "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4",
+      userName: "Uchenna123",
+      firstName: "Uche",
       lastName: "Doe",
       email: "edoe@seattleu.com",
       department: "College of Nursing",
@@ -98,9 +98,9 @@ postId2 = (0, uuid.v4)()
 postCollection.insert(
 {
     id: postId2,
-    accountId: accountId2,
+    accountId: "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4",
     title: "Experiential Learning Tips",
-    author: "jsmith",
+    author: "Uchenna",
     isAnonymous: true,
     isEdited: false,
     description: "I have found great success in always asking for feedback during my experiential learning experience as a K-12 school teacher. The feedback are quiet constructive and I must say please don't shy away from asking for help. I wish I knew this sooner",

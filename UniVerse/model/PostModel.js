@@ -135,6 +135,13 @@ var PostModel = /** @class */ (function () {
             }
         });
     };
+    PostModel.prototype.retrieveAllMyPosts = function (response, filter) {
+        console.log("id:" + filter);
+        var query = this.model.find(filter);
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
     PostModel.prototype.retrieveAllPosts = function (response) {
         var query = this.model.find({});
         query.exec(function (err, postArray) {
