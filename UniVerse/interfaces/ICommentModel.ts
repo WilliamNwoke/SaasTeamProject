@@ -5,7 +5,7 @@ interface ICommentModel extends Mongoose.Document {
     postId: String,
     author: String,
     description: String,
-    commentDate: Date,
+    dateTime: Date,
     likes: Number,
     dislikes: Number
 }
