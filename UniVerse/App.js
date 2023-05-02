@@ -38,8 +38,15 @@ var App = /** @class */ (function () {
             console.log(req.body);
             var accountJsonObj = req.body;
             accountJsonObj.id = id;
-            console.log("calling createAccount()");
-            _this.Accounts.model.create([accountJsonObj], function (err) {
+            var account = {
+                "id": id,
+                "username": accountJsonObj.username,
+                "fname": accountJsonObj.fname,
+                "lname": accountJsonObj.lname,
+                "email": accountJsonObj.email,
+                "department": accountJsonObj.department
+            };
+            _this.Accounts.model.create([account], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }
