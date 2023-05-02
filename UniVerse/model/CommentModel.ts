@@ -1,7 +1,7 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import { ICommentModel } from "../interfaces/ICommentModel";
-import { IAccountModel } from "../interfaces/IAccountModel";
+import { PostModel } from "./PostModel";
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
@@ -20,7 +20,7 @@ class CommentModel {
         this.schema = new Mongoose.Schema(
             {
                 id: String,
-                postId: Number,
+                postId: Mongoose.Types.ObjectId,
                 author: String,
                 description: String,
                 commentDate: Date,
@@ -34,9 +34,9 @@ class CommentModel {
         this.model = mongooseConnection.model<ICommentModel>("Comments", this.schema);
     }
 
-    public addComment(response: any): any{}
-    public retrieveAllComments(response: any): any{
-        var query = this.model.find({});
+    public addComment(response: any, filter:Object): any{}
+    public retrieveAllComments(response: any, filter:Object): any{
+        var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
         });
