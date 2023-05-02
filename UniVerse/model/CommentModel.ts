@@ -20,7 +20,7 @@ class CommentModel {
         this.schema = new Mongoose.Schema(
             {
                 id: String,
-                postId: Mongoose.Types.ObjectId,
+                postId: String,
                 author: String,
                 description: String,
                 commentDate: Date,
@@ -34,7 +34,20 @@ class CommentModel {
         this.model = mongooseConnection.model<ICommentModel>("Comments", this.schema);
     }
 
-    public addComment(response: any, filter:Object): any{}
+
+    async addComment(response: any, commentData: Object): Promise<any>{
+        var commentMod = new this.model(commentData);
+        return commentMod.save((err, comment) => {
+            if(err){
+                console.log("Error saving comment");
+            } else {
+                console.log("Commented successfully added");
+                response.json(comment);
+            }
+        });
+    }
+
+    // TODO: Get Post specific comments
     public retrieveAllComments(response: any): any{
         var query = this.model.find({});
         query.exec( (err, itemArray) => {
