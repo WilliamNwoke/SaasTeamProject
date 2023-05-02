@@ -54,8 +54,7 @@ class NotifcationModel {
             } else {
                 notification.remove((err, notification) => {
                     console.log("removed");
-                });
-                
+                }); 
             }
         });
     }
