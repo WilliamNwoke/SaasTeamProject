@@ -78,8 +78,9 @@ var CommentModel = /** @class */ (function () {
         });
     };
     // TODO: Get Post specific comments
-    CommentModel.prototype.retrieveAllComments = function (response) {
-        var query = this.model.find({});
+    CommentModel.prototype.retrieveAllComments = function (response, filter) {
+        console.log("id:" + filter);
+        var query = this.model.find(filter);
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });

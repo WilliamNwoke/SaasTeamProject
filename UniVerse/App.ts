@@ -100,9 +100,10 @@ class App {
         res.send('{"id":"' + id + '"}');
     });
     // Comment
-    router.get('/comments/', (req, res) => {
-      console.log('Query All Comments');
-      this.Comments.retrieveAllComments(res);
+    router.get('/comments/:postId', (req, res) => {
+      const id = req.params.postId;
+      console.log('Query All Comments for this Post id');
+      this.Comments.retrieveAllComments(res, {postId: id});
     });
     
     

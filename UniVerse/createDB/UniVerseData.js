@@ -81,7 +81,7 @@ postCollection.remove({})
 postId1 = (0, uuid.v4)()
 postCollection.insert(
 {
-    id: postId1,
+    id: "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     accountId: accountId1,
     title: "Textbook inquiry",
     author: "edoe",
@@ -166,7 +166,7 @@ commentCollection.remove({})
 commentCollection.insert(
 {
     id: commentId1,
-    postId : postId1,
+    postId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     author: "kennyj",
     description: "Human Anotomy by A.H Henson is a good supplementar textbook. It should support you through clinicals",
     dateTime: 02-14-2023,
@@ -178,7 +178,7 @@ commentCollection.insert(
 commentCollection.insert(
 {
     id: commentId2,
-    postId : postId2,
+    postId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     author: "srodriguez",
     description: "I concur, I always remember asking for feedback during my internship at the pharmaceutical company. I interned at last summer.",
     dateTime: 02-24-2023,

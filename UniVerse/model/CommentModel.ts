@@ -48,8 +48,9 @@ class CommentModel {
     }
 
     // TODO: Get Post specific comments
-    public retrieveAllComments(response: any): any{
-        var query = this.model.find({});
+    public retrieveAllComments(response: any, filter:Object): any{
+        console.log("id:" + filter)
+        var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
         });

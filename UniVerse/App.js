@@ -84,9 +84,10 @@ var App = /** @class */ (function () {
             res.send('{"id":"' + id + '"}');
         });
         // Comment
-        router.get('/comments/', function (req, res) {
-            console.log('Query All Comments');
-            _this.Comments.retrieveAllComments(res);
+        router.get('/comments/:postId', function (req, res) {
+            var id = req.params.postId;
+            console.log('Query All Comments for this Post id');
+            _this.Comments.retrieveAllComments(res, { postId: id });
         });
         // toDoSample Routes
         router.post('/app/list/', function (req, res) {
