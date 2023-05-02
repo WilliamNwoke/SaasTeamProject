@@ -1,5 +1,4 @@
 import Mongoose = require("mongoose");
-import { __String } from "typescript";
 
 interface IPostModel extends Mongoose.Document {
     id: String,
@@ -7,6 +6,9 @@ interface IPostModel extends Mongoose.Document {
     title: String,
     author: String,
     isAnonymous: Boolean,
+    isEdited: Boolean,
+    description: String,
+    dateTime: Date,
     likes: Number,
     dislikes: Number,
     comments: [String]
