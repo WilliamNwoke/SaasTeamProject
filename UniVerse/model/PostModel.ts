@@ -23,6 +23,7 @@ class PostModel {
                 title: String,
                 author: String,
                 isAnonymous: Boolean,
+                isEdited: Boolean,
                 likes: Number,
                 dislikes: Number,
                 comments: [String]
