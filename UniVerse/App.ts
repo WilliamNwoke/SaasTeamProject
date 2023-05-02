@@ -3,9 +3,6 @@ import * as bodyParser from 'body-parser';
 import {PostModel} from './model/PostModel';
 import {AccountModel} from './model/AccountModel';
 import {CommentModel} from './model/CommentModel';
-import {ListModel} from './model/ListModel';
-import {TaskModel} from './model/TaskModel';
-import * as crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
 
 // Creates and configures an ExpressJS web server.
@@ -17,9 +14,6 @@ class App {
   public Posts:PostModel;
   public Accounts:AccountModel;
   public Comments:CommentModel;
-  //toDoSample Models
-  public Lists:ListModel;
-  public Tasks:TaskModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -31,9 +25,6 @@ class App {
     this.Posts = new PostModel();
     this.Accounts = new AccountModel();
     this.Comments = new CommentModel();
-    //toDoSample Models
-    this.Lists = new ListModel();
-    this.Tasks = new TaskModel();
   }
 
   // Configure Express middleware.
@@ -75,15 +66,18 @@ class App {
       });
         res.send('{"id":"' + id + '"}');
     });
+    
     router.get('/post/:id', (req, res) => {
       var postId = req.params.id;
       console.log('Query single post with id: ' + postId);
       this.Posts.retrievePostsDetails(res, {id: postId});
     });
+
     router.get('/posts/', (req, res) => {
       console.log('Query All Posts');
       this.Posts.retrieveAllPosts(res);
     });
+
     router.get('/posts/:accountId', (req, res) => {
       const id = req.params.accountId;
       console.log('Query All My posts using my accountId');
@@ -103,61 +97,12 @@ class App {
       });
         res.send('{"id":"' + id + '"}');
     });
-    // Comment
+
     router.get('/comments/:postId', (req, res) => {
       const id = req.params.postId;
       console.log('Query All Comments for this Post id');
       this.Comments.retrieveAllComments(res, {postId: id});
-    });
-    
-    
-    // toDoSample Routes
-    router.post('/app/list/', (req, res) => {
-      const id = crypto.randomBytes(16).toString("hex");
-      console.log(req.body);
-        var jsonObj = req.body;
-        jsonObj.listId = id;
-        this.Lists.model.create([jsonObj], (err) => {
-            if (err) {
-                console.log('object creation failed');
-            }
-        });
-        res.send('{"id":"' + id + '"}');
-    });
-
-    router.get('/app/list/:listId/count', (req, res) => {
-        var id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksCount(res, {listId: id});
-    });
-
-    router.post('/app/list2/', (req, res) => {
-      const id = crypto.randomBytes(16).toString("hex");
-      console.log(req.body);
-        var jsonObj = req.body;
-        jsonObj.listId = id;
-        let doc = new this.Lists.model(jsonObj);
-        doc.save((err) => {
-           console.log('object creation failed');
-        });
-        res.send('{"id":"' + id + '"}');
-    });
-
-    router.get('/app/list/:listId', (req, res) => {
-        var id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksDetails(res, {listId: id});
-    });
-
-    router.get('/app/list/', (req, res) => {
-        console.log('Query All list');
-        this.Lists.retrieveAllLists(res);
-    });
-
-    router.get('/app/listcount', (req, res) => {
-      console.log('Query the number of list elements in db');
-      this.Lists.retrieveListCount(res);
-    });
+    }); 
 
     this.expressApp.use('/', router);
 
