@@ -48,48 +48,31 @@ class PostModel {
             }
         });
     }
+    
+    public updatePost(response: any, filter:Object): any{
+        var query = this.model.findOne(filter);
+        query.exec((err, post) => {
+            if(err){
+                console.log("Error finding post");
+            } else {
+                post.title = response.title;
+                post.author = response.author;
+                post.isAnonymous = response.isAnonymous;
+                post.likes = response.likes;
+                post.dislikes = response.dislikes;
+                post.comments = response.comments;
+                post.save((err, post) => {
+                    if(err){
+                        console.log("Error saving post");
+                    } else {
+                        console.log("Post saved successfully");
+                        response.json(post);
 
-    public updatePost(post:any, response:any) : any {
-        // var query = this.model.findOne(filter);
-        // var query = this.model.findOneAndUpdate(post.userId, user, {
-        //     new : true
-        // });
-
-        // query.exec((err, item) => {
-        //     if(err){
-        //         console.log("Update user failed");
-        //     }
-        //     else{
-        //         console.log("Updated user");
-        //         response.send(item);
-        //     }
-        // })
+                    }
+                });
+            }
+        });
     }
-
-    // public updatePost(response: any, filter:Object): any{
-    //     var query = this.model.findOne(filter);
-    //     query.exec((err, post) => {
-    //         if(err){
-    //             console.log("Error finding post");
-    //         } else {
-    //             post.title = response.title;
-    //             post.author = response.author;
-    //             post.isAnonymous = response.isAnonymous;
-    //             post.likes = response.likes;
-    //             post.dislikes = response.dislikes;
-    //             post.comments = response.comments;
-    //             post.save((err, post) => {
-    //                 if(err){
-    //                     console.log("Error saving post");
-    //                 } else {
-    //                     console.log("Post saved successfully");
-    //                     response.json(post);
-
-    //                 }
-    //             });
-    //         }
-    //     });
-    // }
 
     public deletePost(response: any, filter:Object): any{
         var query = this.model.findOne(filter);
