@@ -18,17 +18,17 @@ class PostModel {
     public createSchemas(): void {
         this.schema = new Mongoose.Schema(
             {
-                id: String,
-                accountId: String,
-                title: String,
-                author: String,
-                isAnonymous: Boolean,
-                isEdited: Boolean,
-                description: String,
-                dateTime: Date,
-                likes: Number,
-                dislikes: Number,
-                comments: [String]
+                id: {type: String, required: true},
+                accountId: {type: String, required: true},
+                title: {type: String, required: true},
+                author: {type: String, required: true},
+                isAnonymous: {type: Boolean, required: true},
+                isEdited: {type: Boolean, required: true},
+                description: {type: String, required: true},
+                dateTime: {type: Date, required: true},
+                likes: {type: Number, required: true},
+                dislikes: {type: Number, required: true},
+                comments: {type: [String], required: true}
             }, {collection: 'posts'}
         );
     }

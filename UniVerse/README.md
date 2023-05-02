@@ -18,17 +18,17 @@ to check node version: node --version
 0. mkdir db
 
 //Starts the DB server on port 3000
-1. start.toDoSample.cmd
+1. start.Universe.cmd
 
 // mac edition
-chmod +x start.toDoSample.sh
-./start.toDoSample.sh
+chmod +x start.Universe.sh
+./start.Universe.sh
 
 // -----------
 
 //populate the DB server with sample data
-2. startdbClient.toDoSample2.cmd
->load ('createDB/createToDoSampleData.js');
+2. startdbClient.Universe.cmd
+>load ('createDB/UniVerseData.js');
 >load ('createDB/createAdminUser.js');
 >exit
 

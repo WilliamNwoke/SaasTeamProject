@@ -48,13 +48,13 @@ var CommentModel = /** @class */ (function () {
     }
     CommentModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            id: String,
-            postId: String,
-            author: String,
-            description: String,
-            commentDate: Date,
-            likes: Number,
-            dislikes: Number
+            id: { type: String, required: true },
+            postId: { type: String, required: true },
+            author: { type: String, required: true },
+            description: { type: String, required: true },
+            commentDate: { type: Date, required: true },
+            likes: { type: Number, required: true },
+            dislikes: { type: Number, required: true }
         }, { collection: 'comments' });
     };
     CommentModel.prototype.createModel = function () {

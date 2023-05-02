@@ -17,12 +17,12 @@ class AccountModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                id: String,
-                username: String,
-                fname: String,
-                lname: String,
-                email: String,
-                department: String
+                id: {type: String, required: true},
+                username: {type: String, required: true},
+                fname: {type: String, required: true},
+                lname: {type: String, required: true},
+                email: {type: String, required: true},
+                department: {type: String, required: true}
             }, {collection: 'accounts'} // TODO: review what this line is for
         );
     }
