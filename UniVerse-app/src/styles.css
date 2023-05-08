@@ -38,4 +38,31 @@
             margin-right: 80px;
         }
     }
-
+.col{
+    margin-top: 11px;padding-bottom: 0px;margin-bottom: 0px;
+}
+.col-md-2{
+    margin-top: 7px;margin-right: -10px;margin-left: 2px;
+}
+.col-md-8{
+    margin-top: -10px;padding-top: 11px;
+}
+.card{
+    margin-top: 15px;margin-bottom: 14px;
+}
+.card-body{
+    margin-top: -8px;
+    margin-bottom: -2px;
+}
+.card-title{
+    font-weight: 700;
+}
+.card-text{
+    margin-top: 15px;
+    color: rgb(19, 19, 19);
+}
+.card-icon{
+    font-size: 29px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
