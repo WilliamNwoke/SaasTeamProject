@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,7 @@ import { CreatePostPageComponent } from './create-post-page/create-post-page.com
 import { PostCardComponent } from './post-card/post-card.component';
 import { ViewPostPageComponent } from './view-post-page/view-post-page.component';
 import { CommentCardComponent } from './comment-card/comment-card.component';
+import { PostIndexPageComponent } from './post-index-page/post-index-page.component';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { CommentCardComponent } from './comment-card/comment-card.component';
     CreatePostPageComponent,
     PostCardComponent,
     ViewPostPageComponent,
-    CommentCardComponent
+    CommentCardComponent,
+    PostIndexPageComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

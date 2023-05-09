@@ -1,0 +1,24 @@
+<div class="col">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="card" *ngFor="let post of posts; let i = index">
+                    <div class="card-body">
+                        <h6 class="card-title"><i class="fas fa-user-circle"></i>&nbsp;{{post.author}}</h6>
+                        <h4 class="card-title card-subtitle mb-2">
+                            {{post.title}}</h4>
+                        <p class="card-text">{{post.description}}</p>
+                                  <i class="card-icon far fa-thumbs-up"></i>
+                            <i class="card-icon far fa-comment"></i>
+                            <i class="card-icon far fa-bookmark"></i>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 15px;margin-bottom: 14px;"></div>
+            </div>
+            <div class="col-md-2 visible" style="margin-top: 6px;">
+            </div>
+        </div>
+    </div>
+  </div>
