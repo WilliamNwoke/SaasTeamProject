@@ -23,6 +23,13 @@ var App = /** @class */ (function () {
     App.prototype.middleware = function () {
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        // Enable CORS
+        this.expressApp.use(function (req, res, next) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+            next();
+        });
     };
     // Configure API endpoints.
     App.prototype.routes = function () {
