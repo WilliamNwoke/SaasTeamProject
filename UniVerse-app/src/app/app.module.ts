@@ -10,6 +10,7 @@ import { PostCardComponent } from './post-card/post-card.component';
 import { ViewPostPageComponent } from './view-post-page/view-post-page.component';
 import { CommentCardComponent } from './comment-card/comment-card.component';
 import { PostIndexPageComponent } from './post-index-page/post-index-page.component';
+import { NotificationIndexPageComponent } from './notification-index-page/notification-index-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PostIndexPageComponent } from './post-index-page/post-index-page.compon
     PostCardComponent,
     ViewPostPageComponent,
     CommentCardComponent,
-    PostIndexPageComponent
+    PostIndexPageComponent,
+    NotificationIndexPageComponent
   ],
   imports: [
     BrowserModule,
