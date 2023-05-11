@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UniverseApiService } from '../universe-api.service';
+import { UniverseApiService } from '../post-api.service';
 import { PostClass } from '../post-class';
 
 @Component({

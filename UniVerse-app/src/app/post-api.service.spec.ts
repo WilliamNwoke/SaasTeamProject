@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UniverseApiService } from './universe-api.service';
+import { UniverseApiService } from './post-api.service';
 
 describe('UniverseApiService', () => {
   let service: UniverseApiService;
