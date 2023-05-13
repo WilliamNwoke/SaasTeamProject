@@ -23,7 +23,7 @@ accountCollection.insert(
 accountId2 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      id: accountId2,
+      id: "6ab34a04-8a84-4202-b2bb-cdde96feae19",
       username: "jsmith",
       fname: "Janet",
       lname: "Smith",
@@ -35,7 +35,7 @@ accountCollection.insert(
 accountId3 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      id: accountId3,
+      id: "3aadd54f-a60f-4d85-a20b-745e0d314312",
       username: "srodriguez",
       fname: "Santiago",
       lname: "Rodriguez",
@@ -47,7 +47,7 @@ accountCollection.insert(
 accountId4 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      id: accountId4,
+      id: "33949ee3-31fa-4729-abde-f97fc88da22d",
       username: "kcruz24",
       fname: "Kayleigh",
       lname: "Cruz",
@@ -59,7 +59,7 @@ accountCollection.insert(
 accountId5 = (0, uuid.v4)()
 accountCollection.insert(
 {
-      id: accountId5,
+      id: "0c0d26f3-dc12-4b96-9734-7ddce8a2128d",
       username: "kennyj",
       fname: "Kenneth",
       lname: "Jones",
@@ -97,7 +97,7 @@ postCollection.insert(
 postId2 = (0, uuid.v4)()
 postCollection.insert(
 {
-    id: postId2,
+    id: "5442e623-447b-461e-9cfa-f32114d773e7",
     accountId: "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4",
     title: "Experiential Learning Tips",
     author: "Uchenna",
@@ -113,7 +113,7 @@ postCollection.insert(
 postId3 = (0, uuid.v4)()
 postCollection.insert(
 {
-    id: postId3,
+    id: "068c98b6-cee4-4baf-bf6b-c97f4578bb9b",
     accountId: accountId3,
     title: "Hangout in the Game Lounge",
     author: "srodriguez",
@@ -129,7 +129,7 @@ postCollection.insert(
 postId4 = (0, uuid.v4)()
 postCollection.insert(
 {
-    id: postId4,
+    id: "c95068f5-2c20-4b6b-b811-aacf8265adea",
     accountId: accountId4,
     title: "Hackathon Open for All",
     author: "kcruz24",
@@ -145,7 +145,7 @@ postCollection.insert(
 postId5 = (0, uuid.v4)()
 postCollection.insert(
 {
-    id: postId5,
+    id: "c23f9a48-2dad-4560-a30a-c97a3752f4c7",
     accountId: accountId5,
     title: "Taken CH 2300?",
     author: "kennyj",
@@ -165,7 +165,7 @@ commentCollection = db.getCollection("comments")
 commentCollection.remove({})
 commentCollection.insert(
 {
-    id: commentId1,
+    id: "05591f37-b4db-49f8-985c-d6948e93d10c",
     postId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     author: "kennyj",
     description: "Human Anotomy by A.H Henson is a good supplementar textbook. It should support you through clinicals",
@@ -177,7 +177,7 @@ commentCollection.insert(
 
 commentCollection.insert(
 {
-    id: commentId2,
+    id: "de954cb0-df31-446e-8748-6f9d190d1d59",
     postId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     author: "srodriguez",
     description: "I concur, I always remember asking for feedback during my internship at the pharmaceutical company. I interned at last summer.",
@@ -188,7 +188,7 @@ commentCollection.insert(
 )
 commentCollection.insert(
 {
-    id: commentId3,
+    id: "3d8a0355-b333-46b7-997f-bf1da7570374",
     postId : postId4,
     author: "kcruz24",
     description: "How about we meet around 8:00pm. I should be finished with homework by then. Plus my roommates wanna join in too",
@@ -199,7 +199,7 @@ commentCollection.insert(
 )
 commentCollection.insert(
 {
-    id: commentId4,
+    id: "f726d0d1-5c03-41fb-bd5f-28187fb0b768",
     postId : postId4,
     author: "kennyj",
     description: "Yay! Hackathons are back. How I missed in-person hackathon since the pandemic caused us to experience them virtually",
@@ -210,7 +210,7 @@ commentCollection.insert(
 )
 commentCollection.insert(
 {
-    id: commentId5,
+    id: "d36a72a5-5c53-4290-9200-bcc8752abbae",
     postId : postId5,
     author: "srodriguez",
     description: "I haven't had any courses with Dr. Ortega. However, from what I've heard from my bestfriend, who is a Chemistry major, she's a fun professor. Expect to learn a ton in her courses!",
@@ -227,7 +227,7 @@ notificationCollection.remove({})
 notificationId1 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    id: notificationId1,
+    id: "7ccc7879-c773-4b46-a880-602dcacbf9d1",
     accountId: accountId1,
     postId: postId1,
     title:"Like and comment received.",
@@ -238,7 +238,7 @@ notificationCollection.insert(
 notificationId2 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    id: notificationId2,
+    id: "6c426228-8ae4-4b4a-989b-0a6d1f66e883",
     accountId: accountId2,
     postId: postId2,
     title:"Like and comment received.",
@@ -249,7 +249,7 @@ notificationCollection.insert(
 notificationId3 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    id: notificationId3,
+    id: "fbe66774-366c-414d-a127-bcce8f986344",
     accountId: accountId3,
     postId: postId3,
     title:"Like and comment received",
@@ -260,7 +260,7 @@ notificationCollection.insert(
 notificationId4 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    id: notificationId4,
+    id: "8554ab68-907d-4749-844e-9195f03a635d",
     accountId: accountId4,
     postId: postId4,
     title:"Like and comment received",
@@ -271,7 +271,7 @@ notificationCollection.insert(
 notificationId5 = (0, uuid.v4)()
 notificationCollection.insert(
 {
-    id: notificationId5,
+    id: "d1499422-c67f-4d9d-a135-77b2cda42ebc",
     accountId: accountId5,
     postId: postId4,
     title:"Like and comment received",
