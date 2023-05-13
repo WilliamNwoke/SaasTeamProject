@@ -12,9 +12,9 @@ accountId1 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4",
-      userName: "Uchenna123",
-      firstName: "Uche",
-      lastName: "Doe",
+      username: "Uchenna123",
+      fname: "Uche",
+      lname: "Doe",
       email: "edoe@seattleu.com",
       department: "College of Nursing",
 
@@ -24,9 +24,9 @@ accountId2 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: accountId2,
-      userName: "jsmith",
-      firstName: "Janet",
-      lastName: "Smith",
+      username: "jsmith",
+      fname: "Janet",
+      lname: "Smith",
       email: "jsmith@seattleu.com",
       department: "College of Education",
 
@@ -36,9 +36,9 @@ accountId3 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: accountId3,
-      userName: "srodriguez",
-      firstName: "Santiago",
-      lastName: "Rodriguez",
+      username: "srodriguez",
+      fname: "Santiago",
+      lname: "Rodriguez",
       email: "srodriguez@seattleu.edu",
       department: "College of Arts",
 
@@ -48,9 +48,9 @@ accountId4 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: accountId4,
-      userName: "kcruz24",
-      firstName: "Kayleigh",
-      lastName: "Cruz",
+      username: "kcruz24",
+      fname: "Kayleigh",
+      lname: "Cruz",
       email: "kayleighc@seattleu.edu",
       department: "College of Science and Engineering",
 
@@ -60,9 +60,9 @@ accountId5 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: accountId5,
-      userName: "kennyj",
-      firstName: "Kenneth",
-      lastName: "Jones",
+      username: "kennyj",
+      fname: "Kenneth",
+      lname: "Jones",
       email: "kjones@seattleu.edu",
       department: "Chemistry Department",
 
