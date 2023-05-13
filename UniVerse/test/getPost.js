@@ -15,11 +15,11 @@ describe('Test posts result', function () {
 
 	var requestResult;
 	var response;
-	var accountId = "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4";
+	var postId = "2edb8e72-8f55-46ec-a937-57fdb4759f9d";
     before(function (done) {
 
         chai.request("http://localhost:8080")
-			.get("/posts/" + accountId)
+			.get("/post/" + postId)
 			.end(function (err, res) {
 				requestResult = res.body;
 				response = res;
@@ -29,15 +29,10 @@ describe('Test posts result', function () {
 				done();
 			});
 	});
-    
-    it('Should return an array of objects with four posts', function (){
-        expect(response).to.have.status(200);
-        // expect(response.body).to.be.json; doesnt work
+	
+	it('Should return an object with the expected properties', function(){
+		expect(response).to.have.status(200);
 		expect(response.headers['content-type']).to.have.string('application/json; charset=utf-8');
-		expect(response.body).to.be.an('array').that.has.lengthOf(1);
-		expect(response.body[0]).to.be.an('object');
-    });
-	it('The elements in the array have the expected properties', function(){
 		expect(response.body).to.satisfy(
 			function (body) {
 				for (var i = 0; i < body.length; i++) {

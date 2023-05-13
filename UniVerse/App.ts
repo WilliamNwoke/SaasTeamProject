@@ -39,6 +39,7 @@ class App {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     next();
   });
+
   }
 
   // Configure API endpoints.

@@ -30,7 +30,7 @@ describe('Test posts result', function () {
 			});
 	});
     
-    it('Should return an array of objects with four posts', function (){
+    it('Should return an array of objects with more than four posts', function (){
         expect(response).to.have.status(200);
         // expect(response.body).to.be.json; doesnt work
 		expect(response.headers['content-type']).to.have.string('application/json; charset=utf-8');
