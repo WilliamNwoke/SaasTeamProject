@@ -26,16 +26,15 @@
                 </button>
                 
             </div>
-            <!--Login Button-->
+            <!--
             <div *ngIf="!isLoggedIn()">
             <button  (click)="login()" class="btn btn-secondary btn-md" style="margin-right: 20px;" type="button">
                 <strong>Login</strong>
             </button>
             </div>
 
-            <!--Logout Button-->
             <div *ngIf="isLoggedIn()">
-            <button (click)="logout()" class="btn btn-secondary btn-md" style="margin-right: 20px;" type="button">
+            <button class="btn btn-secondary btn-md" style="margin-right: 20px;" type="button">
                 <p>Welcome, {{ account.fname }}!</p>
                 <p>Email: {{ account.email }}</p>
                 <p>Department: {{ account.department }}</p>
@@ -43,6 +42,7 @@
                 <strong>Logout</strong>
             </button>
         </div>
+                -->
             <i class="far fa-bell" style="font-size: 29px; margin-right: 20px;"></i>
             <i class="far fa-edit" style="font-size: 24px; padding-right: 0px; margin-right: 21px;"></i>
             <i class="far fa-user-circle" style="font-size: 32px;"></i>

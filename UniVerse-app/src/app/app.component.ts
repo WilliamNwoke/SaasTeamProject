@@ -13,27 +13,11 @@ import { AccountApiService } from './account-api.service';
 
 export class AppComponent {
   title = 'UniVerse-app';
-  account: Account = new Account('', '', '', '', '', ''); // We can assign a value of Account or Null
-
-  constructor(private accountApiService: AccountApiService) {}
-
-  login(): void {
-    // Call login 
-    this.accountApiService.login();
-    // Update account
-    this.account = this.accountApiService.getAccount();
-    console.log("Now logged in as: ", this.account.fname)
+  
+  constructor(private accountApiService: AccountApiService) {
   }
 
-  logout(): void {
-    // call logout
-    this.accountApiService.logout();
-    // Update to empty account
-    this.account = this.accountApiService.getAccount();
-    console.log("Logged out");
-  }
-
-  isLoggedIn(): boolean {
-    return this.accountApiService.getIsLoggedIn();
+  ngOnInit(): void {
+    
   }
 }

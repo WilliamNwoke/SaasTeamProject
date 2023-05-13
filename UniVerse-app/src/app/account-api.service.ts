@@ -17,7 +17,7 @@ export class AccountApiService {
     // For example, you could call an authentication API and set the user object.
     // For this example, we'll just set a hardcoded user object.
     this.account = new Account(
-      'jkdhhkjfd-adf3sadf3-dsfdds',
+      '9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4',
       'Uchenna1233445',
       'Uche',
       'A',
@@ -34,9 +34,9 @@ export class AccountApiService {
     this.isLoggedIn = false;
   }
 
-  getAccount(): Account {
+  getAccount(): string {
     // Later on we will have it where when we hit login, we call OAuth without coming back here. 
-    return this.account;
+    return "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4";
   }
 
   setAccount(account: Account) {
