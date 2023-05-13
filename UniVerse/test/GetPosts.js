@@ -41,18 +41,18 @@ describe('Test posts result', function () {
 		expect(response.body).to.satisfy(
 			function (body) {
 				for (var i = 0; i < body.length; i++) {
-					expect(body[i]).to.have.property('_id');
+					expect(body[i]).to.have.property('_id').that.is.a('string');
                     expect(body[i]).to.have.property('id').that.is.a('string');
                     expect(body[i]).to.have.property('accountId').that.is.a('string');
                     expect(body[i]).to.have.property('title').that.is.a('string');
 					expect(body[i]).to.have.property('author').that.is.a('string');
-                    expect(body[i]).to.have.property('isAnonymous');
-					expect(body[i]).to.have.property('isEdited');
+                    expect(body[i]).to.have.property('isAnonymous').that.is.a('Boolean');
+					expect(body[i]).to.have.property('isEdited').that.is.a('Boolean');
                     expect(body[i]).to.have.property('description').that.is.a('string');
-                    expect(body[i]).to.have.property('dateTime');
-                    expect(body[i]).to.have.property('likes');
-                    expect(body[i]).to.have.property('dislikes');
-                    expect(body[i]).to.have.property('comments');
+                    expect(body[i]).to.have.property('dateTime').that.is.a('string');
+                    expect(body[i]).to.have.property('likes').that.is.a('Number');
+                    expect(body[i]).to.have.property('dislikes').that.is.a('Number');
+                    expect(body[i]).to.have.property('comments').that.is.a('Array');
 				}
 				return true;
 			});
