@@ -35,7 +35,6 @@ export class AccountApiService {
   }
 
   getAccount(): string {
-    // Later on we will have it where when we hit login, we call OAuth without coming back here. 
     return "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4";
   }
 

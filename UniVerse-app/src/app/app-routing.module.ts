@@ -8,7 +8,7 @@ import { NotificationIndexPageComponent } from './notification-index-page/notifi
 
 const routes: Routes = [
   {path: 'createpost', component: CreatePostPageComponent},
-  {path: 'viewpost', component: ViewPostPageComponent},  
+  {path: 'viewpost/:id', component: ViewPostPageComponent},  
   {path: 'postindex', component: PostIndexPageComponent}, 
   {path: 'notificationindex', component: NotificationIndexPageComponent},   
   {path: 'home', component: HomePageComponent}, 

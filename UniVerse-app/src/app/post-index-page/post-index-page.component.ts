@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UniverseApiService } from '../post-api.service';
+import { PostApiService } from '../post-api.service';
 import { PostClass } from '../post-class';
 
 @Component({
@@ -12,8 +12,8 @@ export class PostIndexPageComponent implements OnInit {
 
   posts: Array<PostClass>= [];
 
-  constructor(private post$: UniverseApiService) {
-    post$.getPosts().subscribe((result: Array<PostClass>)=>{
+  constructor(private postApiService: PostApiService) {
+    postApiService.getPosts().subscribe((result: Array<PostClass>)=>{
       this.posts = result;
     })
   }

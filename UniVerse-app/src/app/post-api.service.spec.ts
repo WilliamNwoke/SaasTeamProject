@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UniverseApiService } from './post-api.service';
+import { PostApiService } from './post-api.service';
 
-describe('UniverseApiService', () => {
-  let service: UniverseApiService;
+describe('PostApiService', () => {
+  let service: PostApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UniverseApiService);
+    service = TestBed.inject(PostApiService);
   });
 
   it('should be created', () => {
