@@ -20,4 +20,8 @@ export class PostApiService {
     return this.http.get<PostClass>(this.hostUrl + 'post' + "/" + id);
   }
 
+  createPost(postData: any) {
+    return this.http.post<any>(this.hostUrl + 'post', postData)
+  }
+
 }
