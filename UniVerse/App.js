@@ -11,6 +11,7 @@ var uuid_1 = require("uuid");
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function App() {
+        this.cors = require('cors');
         this.expressApp = express();
         this.middleware();
         this.routes();

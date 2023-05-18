@@ -5,6 +5,7 @@ import {AccountModel} from './model/AccountModel';
 import {CommentModel} from './model/CommentModel';
 import { v4 as uuidv4 } from 'uuid';
 
+
 // Creates and configures an ExpressJS web server.
 class App {
 
@@ -14,6 +15,7 @@ class App {
   public Posts:PostModel;
   public Accounts:AccountModel;
   public Comments:CommentModel;
+  public cors = require('cors');
 
   //Run configuration methods on the Express instance.
   constructor() {
