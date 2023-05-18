@@ -68,4 +68,10 @@
 }
 .clickable {
     cursor: pointer;
+    outline-width: 0; /* Ensure no outline initially */
+}
+  
+.clickable:hover {
+    outline: 2px solid lightgray;
+    cursor: pointer;
 }
