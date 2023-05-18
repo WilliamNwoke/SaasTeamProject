@@ -90,7 +90,7 @@ var App = /** @class */ (function () {
             });
             // RETRIEVE post
             _this.Posts.updatePostComment(res, commentJsonObj.postId, id);
-            res.send('{"id":"' + id + '"}');
+            res.json(commentJsonObj);
         });
         router.get('/comments/:postId', function (req, res) {
             var id = req.params.postId;

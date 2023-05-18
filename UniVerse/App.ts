@@ -108,7 +108,7 @@ class App {
       });
       // RETRIEVE post
       this.Posts.updatePostComment(res, commentJsonObj.postId, id);
-      res.send('{"id":"' + id + '"}');
+      res.json(commentJsonObj);
     });
 
     router.get('/comments/:postId', (req, res) => {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { PostApiService } from '../post-api.service';
 import { CommentApiService } from '../comment-api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,18 +15,18 @@ import { CommentListComponent } from '../comment-list/comment-list.component';
 })
 
 export class ViewPostPageComponent{
-  postId: string | null = null;
-  post: PostClass | null = null;
+  postId: string = '';
+  post: PostClass = new PostClass('', '', '', '', false, false, '', new Date(), 0, 0, []);
   commentData: CommentClass = new CommentClass('','','','',new Date(),0,0);
-  // @Output() commentAdded: EventEmitter<void> = new EventEmitter<void>();
 
-
+  @ViewChild(CommentListComponent) commentListComponent!: CommentListComponent;
+  
   constructor(private postApiService: PostApiService, private commentApiService: CommentApiService,  private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.postId = params.get('id');
+      this.postId = params.get('id') as string; 
       this.getSpecificPost(this.postId);
     });
   }
@@ -40,10 +40,10 @@ export class ViewPostPageComponent{
   submitComment() {
     console.log(this.commentData)
     // Update the postId to belong to the post
-    if (this.postId !== null) {
+    if (this.postId !== '') {
       this.commentData.postId = this.postId;
   
-    // Hard code user info for now
+    // Replace with OAuth User Later
     this.commentData.author = "Myke Brako";
     this.commentData.dateTime = new Date();
 
@@ -51,17 +51,15 @@ export class ViewPostPageComponent{
       next: (response) => {
         console.log(response);
         // Reset the comment form
-        this.commentData = new CommentClass('', '', '', '', new Date(), 0, 0); 
-
-        // refresh comment list?
+        this.commentData = new CommentClass('', '', '', '', new Date(), 0, 0);
+        // Emit the event with the new comment
+        this.commentListComponent.handleNewCommentAdded(response);
       },
       error: (error) => {
         console.log(error);
       }
     });
   }
-
-  console.log("PostId is null")
     
   }
 }

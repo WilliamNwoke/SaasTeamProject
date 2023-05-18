@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommentApiService } from '../comment-api.service';
 import { CommentClass } from '../comment-class';
 
@@ -7,20 +7,27 @@ import { CommentClass } from '../comment-class';
   templateUrl: './comment-list.component.html',
   styleUrls: ['./comment-list.component.css']
 })
-export class CommentListComponent {
-  @Input() postId: string | undefined;
-  comments: Array<CommentClass>= [];
+export class CommentListComponent implements OnInit {
+  @Input() postId: string = '';
+  comments: CommentClass[] = [];
 
-  constructor(private commentApiService: CommentApiService) {
-  }
+  constructor(private commentApiService: CommentApiService) {}
 
-  ngOnInit() {
-    // Populate comments: Array IF postId exists
-    if (this.postId != null){
-      this.commentApiService.getPostComments(this.postId).subscribe((result: Array<CommentClass>) => {
-        this.comments = result;
-      });
+  ngOnInit(): void {
+    // Populate comments array if postId exists
+    if (this.postId !== '') {
+      this.fetchPostComments();
     }
   }
-}
 
+  fetchPostComments(): void {
+    this.commentApiService.getPostComments(this.postId).subscribe((result: CommentClass[]) => {
+      this.comments = result;
+    });
+  }
+
+  handleNewCommentAdded(newComment: CommentClass): void {
+    // Add the new comment to the comments array
+    this.comments.push(newComment);
+  }
+}

@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-body">
-        <div *ngIf="post">
+        <div *ngIf="post.id !== ''">
           <h6 class="card-title"><i class="fas fa-user-circle"></i>&nbsp;{{post.author}}</h6>
           <h4 class="card-title card-subtitle mb-2">{{post.title}}</h4>
           <p class="card-text">{{post.description}}</p>
@@ -10,23 +10,27 @@
           <i class="card-icon far fa-comment"></i>
           <i class="card-icon far fa-bookmark"></i>
         </div>
-        <div *ngIf="!post">
+        <div *ngIf="post.id === ''">
           <h5>No Post found</h5>
         </div>
       </div>
     </div>
 
-    <form (ngSubmit)="submitComment()" #myForm="ngForm">
-      <div>
-        <h6 class="card-title"><i class="fas fa-user-circle"></i></h6>
-      </div>
-      <div>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" [(ngModel)]="commentData.description" required></textarea>
-      </div>
-      <button type="submit">Add Comment</button>
-    </form>
+    <div class="comment-form">
+      <form *ngIf="post.id !== ''" (ngSubmit)="submitComment()" #myForm="ngForm">
+        <div class="comment-form-user">
+          <h6 class="card-title"><i class="fas fa-user-circle"></i></h6>
+        </div>
+        <div class="comment-form-description">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" [(ngModel)]="commentData.description" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Comment</button>
+      </form>
+    </div>
+    
+    <app-comment-list *ngIf="post.id !== ''" [postId]="post.id"></app-comment-list>
 
-    <app-comment-list *ngIf="post && post.id !== null" [postId]="post.id"></app-comment-list>
   </div>
 </div>
+
