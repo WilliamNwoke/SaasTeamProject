@@ -10,16 +10,26 @@ import { PostClass } from '../post-class';
 
 export class PostIndexPageComponent implements OnInit {
 
+  
   posts: Array<PostClass>= [];
+  filteredPosts: Array<PostClass>= [];
 
   constructor(private postApiService: PostApiService) {
     postApiService.getPosts().subscribe((result: Array<PostClass>)=>{
       this.posts = result;
+      this.filteredPosts = result;
     })
   }
 
   ngOnInit(): void {
+  }
 
+  filterByRecent(){
+    this.filteredPosts.sort((a, b) => a.dateTime.getTime()- b.dateTime.getTime());
+  }
+
+  filterByTop(){
+    this.filteredPosts.sort((a, b) => b.likes - a.likes);
   }
 
 
