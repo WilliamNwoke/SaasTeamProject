@@ -5,24 +5,18 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
-import { PostCardComponent } from './post-card/post-card.component';
 import { ViewPostPageComponent } from './view-post-page/view-post-page.component';
-import { CommentCardComponent } from './comment-card/comment-card.component';
 import { PostIndexPageComponent } from './post-index-page/post-index-page.component';
-import { NotificationIndexPageComponent } from './notification-index-page/notification-index-page.component';
+import { CommentListComponent } from './comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
     CreatePostPageComponent,
-    PostCardComponent,
     ViewPostPageComponent,
-    CommentCardComponent,
     PostIndexPageComponent,
-    NotificationIndexPageComponent
+    CommentListComponent
   ],
   imports: [
     BrowserModule,

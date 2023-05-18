@@ -11,9 +11,22 @@
           <i class="card-icon far fa-bookmark"></i>
         </div>
         <div *ngIf="!post">
-          <h5>Post not found</h5>
+          <h5>No Post found</h5>
         </div>
       </div>
     </div>
+
+    <form (ngSubmit)="submitComment()" #myForm="ngForm">
+      <div>
+        <h6 class="card-title"><i class="fas fa-user-circle"></i></h6>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="commentData.description" required></textarea>
+      </div>
+      <button type="submit">Add Comment</button>
+    </form>
+
+    <app-comment-list *ngIf="post && post.id !== null" [postId]="post.id"></app-comment-list>
   </div>
 </div>

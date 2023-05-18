@@ -53,5 +53,6 @@ export class CreatePostPageComponent implements OnInit{
 
   handleDescriptionChange(event: Event) {
     this.postDescription = (event.target as HTMLTextAreaElement).value;
+    console.log(this.postDescription)
   }
 }
