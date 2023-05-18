@@ -41,6 +41,9 @@ describe('Test posts result', function () {
 		expect(response.body).to.satisfy(
 			function (body) {
 				for (var i = 0; i < body.length; i++) {
+					var post = response.body[i];
+					expect(post).to.have.all.keys('_id', 'id', 'accountId', 'title', 'author', 'isAnonymous', 'isEdited', 'description', 'dateTime', 'likes', 'dislikes', 'comments');
+        			expect(post._id).to.be.a('string');
 					expect(body[i]).to.have.property('_id').that.is.a('string');
                     expect(body[i]).to.have.property('id').that.is.a('string');
                     expect(body[i]).to.have.property('accountId').that.is.a('string');
