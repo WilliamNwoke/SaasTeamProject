@@ -49,6 +49,11 @@ var App = /** @class */ (function () {
             });
             res.send('{"id":"' + id + '"}');
         });
+        router.get('/account/:id', function (req, res) {
+            var accountId = req.params.id;
+            console.log('Query single account with id: ' + accountId);
+            _this.Accounts.viewAccount(res, { id: accountId }); //  
+        });
         // POST
         router.post('/posts/', function (req, res) {
             // GUIDs (Globally Unique Identifiers)

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Account } from './account-class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountApiService {
+
+  hostUrl: string = 'http://localhost:8080';
   
   private account: Account = new Account('', '', '', '', '', '');
   private isLoggedIn = false;
@@ -44,6 +46,10 @@ export class AccountApiService {
 
   getIsLoggedIn(): boolean {
     return this.isLoggedIn;
+  }
+
+  getAccountInfo(id: string){
+    return this.http.get<Account>(this.hostUrl + "/account/" + id);
   }
 
 }

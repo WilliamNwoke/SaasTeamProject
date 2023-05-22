@@ -35,11 +35,11 @@ class AccountModel {
         this.model = mongooseConnection.model<IAccountModel>("Accounts", this.schema);
     }
 
-    public viewAccount(accountId: any): any {
-        var query = this.model.findOne({_id: accountId});
+    public viewAccount(response: any, filter: object) {
+        console.log("id: " + filter)
+        var query = this.model.findOne(filter);
         query.exec((err, userAccount) => {
-            console.log("Username is " + userAccount);
-            accountId.json(userAccount);
+            response.json(userAccount);
         });
     }
 }
