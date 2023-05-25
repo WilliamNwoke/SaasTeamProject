@@ -17,6 +17,7 @@ import { CreatePostPageComponent } from './create-post-page/create-post-page.com
 import { ViewPostPageComponent } from './view-post-page/view-post-page.component';
 import { PostIndexPageComponent } from './post-index-page/post-index-page.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CommentListComponent } from './comment-list/comment-list.component';
     CreatePostPageComponent,
     ViewPostPageComponent,
     PostIndexPageComponent,
-    CommentListComponent
+    CommentListComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,

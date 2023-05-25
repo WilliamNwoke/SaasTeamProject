@@ -27,11 +27,11 @@ var AccountModel = /** @class */ (function () {
         console.log("Inside createModel");
         this.model = mongooseConnection.model("Accounts", this.schema);
     };
-    AccountModel.prototype.viewAccount = function (accountId) {
-        var query = this.model.findOne({ _id: accountId });
+    AccountModel.prototype.viewAccount = function (response, filter) {
+        console.log("id: " + filter);
+        var query = this.model.findOne(filter);
         query.exec(function (err, userAccount) {
-            console.log("Username is " + userAccount);
-            accountId.json(userAccount);
+            response.json(userAccount);
         });
     };
     return AccountModel;

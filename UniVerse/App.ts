@@ -62,6 +62,13 @@ class App {
         res.send('{"id":"' + id + '"}');
     });
 
+    router.get('/account/:id', (req, res) => {
+      var accountId = req.params.id;
+      console.log('Query single account with id: ' + accountId);
+      this.Accounts.viewAccount(res, {id: accountId}); //  
+    });
+
+
     // POST
     router.post('/posts/', (req, res) => {
 
