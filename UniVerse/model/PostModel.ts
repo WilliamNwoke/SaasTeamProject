@@ -113,6 +113,9 @@ class PostModel {
     public retrieveAllPosts(response: any){
         var query = this.model.find({});
         query.exec( (err, postArray) => {
+            if (err){
+                console.log(err);
+            }
             response.json(postArray) ;
         });
     }
