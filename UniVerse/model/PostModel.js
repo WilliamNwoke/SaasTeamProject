@@ -145,6 +145,9 @@ var PostModel = /** @class */ (function () {
     PostModel.prototype.retrieveAllPosts = function (response) {
         var query = this.model.find({});
         query.exec(function (err, postArray) {
+            if (err) {
+                console.log(err);
+            }
             response.json(postArray);
         });
     };
