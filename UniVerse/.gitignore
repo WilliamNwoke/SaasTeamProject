@@ -1,4 +1,4 @@
-/.env
+/createDB
 /db
 /node_modules
 /.diagnostic.data
