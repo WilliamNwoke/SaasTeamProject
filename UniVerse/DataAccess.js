@@ -19,7 +19,7 @@ var DataAccess = /** @class */ (function () {
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING, this.OPTION);
         return this.mongooseInstance;
     };
-    DataAccess.DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+    DataAccess.DB_CONNECTION_STRING = "mongodb+srv://universedbadmin:test@universe0.c7ifqn0.mongodb.net/uniVerse?retryWrites=true&w=majority";
     // Added this line to make the unified topology true per error
     DataAccess.OPTION = { useUnifiedTopology: true };
     return DataAccess;

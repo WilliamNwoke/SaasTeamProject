@@ -11,7 +11,16 @@ Make sure you install the node.js server and Mongo DB sofware from the side.  En
 
 To execute the server db and then the node server with the following commands:
 
-### Setup Node version 20.0.0 and above
+install mongoose
+install node
+install nvm node version manager
+install mongodb driver
+install mongodb service / mongodb/ mongo
+install typescript
+
+
+
+### Setup Node version 18.0.0 
 to check node version: node --version
 
 //create the db file directory
@@ -20,14 +29,15 @@ to check node version: node --version
 //Starts the DB server on port 3000
 1. start.Universe.cmd
 
-// mac edition
+// mac edition or linux(ubuntu)
 chmod +x start.Universe.sh
 ./start.Universe.sh
 
 // -----------
-
+Open another terminal and run this
 //populate the DB server with sample data
 2. startdbClient.Universe.cmd
+in mac: ./startdbClient.Universe.sh
 >load ('createDB/UniVerseData.js');
 >load ('createDB/createAdminUser.js');
 >exit
