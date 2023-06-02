@@ -30,7 +30,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.16.0",
     "async": "^3.2.4",
     "chai": "^4.3.7",
     "chai-http": "^4.3.0"

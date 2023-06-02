@@ -8,7 +8,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 })
 export class CommentApiService {
 
-  hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = 'https://universe0.azurewebsites.net/';
 
   commentAdded: EventEmitter<void> = new EventEmitter<void>();
 
@@ -17,7 +17,7 @@ export class CommentApiService {
   getPostComments(PostId:string){
     return this.http.get<CommentClass[]>(this.hostUrl + 'comments'+ "/" + PostId);
   }
-  
+
   addComment(commentData: any): Observable<any> {
     return this.http.post<CommentClass>(this.hostUrl + 'comments', commentData)
   }

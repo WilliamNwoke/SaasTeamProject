@@ -1,1 +1,1 @@
-git add . && git commit -m "change made to" && git push -u origin main
+git add . && git commit -m "change made to angular app" && git push -u origin main

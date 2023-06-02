@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PostApiService {
 
-  hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = 'https://universe0.azurewebsites.net/';
 
   constructor(private http: HttpClient) {
   }
@@ -16,7 +16,7 @@ export class PostApiService {
   getPosts(){
     return this.http.get<PostClass[]>(this.hostUrl + 'posts');
   }
-  
+
   getSpecificPost(id:string){
     return this.http.get<PostClass>(this.hostUrl + 'post' + "/" + id);
   }

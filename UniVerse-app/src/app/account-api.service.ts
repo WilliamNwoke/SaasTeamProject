@@ -7,8 +7,8 @@ import { Account } from './account-class';
 })
 export class AccountApiService {
 
-  hostUrl: string = 'http://localhost:8080';
-  
+  hostUrl: string = 'https://universe0.azurewebsites.net/';
+
   private account: Account = new Account('', '', '', '', '', '');
   private isLoggedIn = false;
 
