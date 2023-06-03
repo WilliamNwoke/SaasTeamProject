@@ -4,6 +4,8 @@ import {ForumPostModel} from './model/ForumPostModel';
 import {AccountModel} from './model/AccountModel';
 import {CommentModel} from './model/CommentModel';
 import { v4 as uuidv4 } from 'uuid';
+import GooglePassportObj from './GooglePassport';
+import * as passport from 'passport';
 
 
 // Creates and configures an ExpressJS web server.
@@ -22,6 +24,7 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
+    this.googlePassportObj = new GooglePassportObj();
 
     //UniVerse Models
     this.ForumPosts = new ForumPostModel();
@@ -44,9 +47,27 @@ class App {
 
   }
 
-  // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
+ 
+    router.get('/auth/google', 
+    passport.authenticate('google', {scope: ['profile']}));
+
+
+  router.get('/auth/google/callback', 
+    passport.authenticate('google', 
+      { successRedirect: '/#/postindex', failureRedirect: '/' }
+    ),
+    (req, res) => {
+      console.log("successfully authenticated user and returned to callback page.");
+      console.log("redirecting to /#/postindex");
+      res.redirect('/#/postindex');
+    } 
+  );
+
+  // Configure API endpoints.
+  // private routes(): void {
+  //   let router = express.Router();
 
     // ACCOUNT
     router.post('/accounts/', (req, res) => {
