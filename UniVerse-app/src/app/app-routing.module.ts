@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreatePostPageComponent } from './create-post-page/create-post-page.component'; 
+import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
 import { ViewPostPageComponent } from './view-post-page/view-post-page.component';
 import { PostIndexPageComponent } from './post-index-page/post-index-page.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
@@ -8,8 +8,8 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
 const routes: Routes = [
   {path: 'studentprofile', component: StudentProfileComponent},
   {path: 'createpost', component: CreatePostPageComponent},
-  {path: 'viewpost/:id', component: ViewPostPageComponent},  
-  {path: 'postindex', component: PostIndexPageComponent},  
+  {path: 'viewpost/:id', component: ViewPostPageComponent},
+  {path: 'postindex', component: PostIndexPageComponent},
   {path: '', component: PostIndexPageComponent},
 ];
 

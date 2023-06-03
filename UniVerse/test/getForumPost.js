@@ -1,4 +1,4 @@
-//Get (Get List of Posts)
+//Get (Get List of ForumPosts)
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const async = require('async');
@@ -10,16 +10,16 @@ var should = chai.should();
 var http = require('http');
 chai.use(chaiHttp);
 
-describe('Test posts result', function () {
+describe('Test forumposts result', function () {
 	this.timeout(15000);
 
 	var requestResult;
 	var response;
-	var postId = "2edb8e72-8f55-46ec-a937-57fdb4759f9d";
+	var forumpostId = "2edb8e72-8f55-46ec-a937-57fdb4759f9d";
     before(function (done) {
 
         chai.request("http://localhost:8080")
-			.get("/post/" + postId)
+			.get("/forumpost/" + forumpostId)
 			.end(function (err, res) {
 				requestResult = res.body;
 				response = res;

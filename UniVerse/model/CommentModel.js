@@ -49,7 +49,7 @@ var CommentModel = /** @class */ (function () {
     CommentModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             id: { type: String, required: true },
-            postId: { type: String, required: true },
+            forumpostId: { type: String, required: true },
             author: { type: String, required: true },
             description: { type: String, required: true },
             dateTime: { type: Date, required: true },

@@ -74,12 +74,12 @@ commentId3 = (0, uuid.v4)()
 commentId4 = (0, uuid.v4)()
 commentId5 = (0, uuid.v4)()
 
-//Post
-db.createCollection('posts')
-postCollection = db.getCollection("posts")
-postCollection.remove({})
-postId1 = (0, uuid.v4)()
-postCollection.insert(
+//ForumPost
+db.createCollection('forumposts')
+forumpostCollection = db.getCollection("forumposts")
+forumpostCollection.remove({})
+forumpostId1 = (0, uuid.v4)()
+forumpostCollection.insert(
 {
     id: "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     accountId: accountId1,
@@ -94,8 +94,8 @@ postCollection.insert(
     comments: [commentId1]
 }
 )
-postId2 = (0, uuid.v4)()
-postCollection.insert(
+forumpostId2 = (0, uuid.v4)()
+forumpostCollection.insert(
 {
     id: "5442e623-447b-461e-9cfa-f32114d773e7",
     accountId: "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4",
@@ -110,8 +110,8 @@ postCollection.insert(
     comments: [commentId2],
 }
 )
-postId3 = (0, uuid.v4)()
-postCollection.insert(
+forumpostId3 = (0, uuid.v4)()
+forumpostCollection.insert(
 {
     id: "068c98b6-cee4-4baf-bf6b-c97f4578bb9b",
     accountId: accountId3,
@@ -126,8 +126,8 @@ postCollection.insert(
     comments: [commentId1],
 }
 )
-postId4 = (0, uuid.v4)()
-postCollection.insert(
+forumpostId4 = (0, uuid.v4)()
+forumpostCollection.insert(
 {
     id: "c95068f5-2c20-4b6b-b811-aacf8265adea",
     accountId: accountId4,
@@ -142,8 +142,8 @@ postCollection.insert(
     comments: [commentId3],
 }
 )
-postId5 = (0, uuid.v4)()
-postCollection.insert(
+forumpostId5 = (0, uuid.v4)()
+forumpostCollection.insert(
 {
     id: "c23f9a48-2dad-4560-a30a-c97a3752f4c7",
     accountId: accountId5,
@@ -166,7 +166,7 @@ commentCollection.remove({})
 commentCollection.insert(
 {
     id: "05591f37-b4db-49f8-985c-d6948e93d10c",
-    postId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
+    forumpostId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     author: "kennyj",
     description: "Human Anotomy by A.H Henson is a good supplementar textbook. It should support you through clinicals",
     dateTime: 02-14-2023,
@@ -178,7 +178,7 @@ commentCollection.insert(
 commentCollection.insert(
 {
     id: "de954cb0-df31-446e-8748-6f9d190d1d59",
-    postId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
+    forumpostId : "2edb8e72-8f55-46ec-a937-57fdb4759f9d",
     author: "srodriguez",
     description: "I concur, I always remember asking for feedback during my internship at the pharmaceutical company. I interned at last summer.",
     dateTime: 02-24-2023,
@@ -189,7 +189,7 @@ commentCollection.insert(
 commentCollection.insert(
 {
     id: "3d8a0355-b333-46b7-997f-bf1da7570374",
-    postId : postId4,
+    forumpostId : forumpostId4,
     author: "kcruz24",
     description: "How about we meet around 8:00pm. I should be finished with homework by then. Plus my roommates wanna join in too",
     dateTime: 02-18-2023,
@@ -200,7 +200,7 @@ commentCollection.insert(
 commentCollection.insert(
 {
     id: "f726d0d1-5c03-41fb-bd5f-28187fb0b768",
-    postId : postId4,
+    forumpostId : forumpostId4,
     author: "kennyj",
     description: "Yay! Hackathons are back. How I missed in-person hackathon since the pandemic caused us to experience them virtually",
     dateTime: 03-14-2023,
@@ -211,7 +211,7 @@ commentCollection.insert(
 commentCollection.insert(
 {
     id: "d36a72a5-5c53-4290-9200-bcc8752abbae",
-    postId : postId5,
+    forumpostId : forumpostId5,
     author: "srodriguez",
     description: "I haven't had any courses with Dr. Ortega. However, from what I've heard from my bestfriend, who is a Chemistry major, she's a fun professor. Expect to learn a ton in her courses!",
     dateTime: 03-15-2023,
@@ -229,7 +229,7 @@ notificationCollection.insert(
 {
     id: "7ccc7879-c773-4b46-a880-602dcacbf9d1",
     accountId: accountId1,
-    postId: postId1,
+    forumpostId: forumpostId1,
     title:"Like and comment received.",
     description: "Jane Smith liked and commented on your post.",
     dateTime: 02-14-2023,
@@ -240,7 +240,7 @@ notificationCollection.insert(
 {
     id: "6c426228-8ae4-4b4a-989b-0a6d1f66e883",
     accountId: accountId2,
-    postId: postId2,
+    forumpostId: forumpostId2,
     title:"Like and comment received.",
     description: "Kenneth Jones liked and commented on your post.",
     dateTime: 02-24-2023,
@@ -251,7 +251,7 @@ notificationCollection.insert(
 {
     id: "fbe66774-366c-414d-a127-bcce8f986344",
     accountId: accountId3,
-    postId: postId3,
+    forumpostId: forumpostId3,
     title:"Like and comment received",
     description: "Kayleigh Cruz liked and commented on your post.",
     dateTime: 02-18-2023,
@@ -262,7 +262,7 @@ notificationCollection.insert(
 {
     id: "8554ab68-907d-4749-844e-9195f03a635d",
     accountId: accountId4,
-    postId: postId4,
+    forumpostId: forumpostId4,
     title:"Like and comment received",
     description: "Kenneth Jones liked and commented on your post.",
     dateTime: 03-14-2023,
@@ -273,7 +273,7 @@ notificationCollection.insert(
 {
     id: "d1499422-c67f-4d9d-a135-77b2cda42ebc",
     accountId: accountId5,
-    postId: postId4,
+    forumpostId: forumpostId4,
     title:"Like and comment received",
     description: "Santiago Rodriguez liked and commented on your post =.",
     dateTime: 03-15-2023,

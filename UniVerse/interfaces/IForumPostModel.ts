@@ -1,6 +1,6 @@
 import Mongoose = require("mongoose");
 
-interface IPostModel extends Mongoose.Document {
+interface IForumPostModel extends Mongoose.Document {
     id: String,
     accountId: String,
     title: String,
@@ -13,4 +13,4 @@ interface IPostModel extends Mongoose.Document {
     dislikes: Number,
     comments: [String]
 }
-export {IPostModel};
+export {IForumPostModel};

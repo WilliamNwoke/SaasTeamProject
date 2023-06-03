@@ -12,7 +12,7 @@ var NotifcationModel = /** @class */ (function () {
     NotifcationModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             id: { type: String, required: true },
-            postId: { type: String, required: true },
+            forumpostId: { type: String, required: true },
             author: { type: String, required: true },
             description: { type: String, required: true },
             commentDate: { type: Date, required: true },

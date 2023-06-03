@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import {PostModel} from './model/PostModel';
+import {ForumPostModel} from './model/ForumPostModel';
 import {AccountModel} from './model/AccountModel';
 import {CommentModel} from './model/CommentModel';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,7 +12,7 @@ class App {
   // ref to Express instance
   public expressApp: express.Application;
   //UniVerse Models
-  public Posts:PostModel;
+  public ForumPosts:ForumPostModel;
   public Accounts:AccountModel;
   public Comments:CommentModel;
   public cors = require('cors');
@@ -24,7 +24,7 @@ class App {
     this.routes();
 
     //UniVerse Models
-    this.Posts = new PostModel();
+    this.ForumPosts = new ForumPostModel();
     this.Accounts = new AccountModel();
     this.Comments = new CommentModel();
   }
@@ -70,14 +70,14 @@ class App {
 
 
     // POST
-    router.post('/posts/', (req, res) => {
+    router.post('/forumposts/', (req, res) => {
 
       // GUIDs (Globally Unique Identifiers)
       const id = uuidv4();
       console.log(req.body);
         var postJsonObj  = req.body;
         postJsonObj.id = id;
-        this.Posts.model.create([postJsonObj], (err) => {
+        this.ForumPosts.model.create([postJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');
           }
@@ -85,21 +85,21 @@ class App {
         res.send('{"id":"' + id + '"}');
     });
     
-    router.get('/post/:id', (req, res) => {
-      var postId = req.params.id;
-      console.log('Query single post with id: ' + postId);
-      this.Posts.retrievePostsDetails(res, {id: postId});
+    router.get('/forumpost/:id', (req, res) => {
+      var forumpostId = req.params.id;
+      console.log('Query single forumpost with id: ' + forumpostId);
+      this.ForumPosts.retrieveForumPostsDetails(res, {id: forumpostId});
     });
 
-    router.get('/posts/', (req, res) => {
-      console.log('Query All Posts');
-      this.Posts.retrieveAllPosts(res);
+    router.get('/forumposts/', (req, res) => {
+      console.log('Query All ForumPosts');
+      this.ForumPosts.retrieveAllForumPosts(res);
     });
 
-    router.get('/posts/:accountId', (req, res) => {
+    router.get('/forumposts/:accountId', (req, res) => {
       const id = req.params.accountId;
-      console.log('Query All My posts using my accountId');
-      this.Posts.retrieveAllMyPosts(res, {accountId: id});
+      console.log('Query All My forumposts using my accountId');
+      this.ForumPosts.retrieveAllMyForumPosts(res, {accountId: id});
     });
 
     // COMMENTS
@@ -113,15 +113,15 @@ class App {
               console.log('object creation failed');
           }
       });
-      // RETRIEVE post
-      this.Posts.updatePostComment(res, commentJsonObj.postId, id);
+      // RETRIEVE forumpost
+      this.ForumPosts.updateForumPostComment(res, commentJsonObj.forumpostId, id);
       res.json(commentJsonObj);
     });
 
-    router.get('/comments/:postId', (req, res) => {
-      const id = req.params.postId;
-      console.log('Query All Comments for this Post id');
-      this.Comments.retrieveAllComments(res, {postId: id});
+    router.get('/comments/:forumpostId', (req, res) => {
+      const id = req.params.forumpostId;
+      console.log('Query All Comments for this forumPost id');
+      this.Comments.retrieveAllComments(res, {forumpostId: id});
     }); 
 
     this.expressApp.use('/', router);

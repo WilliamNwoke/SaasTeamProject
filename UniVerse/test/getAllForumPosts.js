@@ -1,4 +1,4 @@
-//Get (Get List of Posts)
+//Get (Get List of ForumPosts)
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const async = require('async');
@@ -10,7 +10,7 @@ var should = chai.should();
 var http = require('http');
 chai.use(chaiHttp);
 
-describe('Test posts result', function () {
+describe('Test forumposts result', function () {
 	this.timeout(15000);
 
 	var requestResult;
@@ -19,7 +19,7 @@ describe('Test posts result', function () {
     before(function (done) {
 
         chai.request("http://localhost:8080")
-			.get("/posts/")
+			.get("/forumposts/")
 			.end(function (err, res) {
 				requestResult = res.body;
 				response = res;
@@ -30,7 +30,7 @@ describe('Test posts result', function () {
 			});
 	});
     
-    it('Should return an array of objects with more than four posts', function (){
+    it('Should return an array of objects with more than four forumposts', function (){
         expect(response).to.have.status(200);
         // expect(response.body).to.be.json; doesnt work
 		expect(response.headers['content-type']).to.have.string('application/json; charset=utf-8');
@@ -41,9 +41,9 @@ describe('Test posts result', function () {
 		expect(response.body).to.satisfy(
 			function (body) {
 				for (var i = 0; i < body.length; i++) {
-					var post = response.body[i];
-					expect(post).to.have.all.keys('_id', 'id', 'accountId', 'title', 'author', 'isAnonymous', 'isEdited', 'description', 'dateTime', 'likes', 'dislikes', 'comments');
-        			expect(post._id).to.be.a('string');
+					var forumpost = response.body[i];
+					expect(forumpost).to.have.all.keys('_id', 'id', 'accountId', 'title', 'author', 'isAnonymous', 'isEdited', 'description', 'dateTime', 'likes', 'dislikes', 'comments');
+        			expect(forumpost._id).to.be.a('string');
 					expect(body[i]).to.have.property('_id').that.is.a('string');
                     expect(body[i]).to.have.property('id').that.is.a('string');
                     expect(body[i]).to.have.property('accountId').that.is.a('string');

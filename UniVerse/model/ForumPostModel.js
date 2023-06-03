@@ -36,17 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostModel = void 0;
+exports.ForumPostModel = void 0;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
-var PostModel = /** @class */ (function () {
-    function PostModel() {
+var ForumPostModel = /** @class */ (function () {
+    function ForumPostModel() {
         this.createSchemas();
         this.createModel();
     }
-    PostModel.prototype.createSchemas = function () {
+    ForumPostModel.prototype.createSchemas = function () {
         this.schema = new Mongoose.Schema({
             id: { type: String, required: true },
             accountId: { type: String, required: true },
@@ -59,126 +59,126 @@ var PostModel = /** @class */ (function () {
             likes: { type: Number, required: true },
             dislikes: { type: Number, required: true },
             comments: { type: [String], required: true }
-        }, { collection: 'posts' });
+        }, { collection: 'forumposts' });
     };
-    PostModel.prototype.createModel = function () {
-        this.model = mongooseConnection.model("Posts", this.schema);
+    ForumPostModel.prototype.createModel = function () {
+        this.model = mongooseConnection.model("ForumPosts", this.schema);
     };
-    PostModel.prototype.createPost = function (postData) {
+    ForumPostModel.prototype.createForumPost = function (forumpostData) {
         return __awaiter(this, void 0, void 0, function () {
-            var post;
+            var forumpost;
             return __generator(this, function (_a) {
-                post = new this.model(postData);
-                return [2 /*return*/, post.save(function (err, post) {
+                forumpost = new this.model(forumpostData);
+                return [2 /*return*/, forumpost.save(function (err, forumpost) {
                         if (err) {
-                            console.log("Error saving post");
+                            console.log("Error saving forumpost");
                         }
                         else {
-                            console.log("Post saved successfully");
+                            console.log("ForumPost saved successfully");
                         }
                     })];
             });
         });
     };
-    PostModel.prototype.updatePost = function (response, filter) {
+    ForumPostModel.prototype.updateForumPost = function (response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, post) {
+        query.exec(function (err, forumpost) {
             if (err) {
-                console.log("Error finding post");
+                console.log("Error finding forumpost");
             }
             else {
-                post.title = response.title;
-                post.author = response.author;
-                post.isAnonymous = response.isAnonymous;
-                post.likes = response.likes;
-                post.dislikes = response.dislikes;
-                post.comments = response.comments;
-                post.save(function (err, post) {
+                forumpost.title = response.title;
+                forumpost.author = response.author;
+                forumpost.isAnonymous = response.isAnonymous;
+                forumpost.likes = response.likes;
+                forumpost.dislikes = response.dislikes;
+                forumpost.comments = response.comments;
+                forumpost.save(function (err, forumpost) {
                     if (err) {
-                        console.log("Error saving post");
+                        console.log("Error saving forumpost");
                     }
                     else {
-                        console.log("Post saved successfully");
-                        response.json(post);
+                        console.log("ForumPost saved successfully");
+                        response.json(forumpost);
                     }
                 });
             }
         });
     };
-    PostModel.prototype.deletePost = function (response, filter) {
+    ForumPostModel.prototype.deleteForumPost = function (response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, post) {
+        query.exec(function (err, forumpost) {
             if (err) {
-                console.log("Error finding post");
+                console.log("Error finding forumpost");
             }
             else {
-                post.remove(function (err, post) {
+                forumpost.remove(function (err, post) {
                     if (err) {
-                        console.log("Error deleting post");
+                        console.log("Error deleting forumpost");
                     }
                     else {
-                        console.log("Post deleted successfully");
+                        console.log("ForumPost deleted successfully");
                     }
                 });
             }
         });
     };
-    PostModel.prototype.viewPost = function (response, filter) {
+    ForumPostModel.prototype.viewForumPost = function (response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, post) {
+        query.exec(function (err, forumpost) {
             if (err) {
-                console.log("Error finding post");
+                console.log("Error finding forumpost");
             }
             else {
-                console.log("Post found");
-                response.json(post);
+                console.log("ForumPost found");
+                response.json(forumpost);
             }
         });
     };
-    PostModel.prototype.retrieveAllMyPosts = function (response, filter) {
+    ForumPostModel.prototype.retrieveAllMyForumPosts = function (response, filter) {
         console.log("id:" + filter);
         var query = this.model.find(filter);
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
     };
-    PostModel.prototype.retrieveAllPosts = function (response) {
+    ForumPostModel.prototype.retrieveAllForumPosts = function (response) {
         var query = this.model.find({});
-        query.exec(function (err, postArray) {
+        query.exec(function (err, forumpostArray) {
             if (err) {
                 console.log(err);
             }
-            response.json(postArray);
+            response.json(forumpostArray);
         });
     };
-    PostModel.prototype.updatePostComment = function (response, postId, commentId) {
-        // Define the query to find the post object with the specified 'postId'
-        var filter = { id: postId };
+    ForumPostModel.prototype.updateForumPostComment = function (response, forumpostId, commentId) {
+        // Define the query to find the forumpost object with the specified 'forumpostId'
+        var filter = { id: forumpostId };
         // Define the update operation using the $push operator to append the 'commentId' to the 'comments' array
         var update = { $push: { comments: commentId } };
-        // Use the findOneAndUpdate() method to perform the update operation on the post object matching the query
-        this.model.findOneAndUpdate(filter, update, { new: true }, function (err, post) {
+        // Use the findOneAndUpdate() method to perform the update operation on the forumpost object matching the query
+        this.model.findOneAndUpdate(filter, update, { new: true }, function (err, forumpost) {
             if (err) {
                 // Handle the error
                 console.error(err);
-                response.status(500).json({ error: 'An error occurred while updating the post' });
+                response.status(500).json({ error: 'An error occurred while updating the forumpost' });
             }
-            else if (!post) {
+            else if (!forumpost) {
                 // Handle the case where no post was found with the specified 'postId'
-                response.status(404).json({ error: "No post was found with postId ".concat(postId) });
+                response.status(404).json({ error: "No post was found with forumpostId ".concat(forumpostId) });
             }
             else {
-                // Return the updated post object
-                console.log(post);
+                // Return the updated forumpost object
+                console.log(forumpost);
             }
         });
     };
-    PostModel.prototype.retrievePostsDetails = function (response, filter) {
+    ForumPostModel.prototype.retrieveForumPostsDetails = function (response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, postArray) {
-            response.json(postArray);
+        query.exec(function (err, forumpostArray) {
+            response.json(forumpostArray);
         });
     };
-    return PostModel;
+    return ForumPostModel;
 }());
-exports.PostModel = PostModel;
+exports.ForumPostModel = ForumPostModel;

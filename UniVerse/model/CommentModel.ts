@@ -1,7 +1,7 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import { ICommentModel } from "../interfaces/ICommentModel";
-import { PostModel } from "./PostModel";
+import { ForumPostModel } from "./ForumPostModel";
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
@@ -20,7 +20,7 @@ class CommentModel {
         this.schema = new Mongoose.Schema(
             {
                 id: {type: String, required: true},
-                postId: {type: String, required: true},
+                forumpostId: {type: String, required: true},
                 author: {type: String, required: true},
                 description: {type: String, required: true},
                 dateTime: {type: Date, required: true},
