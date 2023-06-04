@@ -6,7 +6,9 @@ import {CommentModel} from './model/CommentModel';
 import { v4 as uuidv4 } from 'uuid';
 import GooglePassportObj from './GooglePassport';
 import * as passport from 'passport';
-
+import * as logger from 'morgan';
+import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -18,6 +20,8 @@ class App {
   public Accounts:AccountModel;
   public Comments:CommentModel;
   public cors = require('cors');
+  public idGenerator:number;
+  public googlePassportObj:GooglePassportObj;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -25,7 +29,7 @@ class App {
     this.middleware();
     this.routes();
     this.googlePassportObj = new GooglePassportObj();
-
+    this.idGenerator = 102;
     //UniVerse Models
     this.ForumPosts = new ForumPostModel();
     this.Accounts = new AccountModel();
@@ -36,6 +40,9 @@ class App {
   private middleware(): void {
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+    this.expressApp.use(session({ secret: 'keyboard cat' }));
+    this.expressApp.use(cookieParser());
+    this.expressApp.use(logger('dev'));
 
   // Enable CORS
   this.expressApp.use((req, res, next) => {
@@ -50,20 +57,20 @@ class App {
   private routes(): void {
     let router = express.Router();
  
-    router.get('/auth/google', 
-    passport.authenticate('google', {scope: ['profile']}));
+    
+    router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 
-  router.get('/auth/google/callback', 
+    router.get('/auth/google/callback', 
     passport.authenticate('google', 
-      { successRedirect: '/#/postindex', failureRedirect: '/' }
+      { failureRedirect: '/failure' , successRedirect: '/#/postindex'}
     ),
     (req, res) => {
       console.log("successfully authenticated user and returned to callback page.");
-      console.log("redirecting to /#/postindex");
-      res.redirect('/#/postindex');
+      console.log("redirecting to /postindex");
+      res.redirect('/postindex');
     } 
-  );
+    );
 
   // Configure API endpoints.
   // private routes(): void {
@@ -100,7 +107,7 @@ class App {
         postJsonObj.id = id;
         this.ForumPosts.model.create([postJsonObj], (err) => {
           if (err) {
-              console.log('object creation failed');
+              console.log('forumPosts creation failed');
           }
       });
         res.send('{"id":"' + id + '"}');

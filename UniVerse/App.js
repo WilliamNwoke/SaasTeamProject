@@ -7,6 +7,11 @@ var ForumPostModel_1 = require("./model/ForumPostModel");
 var AccountModel_1 = require("./model/AccountModel");
 var CommentModel_1 = require("./model/CommentModel");
 var uuid_1 = require("uuid");
+var GooglePassport_1 = require("./GooglePassport");
+var passport = require("passport");
+var logger = require("morgan");
+var session = require("express-session");
+var cookieParser = require("cookie-parser");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -15,6 +20,8 @@ var App = /** @class */ (function () {
         this.expressApp = express();
         this.middleware();
         this.routes();
+        this.googlePassportObj = new GooglePassport_1.default();
+        this.idGenerator = 102;
         //UniVerse Models
         this.ForumPosts = new ForumPostModel_1.ForumPostModel();
         this.Accounts = new AccountModel_1.AccountModel();
@@ -24,6 +31,9 @@ var App = /** @class */ (function () {
     App.prototype.middleware = function () {
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: 'keyboard cat' }));
+        this.expressApp.use(cookieParser());
+        this.expressApp.use(logger('dev'));
         // Enable CORS
         this.expressApp.use(function (req, res, next) {
             res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,10 +42,18 @@ var App = /** @class */ (function () {
             next();
         });
     };
-    // Configure API endpoints.
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
+        router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failure', successRedirect: '/#/postindex' }), function (req, res) {
+            console.log("successfully authenticated user and returned to callback page.");
+            console.log("redirecting to /postindex");
+            res.redirect('/postindex');
+        });
+        // Configure API endpoints.
+        // private routes(): void {
+        //   let router = express.Router();
         // ACCOUNT
         router.post('/accounts/', function (req, res) {
             var id = (0, uuid_1.v4)();
@@ -63,7 +81,7 @@ var App = /** @class */ (function () {
             postJsonObj.id = id;
             _this.ForumPosts.model.create([postJsonObj], function (err) {
                 if (err) {
-                    console.log('object creation failed');
+                    console.log('forumPosts creation failed');
                 }
             });
             res.send('{"id":"' + id + '"}');
