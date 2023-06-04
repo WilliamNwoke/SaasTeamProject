@@ -12,11 +12,12 @@ accountId1 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4",
-      username: "Uchenna123",
-      fname: "Uche",
-      lname: "Doe",
-      email: "edoe@seattleu.com",
-      department: "College of Nursing",
+      username: "Mustafa",
+      fname: "Mustafa",
+      lname: "Abuthuraya",
+      email: "mabuthuraya@seattleu.edu",
+      department: "College of Computer Science",
+      oAuthId: "101682451002234614520"
 
 }
 )
@@ -24,12 +25,12 @@ accountId2 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: "6ab34a04-8a84-4202-b2bb-cdde96feae19",
-      username: "jsmith",
-      fname: "Janet",
-      lname: "Smith",
-      email: "jsmith@seattleu.com",
-      department: "College of Education",
-
+      username: "Uchenna123",
+      fname: "Uchenna",
+      lname: "Nwoke",
+      email: "unwoke@seattleu.edu",
+      department: "College of Computer Science",
+      oAuthId: "101682451002234614520"
 }
 )
 accountId3 = (0, uuid.v4)()
@@ -41,7 +42,7 @@ accountCollection.insert(
       lname: "Rodriguez",
       email: "srodriguez@seattleu.edu",
       department: "College of Arts",
-
+      oAuthId: "101682451002234614520"
 }
 )
 accountId4 = (0, uuid.v4)()
@@ -53,7 +54,7 @@ accountCollection.insert(
       lname: "Cruz",
       email: "kayleighc@seattleu.edu",
       department: "College of Science and Engineering",
-
+      oAuthId: "101682451002234614520"
 }
 )
 accountId5 = (0, uuid.v4)()
@@ -65,7 +66,7 @@ accountCollection.insert(
       lname: "Jones",
       email: "kjones@seattleu.edu",
       department: "Chemistry Department",
-
+      oAuthId: "101682451002234614520"
 }
 )
 commentId1 = (0, uuid.v4)()
