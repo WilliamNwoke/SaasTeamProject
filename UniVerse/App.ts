@@ -9,7 +9,6 @@ import * as passport from 'passport';
 import * as logger from 'morgan';
 import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
-import * as path from 'path';
 
 // Creates and configures an ExpressJS web server.
 class App {
