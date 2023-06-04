@@ -33,6 +33,8 @@ var App = /** @class */ (function () {
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
         this.expressApp.use(session({ secret: 'keyboard cat' }));
         this.expressApp.use(cookieParser());
+        this.expressApp.use(passport.initialize());
+        this.expressApp.use(passport.session());
         this.expressApp.use(logger('dev'));
         // Enable CORS
         this.expressApp.use(function (req, res, next) {
@@ -42,14 +44,35 @@ var App = /** @class */ (function () {
             next();
         });
     };
+    App.prototype.validateAuth = function (req, res, next) {
+        if (req.isAuthenticated()) {
+            console.log("user is authenticated");
+            //  session.userOpenId = sha512.sha512(req.user.id);
+            //  session.userName = req.user.displayName;
+            //  session.email = req.user.emails[0].value;
+            // console.log("sha 512 code is "+sha512.sha512(req.user.id));
+            return next();
+        }
+        console.log("user is not authenticated");
+        res.json({ "authentication": "failed" });
+    };
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
         router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failure', successRedirect: '/#/postindex' }), function (req, res) {
+        // router.get('/auth/google/callback', 
+        // passport.authenticate('google', 
+        //   { failureRedirect: '/failure' , successRedirect: '/#/postindex'}
+        // ),
+        // (req, res) => {
+        //   console.log("successfully authenticated user and returned to callback page.");
+        //   console.log("redirecting to /postindex");
+        //   res.redirect('/postindex');
+        // } 
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/#/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
-            console.log("redirecting to /postindex");
-            res.redirect('/postindex');
+            // console.log("redirecting to /postindex");
+            res.redirect('/#/');
         });
         // Configure API endpoints.
         // private routes(): void {
@@ -121,10 +144,12 @@ var App = /** @class */ (function () {
             _this.Comments.retrieveAllComments(res, { forumpostId: id });
         });
         this.expressApp.use('/', router);
-        //
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));
         this.expressApp.use('/', express.static(__dirname + '/angularDist'));
+        this.expressApp.use('/*', function (req, res) {
+            res.sendFile(__dirname + '/angularDist/index.html');
+        });
     };
     return App;
 }());
