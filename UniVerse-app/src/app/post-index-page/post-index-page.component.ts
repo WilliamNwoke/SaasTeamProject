@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PostApiService } from '../post-api.service';
-import { PostClass } from '../post-class';
+import { ForumPostApiService } from '../forumpost-api.service';
+import { ForumPostClass } from '../forumpost-class';
 
 @Component({
   selector: 'app-post-index-page',
@@ -11,11 +11,11 @@ import { PostClass } from '../post-class';
 export class PostIndexPageComponent implements OnInit {
 
   
-  posts: Array<PostClass>= [];
-  filteredPosts: Array<PostClass>= [];
+  posts: Array<ForumPostClass>= [];
+  filteredPosts: Array<ForumPostClass>= [];
 
-  constructor(private postApiService: PostApiService) {
-    postApiService.getPosts().subscribe((result: Array<PostClass>)=>{
+  constructor(private forumPostApiService: ForumPostApiService) {
+    forumPostApiService.getPosts().subscribe((result: Array<ForumPostClass>)=>{
       this.posts = result;
       this.filteredPosts = result;
     })

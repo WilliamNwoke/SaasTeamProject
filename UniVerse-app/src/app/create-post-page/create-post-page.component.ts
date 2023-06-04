@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { PostApiService } from '../post-api.service';
+import { ForumPostApiService } from '../forumpost-api.service';
 import { Router } from '@angular/router';
-import { PostClass } from '../post-class';
+import { ForumPostClass } from '../forumpost-class';
 
 @Component({
   selector: 'app-create-post-page',
@@ -14,9 +14,9 @@ export class CreatePostPageComponent implements OnInit{
   postTitle: string = "";
   postAnonymously: boolean = false;
   postDescription: string = "";
-  postData: PostClass = new PostClass('','','','',false,false,'',new Date(),0,0,[]);
+  postData: ForumPostClass = new ForumPostClass('','','','',false,false,'',new Date(),0,0,[]);
 
-  constructor(private postAPiService: PostApiService, private router: Router) {}
+  constructor(private forumPostApiService: ForumPostApiService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -35,7 +35,7 @@ export class CreatePostPageComponent implements OnInit{
       comments: []
     };
 
-    this.postAPiService.createPost(this.postData).subscribe(
+    this.forumPostApiService.createPost(this.postData).subscribe(
       response => {
         console.log(response);
       }

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { PostApiService } from '../post-api.service';
+import { ForumPostApiService } from '../forumpost-api.service';
 import { CommentApiService } from '../comment-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { PostClass } from '../post-class';
+import { ForumPostClass } from '../forumpost-class';
 import { CommentClass } from '../comment-class';
 import { CommentListComponent } from '../comment-list/comment-list.component';
 
@@ -16,12 +16,12 @@ import { CommentListComponent } from '../comment-list/comment-list.component';
 
 export class ViewPostPageComponent{
   postId: string = '';
-  post: PostClass = new PostClass('', '', '', '', false, false, '', new Date(), 0, 0, []);
+  post: ForumPostClass = new ForumPostClass('', '', '', '', false, false, '', new Date(), 0, 0, []);
   commentData: CommentClass = new CommentClass('','','','',new Date(),0,0);
 
   @ViewChild(CommentListComponent) commentListComponent!: CommentListComponent;
   
-  constructor(private postApiService: PostApiService, private commentApiService: CommentApiService,  private route: ActivatedRoute) {
+  constructor(private forumPostApiService: ForumPostApiService, private commentApiService: CommentApiService,  private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class ViewPostPageComponent{
   }
   
   getSpecificPost(id:any){
-    this.postApiService.getSpecificPost(id).subscribe((result: PostClass)=>{
+    this.forumPostApiService.getSpecificPost(id).subscribe((result: ForumPostClass)=>{
       this.post = result;
     })
   }
