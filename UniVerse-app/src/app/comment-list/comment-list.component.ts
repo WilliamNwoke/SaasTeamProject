@@ -8,20 +8,20 @@ import { CommentClass } from '../comment-class';
   styleUrls: ['./comment-list.component.css']
 })
 export class CommentListComponent implements OnInit {
-  @Input() postId: string = '';
+  @Input() forumpostId: string = '';
   comments: CommentClass[] = [];
 
   constructor(private commentApiService: CommentApiService) {}
 
   ngOnInit(): void {
     // Populate comments array if postId exists
-    if (this.postId !== '') {
+    if (this.forumpostId !== '') {
       this.fetchPostComments();
     }
   }
 
   fetchPostComments(): void {
-    this.commentApiService.getPostComments(this.postId).subscribe((result: CommentClass[]) => {
+    this.commentApiService.getPostComments(this.forumpostId).subscribe((result: CommentClass[]) => {
       this.comments = result;
     });
   }

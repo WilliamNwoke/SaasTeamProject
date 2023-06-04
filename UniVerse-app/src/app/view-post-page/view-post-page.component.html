@@ -2,22 +2,22 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-body">
-        <div *ngIf="post.id !== ''">
-          <h6 class="card-title"><i class="fas fa-user-circle"></i>&nbsp;{{post.author}}</h6>
-          <h4 class="card-title card-subtitle mb-2">{{post.title}}</h4>
-          <p class="card-text">{{post.description}}</p>
+        <div *ngIf="forumpost.id !== ''">
+          <h6 class="card-title"><i class="fas fa-user-circle"></i>&nbsp;{{forumpost.author}}</h6>
+          <h4 class="card-title card-subtitle mb-2">{{forumpost.title}}</h4>
+          <p class="card-text">{{forumpost.description}}</p>
           <i class="card-icon far fa-thumbs-up"></i>
           <i class="card-icon far fa-comment"></i>
           <i class="card-icon far fa-bookmark"></i>
         </div>
-        <div *ngIf="post.id === ''">
+        <div *ngIf="forumpost.id === ''">
           <h5>No Post found</h5>
         </div>
       </div>
     </div>
 
     <div class="comment-form">
-      <form *ngIf="post.id !== ''" (ngSubmit)="submitComment()" #myForm="ngForm">
+      <form *ngIf="forumpost.id !== ''" (ngSubmit)="submitComment()" #myForm="ngForm">
         <div class="comment-form-user">
           <h6 class="card-title"><i class="fas fa-user-circle"></i></h6>
         </div>
@@ -29,7 +29,7 @@
       </form>
     </div>
     
-    <app-comment-list *ngIf="post.id !== ''" [postId]="post.id"></app-comment-list>
+    <app-comment-list *ngIf="forumpost.id !== ''" [forumpostId]="forumpost.id"></app-comment-list>
 
   </div>
 </div>

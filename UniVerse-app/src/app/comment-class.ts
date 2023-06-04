@@ -1,6 +1,6 @@
 export class CommentClass {
     id: string;
-    postId: string;
+    forumpostId: string;
     author: string;
     description: string;
     dateTime: Date;
@@ -17,7 +17,7 @@ export class CommentClass {
       dislikes: number
     ) {
       this.id = id;
-      this.postId = postId;
+      this.forumpostId = postId;
       this.author = author;
       this.description = description;
       this.dateTime = dateTime;

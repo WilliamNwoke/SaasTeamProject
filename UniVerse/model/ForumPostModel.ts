@@ -131,11 +131,10 @@ class ForumPostModel {
         this.model.findOneAndUpdate(filter, update, { new: true }, (err, forumpost) => {
           if (err) {
             // Handle the error
-            console.error(err);
-            response.status(500).json({ error: 'An error occurred while updating the forumpost' });
+            console.error(err +"\n"+ 'An error occurred while updating the forumpost');
           } else if (!forumpost) {
             // Handle the case where no post was found with the specified 'postId'
-            response.status(404).json({ error: `No post was found with forumpostId ${forumpostId}` });
+            console.error(err +"\n"+ `No post was found with forumpostId ${forumpostId}`);
           } else {
             // Return the updated forumpost object
             console.log(forumpost)

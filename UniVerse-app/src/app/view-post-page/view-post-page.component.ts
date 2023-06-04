@@ -15,8 +15,8 @@ import { CommentListComponent } from '../comment-list/comment-list.component';
 })
 
 export class ViewPostPageComponent{
-  postId: string = '';
-  post: ForumPostClass = new ForumPostClass('', '', '', '', false, false, '', new Date(), 0, 0, []);
+  forumpostId: string = '';
+  forumpost: ForumPostClass = new ForumPostClass('', '', '', '', false, false, '', new Date(), 0, 0, []);
   commentData: CommentClass = new CommentClass('','','','',new Date(),0,0);
 
   @ViewChild(CommentListComponent) commentListComponent!: CommentListComponent;
@@ -26,22 +26,22 @@ export class ViewPostPageComponent{
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.postId = params.get('id') as string; 
-      this.getSpecificPost(this.postId);
+      this.forumpostId = params.get('id') as string; 
+      this.getSpecificPost(this.forumpostId);
     });
   }
   
   getSpecificPost(id:any){
     this.forumPostApiService.getSpecificPost(id).subscribe((result: ForumPostClass)=>{
-      this.post = result;
+      this.forumpost = result;
     })
   }
 
   submitComment() {
     console.log(this.commentData)
     // Update the postId to belong to the post
-    if (this.postId !== '') {
-      this.commentData.postId = this.postId;
+    if (this.forumpostId !== '') {
+      this.commentData.forumpostId = this.forumpostId;
   
     // Replace with OAuth User Later
     this.commentData.author = "Myke Brako";
