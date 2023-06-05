@@ -1,40 +1,61 @@
-<nav class="navbar navbar-light navbar-expand-md py-3">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <span class="fs-2">UniVerse</span>
-        </a>
-        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-            <span class="visually-hidden">Toggle navigation</span>
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active fs-5" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fs-5" href="#">Favorite</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fs-5" href="#">Post</a>
-                </li>
-            </ul>
-            <div class="d-flex align-items-center">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary"style="margin-right:220px; margin-left:0px;" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
+
+    <nav class="navbar navbar-light navbar-expand-md py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <span class="fs-2">UniVerse</span>
+            </a>
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" href="#">Favorite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" href="#">Post</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary" style="margin-right: 20px;" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="#" style="color: black; margin-right: 20px;"><mat-icon>notifications</mat-icon></a>
+                    <a routerLink="/createpost" style="color: black; padding-right: 0px; margin-right: 21px;"><mat-icon>add</mat-icon></a>
+
+                    <!-- Dropdown button -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <div *ngIf="account; else noAccount" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">{{ account.id }}</a>
+                            <a class="dropdown-item" href="#">{{ account.username }}</a>
+                            <a class="dropdown-item" href="#">{{ account.image}}</a>
+                        </div>
+                        <ng-template #noAccount>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/auth/google">Google</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </ng-template>
+                    </div>
+
+                    <a routerLink="/studentprofile" style="color: black;"><mat-icon>account_circle</mat-icon></a>
+                </div>
             </div>
-
-            <a href="#" style="color: black; margin-right: 20px;"><mat-icon>notifications</mat-icon></a>
-            <a routerLink="/createpost" style="color: black; padding-right: 0px; margin-right: 21px;"><mat-icon>add</mat-icon></a>
-            <a routerLink="/studentprofile" style="color: black; "><mat-icon>account_circle</mat-icon></a>
-
-
-
         </div>
-    </div>
-  </nav>
+    </nav>
 
-  <hr>
-<router-outlet></router-outlet>
+    <hr>
+    <router-outlet></router-outlet>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+

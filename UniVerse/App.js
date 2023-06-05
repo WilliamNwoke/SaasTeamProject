@@ -73,16 +73,14 @@ var App = /** @class */ (function () {
         // { failureRedirect: '/#/', successRedirect: '/#/'}
         { failureRedirect: '/#/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
-            // session.accountId = req['user'].id;
-            // session.userName = req['user'].displayName;
-            // session.image = req['user'].photos[0].value;
             var account = {
                 id: req['user'].id,
                 username: req['user'].displayName,
                 image: req['user'].photos[0].value
             };
-            session.account = account;
-            res.cookie('account', JSON.stringify(account), { httpOnly: true });
+            // session.account = account;
+            // res.cookie('account', JSON.stringify(account), { httpOnly: true });
+            res.cookie('account', 'MOOSE', { httpOnly: true });
             res.redirect('/#/');
         });
         // Configure API endpoints.

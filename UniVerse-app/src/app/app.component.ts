@@ -15,11 +15,19 @@ import { MatCardModule } from '@angular/material/card';
 
 export class AppComponent {
   title = 'UniVerse-app';
+
+  account: any;
   
   constructor(private accountApiService: AccountApiService) {
   }
 
   ngOnInit(): void {
+
+    this.account = this.accountApiService.getAccount();
+    console.log("I'm in app.component");
+    console.log("id: "+ this.account.id);
+    console.log("id: "+ this.account.username);
+    console.log("id: "+ this.account.image);
     
   }
 }

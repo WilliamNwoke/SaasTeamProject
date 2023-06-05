@@ -99,12 +99,14 @@ class App {
         image: req['user'].photos[0].value
       }
       
-      session.account = account;
+      // session.account = account;
 
-      res.cookie('account', JSON.stringify(account), { httpOnly: true });
+      // res.cookie('account', JSON.stringify(account), { httpOnly: true });
+      res.cookie('account', 'MOOSE', { httpOnly: true });
+
 
       res.redirect('/#/');
-    } 
+    }
     );
 
   // Configure API endpoints.
