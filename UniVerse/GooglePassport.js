@@ -23,6 +23,7 @@ var GooglePassport = /** @class */ (function () {
                 console.log("displayName: " + profile.displayName);
                 console.log("retrieve all of the profile info needed");
                 // this.email = profile.emails[0].value;
+                // store user if they dont exist, otherwise do nothing
                 return done(null, profile);
             });
         }));

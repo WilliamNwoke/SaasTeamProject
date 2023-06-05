@@ -31,7 +31,7 @@ var App = /** @class */ (function () {
     App.prototype.middleware = function () {
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
-        this.expressApp.use(session({ secret: 'keyboard cat' }));
+        this.expressApp.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
         this.expressApp.use(cookieParser());
         this.expressApp.use(passport.initialize());
         this.expressApp.use(passport.session());
@@ -51,7 +51,7 @@ var App = /** @class */ (function () {
             //  session.userName = req.user.displayName;
             //  session.email = req.user.emails[0].value;
             // console.log("sha 512 code is "+sha512.sha512(req.user.id));
-            return next();
+            return next(); // pass the control to the next middleware or route handler in the chain.
         }
         console.log("user is not authenticated");
         res.json({ "authentication": "failed" });
@@ -69,9 +69,20 @@ var App = /** @class */ (function () {
         //   console.log("redirecting to /postindex");
         //   res.redirect('/postindex');
         // } 
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/#/' }), function (req, res) {
+        router.get('/auth/google/callback', passport.authenticate('google', 
+        // { failureRedirect: '/#/', successRedirect: '/#/'}
+        { failureRedirect: '/#/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
-            // console.log("redirecting to /postindex");
+            // session.accountId = req['user'].id;
+            // session.userName = req['user'].displayName;
+            // session.image = req['user'].photos[0].value;
+            var account = {
+                id: req['user'].id,
+                username: req['user'].displayName,
+                image: req['user'].photos[0].value
+            };
+            session.account = account;
+            res.cookie('account', JSON.stringify(account), { httpOnly: true });
             res.redirect('/#/');
         });
         // Configure API endpoints.
@@ -93,7 +104,16 @@ var App = /** @class */ (function () {
         router.get('/account/:id', function (req, res) {
             var accountId = req.params.id;
             console.log('Query single account with id: ' + accountId);
-            _this.Accounts.viewAccount(res, { id: accountId }); //  
+            _this.Accounts.viewAccount(res, { id: accountId });
+        });
+        // when want to get account data
+        router.get('/getCurrentAccount', this.validateAuth, function (req, res) {
+            console.log("sending user info to create post");
+            res.send({
+                userId: session.userId,
+                userName: session.userName,
+                userEmail: session.email
+            });
         });
         // POST
         router.post('/forumposts/', function (req, res) {
