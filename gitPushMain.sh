@@ -1,1 +1,1 @@
-git add . && git commit -m "added forum to all post entities in UniVerse" && git push -u origin main
+git add . && git commit -m "change made to" && git push -u origin main
