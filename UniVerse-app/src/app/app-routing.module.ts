@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'studentprofile', component: StudentProfileComponent},
   {path: 'createpost', component: CreatePostPageComponent},
   {path: 'viewpost/:id', component: ViewPostPageComponent},
-  {path: 'myforumposts/9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4', component: MyForumpostsComponent},
+  {path: 'myforumposts/:id', component: MyForumpostsComponent},
   {path: 'postindex', component: PostIndexPageComponent},
   {path: '', component: PostIndexPageComponent},
 ];

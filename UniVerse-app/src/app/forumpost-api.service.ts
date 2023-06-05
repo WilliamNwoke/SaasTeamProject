@@ -27,7 +27,7 @@ export class ForumPostApiService {
   }
 
   getAllMyForumPost(id:string){
-    return this.http.get<ForumPostClass>(this.hostUrl + 'allmyforumposts' + "/" + id);
+    return this.http.get<ForumPostClass[]>(this.hostUrl + 'forumposts' + "/" + id);
   }
 
 }

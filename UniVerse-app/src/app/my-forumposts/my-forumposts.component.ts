@@ -10,12 +10,12 @@ import { ForumPostClass } from '../forumpost-class';
 
 export class MyForumpostsComponent {
 
-  Forumposts: Array<ForumPostClass>= [];
+  forumPosts: Array<ForumPostClass>= [];
 
   constructor(private forumPostApiService: ForumPostApiService) {
     const id = '9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4'
-    forumPostApiService.getAllMyForumPost(id).subscribe((result: ForumPostClass) => {
-      this.Forumposts = [result];
+    forumPostApiService.getAllMyForumPost(id).subscribe((result: Array<ForumPostClass>) => {
+      this.forumPosts = result;
 })
   }
 }
