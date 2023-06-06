@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { ForumPostApiService } from '../forumpost-api.service';
 import { Router } from '@angular/router';
 import { ForumPostClass } from '../forumpost-class';
+import { AccountApiService } from '../account-api.service';
+import { Account } from '../account-class';
 
 @Component({
   selector: 'app-create-post-page',
@@ -15,17 +17,33 @@ export class CreatePostPageComponent implements OnInit{
   postAnonymously: boolean = false;
   postDescription: string = "";
   postData: ForumPostClass = new ForumPostClass('','','','',false,false,'',new Date(),0,0,[]);
+  account: Account = new Account('','','','','','','','');
+  oAuthId: string = "";
+  accountId: string = "";
+  username: string = "";
 
-  constructor(private forumPostApiService: ForumPostApiService, private router: Router) {}
+  constructor(private forumPostApiService: ForumPostApiService, private router: Router, private accountApiService: AccountApiService) {
+    this.accountApiService.getAccountId().subscribe((result: Account) => {
+      this.account = result;
+      this.oAuthId = this.account.oAuthId;
+      this.accountId = this.account.oAuthId;
+      this.username = this.account.username;
+    });
+  }
 
   ngOnInit(): void {}
 
   createNewPost() {
+    if(this.oAuthId == ''|| this.accountId == ''|| this.username == '' ){
+      this.oAuthId ='';
+      this.accountId = '';
+      this.username = 'Anonymous';
+    }
     this.postData = {
       id:'',
-      accountId: "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4",
+      accountId: this.accountId,
       title: this.postTitle,
-      author: "Uchenna123",
+      author: this.username,
       isAnonymous: this.postAnonymously,
       isEdited: false,
       description: this.postDescription,
@@ -34,7 +52,6 @@ export class CreatePostPageComponent implements OnInit{
       dislikes: 0,
       comments: []
     };
-
     this.forumPostApiService.createPost(this.postData).subscribe(
       response => {
         console.log(response);
