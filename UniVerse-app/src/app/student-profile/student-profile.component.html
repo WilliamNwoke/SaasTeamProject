@@ -4,17 +4,26 @@
       <div class="col-md-12">
         <div class="user-card-container">
           <h3>Profile Info</h3>
-          <div class="user-card">
-            <div class="user-image">
-              <img [src]="account.imageUrl" alt="User Image">
-            </div>
-            <div class="user-details">
-              <h2>{{ account.username }}</h2>
-              <div class="user-info">
-                <p><strong>Full Name:</strong> {{ account.fname }} {{ account.lname }}</p>
-                <p><strong>Email:</strong> {{ account.email }}</p>
-                <p><strong>Department:</strong> {{ account.department }}</p>
+          <div *ngIf="account.imageUrl.length != 0">
+            <div class="user-card">
+              <div class="user-image">
+                <img [src]="account.imageUrl" alt="User Image">
               </div>
+              <div class="user-details">
+                <h2>{{ account.username }}</h2>
+                <div class="user-info">
+                  <p><strong>Full Name:</strong> {{ account.fname }} {{ account.lname }}</p>
+                  <p><strong>Email:</strong> {{ account.email }}</p>
+                  <p><strong>Department:</strong> {{ account.department }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="account.imageUrl.length == 0">
+            <div class="user-card">
+              <h6>User not logged in</h6>
+
+              <p>Redirecting in 3 seconds...</p>
             </div>
           </div>
         </div>

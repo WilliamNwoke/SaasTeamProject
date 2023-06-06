@@ -19,6 +19,9 @@ import { PostIndexPageComponent } from './post-index-page/post-index-page.compon
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { MyForumpostsComponent } from './my-forumposts/my-forumposts.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { ContentPolicyComponent } from './content-policy/content-policy.component';
+import { UserAgreementComponent } from './user-agreement/user-agreement.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { MyForumpostsComponent } from './my-forumposts/my-forumposts.component';
     CommentListComponent,
     StudentProfileComponent,
     MyForumpostsComponent,
+    PrivacyComponent,
+    ContentPolicyComponent,
+    UserAgreementComponent,
   ],
   imports: [
     BrowserModule,

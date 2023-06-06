@@ -17,21 +17,23 @@
                         <a class="nav-link active fs-5" href="#">Favorite</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" href="#">Post</a>
+                        <a class="nav-link active fs-5" routerLink="/myforumposts">Post</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary" style="margin-right: 20px;" type="button">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width:35rem;">
+                    <button class="btn btn-primary" style="margin-left:15px; margin-right: 20px; " type="button">
                         <i class="fas fa-search"></i>
                     </button>
-                    <a href="#" style="color: black; margin-right: 20px;"><mat-icon>notifications</mat-icon></a>
-                    <a routerLink="/createpost" style="color: black; padding-right: 0px; margin-right: 21px;"><mat-icon>add</mat-icon></a>
+                    <a href="#" style="color: black; margin-right: 20px; margin-top: auto;"><mat-icon>notifications</mat-icon></a>
+                    <a routerLink="/createpost" style="color: black; padding-right: 0px; margin-right: 21px; margin-top: auto"><mat-icon>add</mat-icon></a>
 
-                    <!-- Dropdown button -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
+                     <a routerLink="/studentprofile" style="color: black; margin-top: auto"><mat-icon>account_circle</mat-icon></a>
+
+                     <!-- Dropdown button -->
+                     <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                        style="margin-left:25px; margin-right: 0px;  background-color: #000814; padding-top: 2px; padding-bottom: 2px;">
                         </button>
                         <div *ngIf="account; else noAccount" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <!-- <a class="dropdown-item" href="#">{{ account.id }}</a>
@@ -40,14 +42,15 @@
                         </div>
                         <ng-template #noAccount>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/auth/google">Google</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="/auth/google">Login with Google<i class="bi bi-google"></i></a>
+                                <li class="dropdown-item"><strong>General</strong></li>
+                                <hr/>
+                                <a class="dropdown-item" routerLink="/useragreement">User Agreement</a>
+                                <a class="dropdown-item" routerLink="/privacypolicy">Privacy Policy</a>
+                                <a class="dropdown-item" routerLink="/contentpolicy">Content Guide</a>
                             </div>
                         </ng-template>
                     </div>
-
-                    <a routerLink="/studentprofile" style="color: black;"><mat-icon>account_circle</mat-icon></a>
                 </div>
             </div>
         </div>
