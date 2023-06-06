@@ -18,7 +18,7 @@ describe('Test forumposts result', function () {
 	var forumpostId = "2edb8e72-8f55-46ec-a937-57fdb4759f9d";
     before(function (done) {
 
-        chai.request("http://localhost:8080")
+        chai.request("https://universe0.azurewebsites.net")
 			.get("/forumpost/" + forumpostId)
 			.end(function (err, res) {
 				requestResult = res.body;

@@ -5,7 +5,7 @@ config();
 class DataAccess {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
-    static DB_CONNECTION_STRING:string = "mongodb+srv://universedbadmin:test@universe0.c7ifqn0.mongodb.net/uniVerse?retryWrites=true&w=majority";
+    static DB_CONNECTION_STRING:string = process.env.DB_CONNECTION_STRING;
     // Added this line to make the unified topology true per error
     static OPTION = {useUnifiedTopology: true };
     
