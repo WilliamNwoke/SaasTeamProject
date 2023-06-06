@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class AccountApiService {
 
-  // hostUrl:string = 'https://universe0.azurewebsites.net/';
-  hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = 'https://universe0.azurewebsites.net/';
+  // hostUrl:string = 'http://localhost:8080/';
 
   private account: Account = new Account('', '', '', '', '', '','','');
   private isLoggedIn = false;

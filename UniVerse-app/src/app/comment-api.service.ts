@@ -8,8 +8,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 })
 export class CommentApiService {
 
-  // hostUrl:string = 'https://universe0.azurewebsites.net/';
-  hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = 'https://universe0.azurewebsites.net/';
+  // hostUrl:string = 'http://localhost:8080/';
 
   commentAdded: EventEmitter<void> = new EventEmitter<void>();
 
