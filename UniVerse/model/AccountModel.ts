@@ -22,6 +22,7 @@ class AccountModel {
                 fname: {type: String, required: true},
                 lname: {type: String, required: true},
                 email: {type: String, required: true},
+                oAuthId: {type: String, required: false},
                 department: {type: String, required: true}
             }, {collection: 'accounts'} // TODO: review what this line is for
         );
@@ -33,6 +34,20 @@ class AccountModel {
     public createModel(): void {
         console.log("Inside createModel")
         this.model = mongooseConnection.model<IAccountModel>("Accounts", this.schema);
+    }
+
+    public updateAccountOauth(response: any, acctEmail: string, acctoauthId: string): void {
+        const filter = {email: acctEmail};
+
+        const update = {$set: {oauthId: acctoauthId}};
+
+        this.model.findOneandUpdate(filter, update, {new: true}, (err, userAccount) => {
+            if (err) {
+                console.error("cannot update acocunt");
+            } else {
+                console.log("ACcount updated")
+            }     
+        });
     }
 
     public viewAccount(response: any, filter: object) {
