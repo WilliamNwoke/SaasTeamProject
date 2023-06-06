@@ -56,7 +56,7 @@ export class AccountApiService {
   }
 
   getAccountId() {
-    return this.http.get<Account>(this.hostUrl + "/studentaccountid");
+    return this.http.get<Account>(this.hostUrl + "studentaccountid");
   
   }
 

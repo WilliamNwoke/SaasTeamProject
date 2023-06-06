@@ -1,10 +1,15 @@
+body {
+    background-color: #F6F6F6;
+}
+  
+  
 .hr
 {
    width: 100px;
   color:black
 }
 .navbar{
-    background-image: linear-gradient(to right,#EFEFBB,#D4D3DD);
+    background-image: linear-gradient(to right,#CAE8D5,#CAE8D5);
 }
 
     .container {

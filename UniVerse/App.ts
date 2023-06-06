@@ -137,6 +137,8 @@ class App {
 
     router.get('/studentaccountid/', this.validateAuth,  (req, res) => {
       let authId = req['user'].id;
+      console.log("HEEEY!!!!");
+      console.log("oAuthId: "+authId);
       console.log('Query account id via OAuthId: ' + authId);
       this.Accounts.viewProfile(res, {oAuthId: authId});
     });
@@ -222,29 +224,16 @@ class App {
 
       
     // TODO: 
-    router.get('/forumposts/:accountId', this.validateAuth, (req, res) => {
+    router.get('/forumposts/:accountId', this.validateAuth, async (req, res) => {
       console.log("Want some info, huh?!");
     
-      const aAccountId = req.params.accountId;
-      let aOauthId = req['user'].id;
-      
-      this.Accounts.validateAccount(res, aAccountId, aOauthId)
-      .then(isValid => {
-        if (isValid) {
-          // Account is valid, retrieve forum posts
-          this.ForumPosts.retrieveAllMyForumPosts(res, { accountId: aAccountId });
-        } else {
-          // Account is not valid, redirect
-          res.redirect('/#/postIndex');
-        }
-      })
-      .catch(error => {
-        console.error("An error occurred:", error);
-        // Handle the error
-        res.redirect('/#/postIndex');
-      });
-      
-
+      const accountId = req.params.accountId;
+      if (req['user'] != null){
+        // Not null
+        const oAuthID = req['user'].id;
+    
+        this.Accounts.validateAccount(res, accountId, oAuthID);
+      }
     });
     
     

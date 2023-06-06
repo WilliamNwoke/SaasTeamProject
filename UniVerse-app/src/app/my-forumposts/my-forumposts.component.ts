@@ -18,21 +18,24 @@ export class MyForumpostsComponent implements OnInit {
   forumPosts: Array<ForumPostClass>= [];
   studentAccount: Account = new Account('','','','','','','');
 
-  constructor(private forumPostApiService: ForumPostApiService, private router: Router, private AAS: AccountApiService) {
+  constructor(private forumPostApiService: ForumPostApiService, private router: Router, private accountApiService: AccountApiService) {
   }
 
   // TODO: how do i get the account Id to send to get allmyforumPost
   ngOnInit(): void {
-    
-   this.AAS.getAccountId().subscribe((result: Account) => {
-      this.studentAccount = result;
-    });
-    // this.studentAccount = this.studentObj;
-    console.log("tsas" + this.studentAccount.id);
-    this.forumPostApiService.getAllMyForumPost(this.studentAccount.id).subscribe((result: Array<ForumPostClass>) => {
-      this.forumPosts = result;
-    });
-    console.log("ssaas"+this.forumPosts);
+    // allow only if auth exists
+    // if (something){
+      this.accountApiService.getAccountId().subscribe((result: Account) => {
+        this.studentAccount = result;
+        console.log("Angular AccountId: " + this.studentAccount.id);
+        this.forumPostApiService.getAllMyForumPost(this.studentAccount.id).subscribe((result: Array<ForumPostClass>) => {
+          this.forumPosts = result;
+        });
+      });
+    // }
+    // else{
+    //   //redirect
+    // }
 
   }
 
