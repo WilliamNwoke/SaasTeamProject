@@ -18,6 +18,7 @@ import { ViewPostPageComponent } from './view-post-page/view-post-page.component
 import { PostIndexPageComponent } from './post-index-page/post-index-page.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { MyForumpostsComponent } from './my-forumposts/my-forumposts.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
     ViewPostPageComponent,
     PostIndexPageComponent,
     CommentListComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    MyForumpostsComponent
   ],
   imports: [
     BrowserModule,
