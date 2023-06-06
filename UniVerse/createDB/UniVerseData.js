@@ -40,11 +40,11 @@ accountCollection.insert(
 {
       id: "3aadd54f-a60f-4d85-a20b-745e0d314312",
       username: "srodriguez",
-      fname: "Santiago",
-      lname: "Rodriguez",
-      email: "srodriguez@seattleu.edu",
-      department: "College of Arts",
-      oAuthId: "101682451002234614520",
+      fname: "Myke",
+      lname: "Brako",
+      email: "m.brako@setonhill.edu",
+      department: "College of Computer Science",
+      oAuthId: "106171683736633452196",
       imageUrl: ""
 
 }
