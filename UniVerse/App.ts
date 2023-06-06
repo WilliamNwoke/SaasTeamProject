@@ -88,7 +88,7 @@ class App {
     router.get('/auth/google/callback', 
     passport.authenticate('google', 
       // { failureRedirect: '/#/', successRedirect: '/#/'}
-      { failureRedirect: '/#/'}
+      { failureRedirect: '/'}
     ),
     (req, res) => {
       console.log("successfully authenticated user and returned to callback page.");
@@ -98,11 +98,12 @@ class App {
         username: req['user'].displayName,
         image: req['user'].photos[0].value
       }
+
       
       // session.account = account;
 
       // res.cookie('account', JSON.stringify(account), { httpOnly: true });
-      res.cookie('account', 'MOOSE', { httpOnly: true });
+      // res.cookie('account', 'MOOSE', { httpOnly: true });
 
 
       res.redirect('/#/');
@@ -133,6 +134,20 @@ class App {
       this.Accounts.viewAccount(res, {id: accountId});
     });
 
+    // using the account like api testing some stuff out
+    router.get('/account/', this.validateAuth, (req, res) => {
+      console.log("getting user info");
+      let auserID = req['user'].id;
+      let auserName = req['user'].displayName;
+      console.log("display name "+ auserName + " " + auserID + "\n " + req['user']);
+      // res.send({
+      //   userId : req.user.userId,
+      //   userName : session.userName,
+      //   userEmail : session.email
+      // });
+    })
+
+
     // when want to get account data
     router.get('/getCurrentAccount', this.validateAuth, (req, res) => {
       console.log("sending user info to create post")
@@ -143,6 +158,7 @@ class App {
       });
     })
 
+    
     // POST
     router.post('/forumposts/', (req, res) => {
 

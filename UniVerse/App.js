@@ -71,7 +71,7 @@ var App = /** @class */ (function () {
         // } 
         router.get('/auth/google/callback', passport.authenticate('google', 
         // { failureRedirect: '/#/', successRedirect: '/#/'}
-        { failureRedirect: '/#/' }), function (req, res) {
+        { failureRedirect: '/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             var account = {
                 id: req['user'].id,
@@ -80,7 +80,7 @@ var App = /** @class */ (function () {
             };
             // session.account = account;
             // res.cookie('account', JSON.stringify(account), { httpOnly: true });
-            res.cookie('account', 'MOOSE', { httpOnly: true });
+            // res.cookie('account', 'MOOSE', { httpOnly: true });
             res.redirect('/#/');
         });
         // Configure API endpoints.
@@ -103,6 +103,18 @@ var App = /** @class */ (function () {
             var accountId = req.params.id;
             console.log('Query single account with id: ' + accountId);
             _this.Accounts.viewAccount(res, { id: accountId });
+        });
+        // using the account like api testing some stuff out
+        router.get('/account/', this.validateAuth, function (req, res) {
+            console.log("getting user info");
+            var auserID = req['user'].id;
+            var auserName = req['user'].displayName;
+            console.log("display name " + auserName + " " + auserID + "\n " + req['user']);
+            // res.send({
+            //   userId : req.user.userId,
+            //   userName : session.userName,
+            //   userEmail : session.email
+            // });
         });
         // when want to get account data
         router.get('/getCurrentAccount', this.validateAuth, function (req, res) {
