@@ -225,6 +225,11 @@ class App {
       this.ForumPosts.retrieveAllForumPosts(res);
     });
 
+    router.delete('forumposts/:id', (req, res) => {
+      console.log('Delete forumpost with id: ' + req.params.id);
+      this.ForumPosts.deleteForumPost(res, {id: req.params.id});
+    });
+
       
     // TODO: 
     router.get('/forumposts/:accountId', this.validateAuth, async (req, res) => {

@@ -216,6 +216,10 @@ var App = /** @class */ (function () {
             console.log('Query All ForumPosts');
             _this.ForumPosts.retrieveAllForumPosts(res);
         });
+        router.delete('forumposts/:id', function (req, res) {
+            console.log('Delete forumpost with id: ' + req.params.id);
+            _this.ForumPosts.deleteForumPost(res, { id: req.params.id });
+        });
         // TODO: 
         router.get('/forumposts/:accountId', this.validateAuth, function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var accountId, oAuthID;

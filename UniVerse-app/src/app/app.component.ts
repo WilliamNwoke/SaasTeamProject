@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 
 export class AppComponent {
   title = 'UniVerse-app';
-  account: Account = new Account('','','','','','','','');
   
   constructor(private accountApiService: AccountApiService) {
   }

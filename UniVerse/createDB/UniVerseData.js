@@ -167,6 +167,23 @@ forumpostCollection.insert(
     comments: [commentId1],
 }
 )
+forumpostId6 = (0, uuid.v4)()
+forumpostCollection.insert(
+{
+    id: forumpostId6,
+    accountId: "6ab34a04-8a84-4202-b2bb-cdde96feae19",
+    title: "Taken CH 2300?",
+    author: "Uchenna",
+    isAnonymous: false,
+    isEdited: false,
+    description:"I'm planning on enrolling in CPSC 10200 next quarter. Next level.",
+    dateTime: 03-15-2023,
+    likes: 1,
+    dislikes: 0,
+    comments: [commentId1],
+}
+)
+
 
 //Comment
 db.createCollection('comments')

@@ -21,9 +21,17 @@
           </div>
           <div *ngIf="account.imageUrl.length == 0">
             <div class="user-card">
-              <h6>User not logged in</h6>
-
-              <p>Redirecting in 3 seconds...</p>
+              <div>
+                <h5>User not logged in</h5>
+              </div>
+            </div>
+            <div class="container">
+              <form action="/action_page.php">
+               
+                    <a href="/auth/google" class="google btn"><i class="fa fa-google fa-fw">
+                      </i> Login with Google+
+                    </a>         
+              </form>
             </div>
           </div>
         </div>
@@ -32,3 +40,5 @@
     </div>
   </div>
 </div>
+
+

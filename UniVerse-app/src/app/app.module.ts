@@ -34,7 +34,7 @@ import { UserAgreementComponent } from './user-agreement/user-agreement.componen
     MyForumpostsComponent,
     PrivacyComponent,
     ContentPolicyComponent,
-    UserAgreementComponent,
+    UserAgreementComponent
   ],
   imports: [
     BrowserModule,

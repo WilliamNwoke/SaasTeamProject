@@ -1,64 +1,69 @@
+<nav class="navbar navbar-light navbar-expand-md py-3">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <span class="fs-2">UniVerse</span>
+        </a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active fs-5" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fs-5" href="#">Favorite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fs-5" routerLink="/myforumposts">Post</a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    style="width:35rem;">
+                <button class="btn btn-primary" style="margin-left:15px; margin-right: 20px; " type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+                <a href="#"
+                    style="color: black; margin-right: 20px; margin-top: auto;"><mat-icon>notifications</mat-icon></a>
+                <a routerLink="/createpost"
+                    style="color: black; padding-right: 0px; margin-right: 21px; margin-top: auto"><mat-icon>add</mat-icon></a>
 
-    <nav class="navbar navbar-light navbar-expand-md py-3">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <span class="fs-2">UniVerse</span>
-            </a>
-            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-                <span class="visually-hidden">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active fs-5" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active fs-5" href="#">Favorite</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active fs-5" routerLink="/myforumposts">Post</a>
-                    </li>
-                </ul>
-                <div class="d-flex align-items-center">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width:35rem;">
-                    <button class="btn btn-primary" style="margin-left:15px; margin-right: 20px; " type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <a href="#" style="color: black; margin-right: 20px; margin-top: auto;"><mat-icon>notifications</mat-icon></a>
-                    <a routerLink="/createpost" style="color: black; padding-right: 0px; margin-right: 21px; margin-top: auto"><mat-icon>add</mat-icon></a>
+                <a routerLink="/studentprofile"
+                    style="color: black; margin-top: auto"><mat-icon>account_circle</mat-icon></a>
 
-                     <a routerLink="/studentprofile" style="color: black; margin-top: auto"><mat-icon>account_circle</mat-icon></a>
-
-                     <!-- Dropdown button -->
-                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                <!-- Dropdown button -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         style="margin-left:25px; margin-right: 0px;  background-color: #000814; padding-top: 2px; padding-bottom: 2px;">
-                        </button>
-                        <div *ngIf="account; else noAccount" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <!-- <a class="dropdown-item" href="#">{{ account.id }}</a>
-                            <a class="dropdown-item" href="#">{{ account.username }}</a>
-                            <a class="dropdown-item" href="#">{{ account.image}}</a> -->
+                    </button>
+                    <!-- <div *ngIf="account.oAuthId.length == 0; else noAccount" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li class="dropdown-item"><strong>General</strong></li>
+                            <hr />
+                            <a class="dropdown-item" routerLink="/useragreement">User Agreement</a>
+                            <a class="dropdown-item" routerLink="/privacypolicy">Privacy Policy</a>
+                            <a class="dropdown-item" routerLink="/contentpolicy">Content Guide</a>
+                    </div> -->
+                    <!-- <ng-template #noAccount> -->
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <!-- <a class="dropdown-item" href="/auth/google">Login with Google</a> -->
+                            <li class="dropdown-item"><strong>General</strong></li>
+                            <hr />
+                            <a class="dropdown-item" routerLink="/useragreement">User Agreement</a>
+                            <a class="dropdown-item" routerLink="/privacypolicy">Privacy Policy</a>
+                            <a class="dropdown-item" routerLink="/contentpolicy">Content Guide</a>
                         </div>
-                        <ng-template #noAccount>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/auth/google">Login with Google<i class="bi bi-google"></i></a>
-                                <li class="dropdown-item"><strong>General</strong></li>
-                                <hr/>
-                                <a class="dropdown-item" routerLink="/useragreement">User Agreement</a>
-                                <a class="dropdown-item" routerLink="/privacypolicy">Privacy Policy</a>
-                                <a class="dropdown-item" routerLink="/contentpolicy">Content Guide</a>
-                            </div>
-                        </ng-template>
-                    </div>
+                    <!-- </ng-template> -->
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <hr>
-    <router-outlet></router-outlet>
+<hr>
+<router-outlet></router-outlet>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
-
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
