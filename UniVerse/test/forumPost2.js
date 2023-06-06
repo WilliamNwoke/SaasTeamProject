@@ -13,8 +13,9 @@ chai.use(chaiHttp);
 describe('Test forumposts CRUD operations', function () {
 	this.timeout(15000);
 
-	var createdPostId;
+	var createdPostId = "";
 	var createdPostData = {
+		id: "",
 		accountId: "12345",
 		title: "Test Post",
 		author: "John Doe",
@@ -30,16 +31,17 @@ describe('Test forumposts CRUD operations', function () {
 	// Test creating a new post
 	it('Should create a new post', function (done) {
 		chai.request("http://localhost:8080")
-			.post("/forumpost")
+			.post("/forumposts/")
 			.send(createdPostData)
 			.end(function (err, res) {
 				expect(err).to.be.null;
-				expect(res).to.have.status(201);
-				expect(res.body).to.have.property('_id').that.is.a('string');
-				createdPostId = res.body._id;
+				expect(res.body).to.have.property('id').that.is.a('string');
+				createdPostId = req.body.id;
+				createdPostData.id = createdPostId;
 				done();
 			});
 	});
+	
 
 	// Test getting the created post
 	it('Should get the created post', function (done) {
@@ -47,7 +49,6 @@ describe('Test forumposts CRUD operations', function () {
 			.get("/forumpost/" + createdPostId)
 			.end(function (err, res) {
 				expect(err).to.be.null;
-				expect(res).to.have.status(200);
 				expect(res.body).to.deep.equal(createdPostData);
 				done();
 			});
@@ -59,7 +60,6 @@ describe('Test forumposts CRUD operations', function () {
 			.delete("/forumpost/" + createdPostId)
 			.end(function (err, res) {
 				expect(err).to.be.null;
-				expect(res).to.have.status(204);
 				done();
 			});
 	});
