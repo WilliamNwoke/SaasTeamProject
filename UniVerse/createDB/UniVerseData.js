@@ -25,12 +25,12 @@ accountId2 = (0, uuid.v4)()
 accountCollection.insert(
 {
       id: "6ab34a04-8a84-4202-b2bb-cdde96feae19",
-      username: "Uchenna123",
+      username: "Kabaye the tongue",
       fname: "Uchenna",
       lname: "Nwoke",
-      email: "unwoke@seattleu.edu",
+      email: "pinkteey1@gmail.com",
       department: "College of Computer Science",
-      oAuthId: "101682451002234614520",
+      oAuthId: "106311123365298013852",
       imageUrl: ""
 
 }
