@@ -36,7 +36,7 @@ describe('Test forumposts CRUD operations', function () {
 
     // Test creating a new post
     it('Should create a new post', function (done) {
-      chai.request("https://universe0.azurewebsites.net/")
+      chai.request("https://universe0.azurewebsites.net")
         .post("/forumposts/")
         .send(createdPostData)
         .end(function (err, res) {

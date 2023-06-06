@@ -28,7 +28,7 @@ describe('Test forumposts result', function () {
 
  
 
-        chai.request("https://universe0.azurewebsites.net/")
+        chai.request("https://universe0.azurewebsites.net")
             .get("/forumposts/")
             .end(function (err, res) {
                 requestResult = res.body;
