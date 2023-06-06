@@ -142,11 +142,13 @@ var App = /** @class */ (function () {
             _this.Accounts.viewAccount(res, { id: accountId });
         });
         router.get('/studentaccountid/', this.validateAuth, function (req, res) {
-            var authId = req['user'].id;
+            var oAuthId = req['user'].id;
+            var username = req['user'].displayName;
+            var imageUrl = req['user'].photos[0].value;
             console.log("HEEEY!!!!");
-            console.log("oAuthId: " + authId);
-            console.log('Query account id via OAuthId: ' + authId);
-            _this.Accounts.viewProfile(res, { oAuthId: authId });
+            console.log("oAuthId: " + oAuthId);
+            console.log('Query account id via OAuthId: ' + oAuthId);
+            _this.Accounts.viewProfile(res, oAuthId, username, imageUrl);
         });
         // using the account like api testing some stuff out
         // router.get('/account/', this.validateAuth, (req, res) => {

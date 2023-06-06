@@ -16,26 +16,20 @@ import { Account } from '../account-class';
 export class MyForumpostsComponent implements OnInit {
 
   forumPosts: Array<ForumPostClass>= [];
-  studentAccount: Account = new Account('','','','','','','');
+  account: Account = new Account('','','','','','','','');
 
   constructor(private forumPostApiService: ForumPostApiService, private router: Router, private accountApiService: AccountApiService) {
   }
 
-  // TODO: how do i get the account Id to send to get allmyforumPost
   ngOnInit(): void {
-    // allow only if auth exists
-    // if (something){
       this.accountApiService.getAccountId().subscribe((result: Account) => {
-        this.studentAccount = result;
-        console.log("Angular AccountId: " + this.studentAccount.id);
-        this.forumPostApiService.getAllMyForumPost(this.studentAccount.id).subscribe((result: Array<ForumPostClass>) => {
+        this.account = result;
+        console.log("Angular AccountId: " + this.account.id);
+        console.log("URL: " + this.account.imageUrl);
+        this.forumPostApiService.getAllMyForumPost(this.account.id).subscribe((result: Array<ForumPostClass>) => {
           this.forumPosts = result;
         });
       });
-    // }
-    // else{
-    //   //redirect
-    // }
 
   }
 

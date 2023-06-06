@@ -10,28 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./student-profile.component.css']
 })
 export class StudentProfileComponent implements OnInit {
-  userAccount: Account = new Account(
-    '9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4',
-      'Uchenna1233445',
-      'Uche',
-      'Somebody son go find me oneday',
-      'mabuthuraya122@seattleu.edu',
-      '20389478564293809i48',
-      'College of Science and Engineering'
-  );
+  account: Account = new Account('','','','','','','','');
 
-  constructor(private accountApiService: AccountApiService, private router: Router) { }
-  
+  constructor(private accountApiService: AccountApiService, private router: Router) {
 
+   }
     ngOnInit(): void {
-      this.userAccount = {
-        id: '9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4',
-        username: 'Uchenna1233445',
-        fname: 'Uche',
-        lname: 'Somebody son go find me oneday',
-        email: 'mabuthuraya122@seattleu.edu',
-        oAuthId: '20389478564293809i48',
-        department: 'College of Science and Engineering'
-      }
+      this.accountApiService.getAccountId().subscribe((result: Account) => {
+        this.account = result;
+        console.log("REAL OAUTH: "+ this.account.oAuthId);
+      });
     }
 }

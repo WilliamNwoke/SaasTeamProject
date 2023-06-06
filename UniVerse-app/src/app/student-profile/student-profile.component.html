@@ -2,21 +2,25 @@
 <mat-icon style="font-size: 30px;">account_circle</mat-icon>
 <div>
   <div>
-    <strong>Username</strong> {{ userAccount.username }}
+    <strong>Username:</strong> {{ account.username }}
   </div>
   <div>
-    <strong>First Name:</strong> {{ userAccount.fname }}
+    <strong>First Name:</strong> {{ account.fname }}
   </div>
   <div>
-    <strong>Last Name:</strong> {{ userAccount.lname }}
+    <strong>Last Name:</strong> {{ account.lname }}
   </div>
   <div>
-    <strong>Email:</strong> {{ userAccount.email }}
+    <strong>Email:</strong> {{ account.email }}
   </div>
   <div>
-    <strong>Department</strong> {{ userAccount.department }}
+    <strong>Department:</strong> {{ account.department }}
+  </div>
+  <div>
+    <strong>ImageUrl:</strong> <img [src]="account.imageUrl" width="150" height="150">
   </div>
 </div>
+
 
 <!-- 
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">

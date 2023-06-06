@@ -26,6 +26,7 @@ class AccountModel {
                 lname: {type: String, required: true},
                 email: {type: String, required: true},
                 oAuthId: {type: String, required: false},
+                imageUrl: {type: String, required: false},
                 department: {type: String, required: true}
             }, {collection: 'accounts'} // TODO: review what this line is for
         );
@@ -61,9 +62,9 @@ class AccountModel {
         });
     }
 
-    public viewProfile(res: any, filter: object) {
-        console.log("id: " + filter)
-        var query = this.model.findOne(filter);
+    public viewProfile(res: any, oAuthId: string, username: string, imageUrl: string) {
+        console.log("id: " + oAuthId)
+        var query = this.model.findOne({oAuthId: oAuthId});
         query.exec((err, userAccount) => {
           if (err) {
             console.error("Error: " + err);
@@ -71,6 +72,9 @@ class AccountModel {
           } else if (userAccount) {
             // const accountId = userAccount.accountId; // Assuming the account ID property is called 'accountId'
             console.log("Got userAccount.id: "+ userAccount.id);
+            userAccount.username = username;
+            userAccount.imageUrl = imageUrl;
+            console.log("User ImageUrl: " + userAccount.imageUrl);
             res.json(userAccount);
           } else {
             res.status(404).json({ error: "Account not found" });

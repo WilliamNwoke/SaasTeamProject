@@ -6,8 +6,9 @@ export class Account {
     email: string;
     oAuthId: string;
     department: string;
+    imageUrl: string;
   
-    constructor(id: string, username: string, fname: string, lname: string, email: string, oAuthId: string, department: string) {
+    constructor(id: string, username: string, fname: string, lname: string, email: string, oAuthId: string, department: string, imageUrl: string) {
       this.id = id;
       this.username = username;
       this.fname = fname;
@@ -15,6 +16,7 @@ export class Account {
       this.email = email;
       this.oAuthId = oAuthId;
       this.department = department;
+      this.imageUrl = imageUrl;
     }
   }
   

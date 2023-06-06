@@ -19,7 +19,6 @@ import { PostIndexPageComponent } from './post-index-page/post-index-page.compon
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { MyForumpostsComponent } from './my-forumposts/my-forumposts.component';
-import { StudentForumPostComponent } from './student-forum-post/student-forum-post.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { StudentForumPostComponent } from './student-forum-post/student-forum-po
     CommentListComponent,
     StudentProfileComponent,
     MyForumpostsComponent,
-    StudentForumPostComponent
   ],
   imports: [
     BrowserModule,

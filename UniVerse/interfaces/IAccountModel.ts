@@ -7,6 +7,7 @@ interface IAccountModel extends Mongoose.Document {
     lname: String,
     email: String,
     oAuthId: String,
+    imageUrl: String,
     department: String
 }
 export {IAccountModel};

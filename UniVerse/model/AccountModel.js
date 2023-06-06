@@ -20,6 +20,7 @@ var AccountModel = /** @class */ (function () {
             lname: { type: String, required: true },
             email: { type: String, required: true },
             oAuthId: { type: String, required: false },
+            imageUrl: { type: String, required: false },
             department: { type: String, required: true }
         }, { collection: 'accounts' } // TODO: review what this line is for
         );
@@ -49,9 +50,9 @@ var AccountModel = /** @class */ (function () {
             response.json(userAccount);
         });
     };
-    AccountModel.prototype.viewProfile = function (res, filter) {
-        console.log("id: " + filter);
-        var query = this.model.findOne(filter);
+    AccountModel.prototype.viewProfile = function (res, oAuthId, username, imageUrl) {
+        console.log("id: " + oAuthId);
+        var query = this.model.findOne({ oAuthId: oAuthId });
         query.exec(function (err, userAccount) {
             if (err) {
                 console.error("Error: " + err);
@@ -60,6 +61,9 @@ var AccountModel = /** @class */ (function () {
             else if (userAccount) {
                 // const accountId = userAccount.accountId; // Assuming the account ID property is called 'accountId'
                 console.log("Got userAccount.id: " + userAccount.id);
+                userAccount.username = username;
+                userAccount.imageUrl = imageUrl;
+                console.log("User ImageUrl: " + userAccount.imageUrl);
                 res.json(userAccount);
             }
             else {
