@@ -46,6 +46,13 @@ var ForumPostModel = /** @class */ (function () {
         this.createSchemas();
         this.createModel();
     }
+    // Get the singleton instance
+    ForumPostModel.getInstance = function () {
+        if (!ForumPostModel.instance) {
+            ForumPostModel.instance = new ForumPostModel();
+        }
+        return ForumPostModel.instance;
+    };
     ForumPostModel.prototype.createSchemas = function () {
         this.schema = new Mongoose.Schema({
             id: { type: String, required: true },

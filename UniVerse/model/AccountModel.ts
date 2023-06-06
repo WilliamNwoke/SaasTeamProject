@@ -1,6 +1,7 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import {IAccountModel} from "../interfaces/IAccountModel";
+import { ForumPostModel } from './ForumPostModel';
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
@@ -8,10 +9,12 @@ let mongooseObj = DataAccess.mongooseInstance;
 class AccountModel {
     public schema:any;
     public model:any;
+    public ForumPosts:ForumPostModel;
 
     public constructor() {
         this.createSchema();
         this.createModel();
+        this.ForumPosts = ForumPostModel.getInstance();
     }
 
     public createSchema(): void {
@@ -57,5 +60,29 @@ class AccountModel {
             response.json(userAccount);
         });
     }
+
+    public validateAccount(res, accountId: string, oAuthID: string): void {
+        console.log("");
+        console.log("accountId: " + accountId);
+        console.log("oAuthID: " + oAuthID);
+      
+        const query = this.model.findOne({ oAuthId: oAuthID, id: accountId });
+        console.log("Query: " + query);
+      
+        query.exec((err, userAccount) => {
+          if (err) {
+            console.log("Error: " + err);
+            res.redirect('/#/postIndex');
+          } else if (userAccount) {
+            console.log("All is good");
+            this.ForumPosts.retrieveAllMyForumPosts(res, { accountId: accountId });
+          } else {
+            console.log("Too bad.");
+            res.redirect('/#/postIndex');
+          }
+        });
+      }
+           
+      
 }
 export {AccountModel};

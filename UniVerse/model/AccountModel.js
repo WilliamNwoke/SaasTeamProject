@@ -3,12 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountModel = void 0;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("./../DataAccess");
+var ForumPostModel_1 = require("./ForumPostModel");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
 var AccountModel = /** @class */ (function () {
     function AccountModel() {
         this.createSchema();
         this.createModel();
+        this.ForumPosts = ForumPostModel_1.ForumPostModel.getInstance();
     }
     AccountModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
@@ -36,7 +38,7 @@ var AccountModel = /** @class */ (function () {
                 console.error("cannot update acocunt");
             }
             else {
-                console.log("ACcount updated");
+                console.log("Account updated");
             }
         });
     };
@@ -45,6 +47,28 @@ var AccountModel = /** @class */ (function () {
         var query = this.model.findOne(filter);
         query.exec(function (err, userAccount) {
             response.json(userAccount);
+        });
+    };
+    AccountModel.prototype.validateAccount = function (res, accountId, oAuthID) {
+        var _this = this;
+        console.log("");
+        console.log("accountId: " + accountId);
+        console.log("oAuthID: " + oAuthID);
+        var query = this.model.findOne({ oAuthId: oAuthID, id: accountId });
+        console.log("Query: " + query);
+        query.exec(function (err, userAccount) {
+            if (err) {
+                console.log("Error: " + err);
+                res.redirect('/#/postIndex');
+            }
+            else if (userAccount) {
+                console.log("All is good");
+                _this.ForumPosts.retrieveAllMyForumPosts(res, { accountId: accountId });
+            }
+            else {
+                console.log("Too bad.");
+                res.redirect('/#/postIndex');
+            }
         });
     };
     return AccountModel;

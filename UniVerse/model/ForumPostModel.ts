@@ -9,10 +9,19 @@ let mongooseObj = DataAccess.mongooseInstance;
 class ForumPostModel {
     public schema:any;
     public model:any;
+    private static instance: ForumPostModel;
 
     public constructor() {
         this.createSchemas();
         this.createModel();
+    }
+
+    // Get the singleton instance
+    public static getInstance(): ForumPostModel {
+        if (!ForumPostModel.instance) {
+        ForumPostModel.instance = new ForumPostModel();
+        }
+        return ForumPostModel.instance;
     }
 
     public createSchemas(): void {

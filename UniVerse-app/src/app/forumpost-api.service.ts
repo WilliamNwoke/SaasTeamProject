@@ -13,6 +13,7 @@ export class ForumPostApiService {
 
   constructor(private http: HttpClient) {
   }
+  
 
   getPosts(){
     return this.http.get<ForumPostClass[]>(this.hostUrl + 'forumposts');

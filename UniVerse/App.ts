@@ -31,7 +31,7 @@ class App {
     this.googlePassportObj = new GooglePassportObj();
     this.idGenerator = 102;
     //UniVerse Models
-    this.ForumPosts = new ForumPostModel();
+    this.ForumPosts = ForumPostModel.getInstance();
     this.Accounts = new AccountModel();
     this.Comments = new CommentModel();
   }
@@ -67,6 +67,7 @@ class App {
       }
     console.log("user is not authenticated");
     res.json({"authentication" : "failed"});
+    // res.redirect('/#/');
   }
 
   private routes(): void {
@@ -135,17 +136,16 @@ class App {
     });
 
     // using the account like api testing some stuff out
-    router.get('/account/', this.validateAuth, (req, res) => {
-      console.log("getting user info");
-      let auserID = req['user'].id;
-      let auserName = req['user'].displayName;
-      console.log("display name "+ auserName + " " + auserID + "\n " + req['user']);
-      // res.send({
-      //   userId : req.user.userId,
-      //   userName : session.userName,
-      //   userEmail : session.email
-      // });
-    })
+    // router.get('/account/', this.validateAuth, (req, res) => {
+    //   console.log("getting user info");
+    //   let auserName = req['user'].displayName;
+    //   console.log("display name "+ auserName + " " + auserID + "\n " + req['user']);
+    //   // res.send({
+    //   //   userId : req.user.userId,
+    //   //   userName : session.userName,
+    //   //   userEmail : session.email
+    //   // });
+    // })
 
 
     // when want to get account data
@@ -186,11 +186,22 @@ class App {
       this.ForumPosts.retrieveAllForumPosts(res);
     });
 
-    router.get('/forumposts/:accountId', (req, res) => {
-      const id = req.params.accountId;
-      console.log('Query All My forumposts using my accountId');
-      this.ForumPosts.retrieveAllMyForumPosts(res, {accountId: id});
+      
+    router.get('/forumposts/:accountId', this.validateAuth, async (req, res) => {
+      console.log("Want some info, huh?!");
+    
+      const accountId = req.params.accountId;
+      if (req['user'] != null){
+        // Not null
+        const oAuthID = req['user'].id;
+    
+        this.Accounts.validateAccount(res, accountId, oAuthID);
+      }
+
     });
+    
+    
+    
 
     // COMMENTS
     router.post('/comments/', (req, res) => {

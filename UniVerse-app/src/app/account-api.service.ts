@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Account } from './account-class';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class AccountApiService {
   private account: Account = new Account('', '', '', '', '', '');
   private isLoggedIn = false;
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient) {}
 
   login() {
     // Here, you would perform the logic to log in the user.
@@ -38,15 +37,8 @@ export class AccountApiService {
     this.isLoggedIn = false;
   }
 
-  getAccount(): any {
-    const userCookie = this.cookieService.get('account');
-    console.log("Contents stuff: "+userCookie)
-    if (userCookie) {
-      console.log("Cookie exits! "+ JSON.parse(userCookie));
-      return JSON.parse(userCookie);
-    }
-    console.log("NO COOKIE!?");
-    return null;
+  getAccount(): string {
+    return "9fa4f6c0-27dd-4b30-90fc-ca34443bbbd4";
   }
 
   setAccount(account: Account) {
