@@ -1,11 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PostIndexPageComponent } from './post-index-page/post-index-page.component';
 import { Account } from "./account-class";
 import { AccountApiService } from './account-api.service';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
+
+import { Router } from '@angular/router';
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,13 +16,10 @@ import { MatCardModule } from '@angular/material/card';
 
 export class AppComponent {
   title = 'UniVerse-app';
-
-  account: any;
+  account: Account = new Account('','','','','','','','');
   
   constructor(private accountApiService: AccountApiService) {
   }
 
-  ngOnInit(): void {
-    
-  }
+
 }

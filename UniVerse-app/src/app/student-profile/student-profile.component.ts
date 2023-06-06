@@ -20,5 +20,11 @@ export class StudentProfileComponent implements OnInit {
         this.account = result;
         console.log("REAL OAUTH: "+ this.account.oAuthId);
       });
+
+      if (this.account.imageUrl.length === 0) {
+        setTimeout(() => {
+          this.router.navigateByUrl('localhost:8080/auth/google');
+        }, 3000);
     }
+  }
 }
