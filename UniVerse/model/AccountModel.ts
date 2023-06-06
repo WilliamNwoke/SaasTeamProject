@@ -61,25 +61,67 @@ class AccountModel {
         });
     }
 
-    public validateAccount(res, accountId: string, oAuthID: string): void {
-        console.log("");
-        console.log("accountId: " + accountId);
-        console.log("oAuthID: " + oAuthID);
-      
-        const query = this.model.findOne({ oAuthId: oAuthID, id: accountId });
-        console.log("Query: " + query);
-      
+    public viewProfile(res: any, filter: object) {
+        console.log("id: " + filter)
+        var query = this.model.findOne(filter);
         query.exec((err, userAccount) => {
           if (err) {
-            console.log("Error: " + err);
-            res.redirect('/#/postIndex');
+            console.error("Error: " + err);
+            res.status(500).json({ error: "Internal server error" });
           } else if (userAccount) {
-            console.log("All is good");
-            this.ForumPosts.retrieveAllMyForumPosts(res, { accountId: accountId });
+            // const accountId = userAccount.accountId; // Assuming the account ID property is called 'accountId'
+            res.json({ userAccount});
           } else {
-            console.log("Too bad.");
-            res.redirect('/#/postIndex');
+            res.status(404).json({ error: "Account not found" });
           }
+        });
+      }
+    
+
+    // public validateAccount(res, accountId: string, oAuthID: string): void {
+    //     console.log("");
+    //     console.log("accountId: " + accountId);
+    //     console.log("oAuthID: " + oAuthID);
+      
+    //     const query = this.model.findOne({ oAuthId: oAuthID, id: accountId });
+    //     console.log("Query: " + query);
+      
+    //     query.exec((err, userAccount) => {
+    //       if (err) {
+    //         console.log("Error: " + err);
+    //         res.redirect('/#/postIndex');
+    //       } else if (userAccount) {
+    //         console.log("All is good");
+    //         this.ForumPosts.retrieveAllMyForumPosts(res, { accountId: accountId });
+    //       } else {
+    //         console.log("Too bad.");
+    //         res.redirect('/#/postIndex');
+    //       }
+    //     });
+    //   }
+
+    public validateAccount(res, accountId: string, oAuthID: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+          console.log("");
+        //   console.log("accountId: " + accountId);
+        //   console.log("oAuthID: " + oAuthID);
+        
+          const query = this.model.findOne({ oAuthId: oAuthID, id: accountId });
+          console.log("Query: " + query);
+        
+          query.exec((err, userAccount) => {
+            if (err) {
+              console.log("Error: " + err);
+              reject(err); // Reject the promise with the error
+            } else if (userAccount) {
+              console.log("All is good");
+              this.ForumPosts.retrieveAllMyForumPosts(res, { accountId: accountId });
+              resolve(true); // Resolve the promise with true
+            } else {
+              console.log("Too bad.");
+              resolve(false); // Resolve the promise with false
+            }
+          });
         });
       }
            

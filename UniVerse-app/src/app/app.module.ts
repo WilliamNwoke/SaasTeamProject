@@ -19,6 +19,7 @@ import { PostIndexPageComponent } from './post-index-page/post-index-page.compon
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { MyForumpostsComponent } from './my-forumposts/my-forumposts.component';
+import { StudentForumPostComponent } from './student-forum-post/student-forum-post.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MyForumpostsComponent } from './my-forumposts/my-forumposts.component';
     PostIndexPageComponent,
     CommentListComponent,
     StudentProfileComponent,
-    MyForumpostsComponent
+    MyForumpostsComponent,
+    StudentForumPostComponent
   ],
   imports: [
     BrowserModule,

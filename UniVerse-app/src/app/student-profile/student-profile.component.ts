@@ -16,6 +16,7 @@ export class StudentProfileComponent implements OnInit {
       'Uche',
       'Somebody son go find me oneday',
       'mabuthuraya122@seattleu.edu',
+      '20389478564293809i48',
       'College of Science and Engineering'
   );
 
@@ -29,6 +30,7 @@ export class StudentProfileComponent implements OnInit {
         fname: 'Uche',
         lname: 'Somebody son go find me oneday',
         email: 'mabuthuraya122@seattleu.edu',
+        oAuthId: '20389478564293809i48',
         department: 'College of Science and Engineering'
       }
     }

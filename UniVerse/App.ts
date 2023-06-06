@@ -135,6 +135,12 @@ class App {
       this.Accounts.viewAccount(res, {id: accountId});
     });
 
+    router.get('/studentaccountid/', this.validateAuth,  (req, res) => {
+      let authId = req['user'].id;
+      console.log('Query account id via OAuthId: ' + authId);
+      this.Accounts.viewProfile(res, {oAuthId: authId});
+    });
+
     // using the account like api testing some stuff out
     // router.get('/account/', this.validateAuth, (req, res) => {
     //   console.log("getting user info");
@@ -150,12 +156,40 @@ class App {
 
     // when want to get account data
     router.get('/getCurrentAccount', this.validateAuth, (req, res) => {
-      console.log("sending user info to create post")
-      res.send({
-        userId : session.userId,
-        userName : session.userName,
-        userEmail : session.email
-      });
+      console.log("sending user info to create post");
+
+
+      // res.send({
+      //   userId : req['user'].id,
+      //   userName : req['user'].displayName,
+      //   userEmail : req['user'].photos[0].value
+      // });
+
+    //   var userJsonObj = {
+    //     id: ,
+    //     username: {type: String, required: true},
+    //     fname: {type: String, required: true},
+    //     lname: {type: String, required: true},
+    //     email: {type: String, required: true},
+    //     oAuthId: req['user'].id,
+    //     department: {type: String, required: true}
+
+
+    //     "userId" : userId,
+    //     "userName" : jsonObj.userName,
+    //     "userPassword" : jsonObj.userPassword,
+    //     "accountId" : accountId,
+    //     "tailers" : [],
+    //     "tailee" : [],
+    //     "about" : jsonObj.about,
+    //     "achievement" : [],
+    //     "posts" : [],
+    //     "openToWork" : jsonObj.openToWork,
+    //     "verified" : jsonObj.verified,
+    //     "verificationBadgeId" : jsonObj.verificationBadgeId,
+    //     "email" : jsonObj.email,
+    //     "profilePic" : jsonObj.profilePic
+    // }
     })
 
     
@@ -187,16 +221,29 @@ class App {
     });
 
       
-    router.get('/forumposts/:accountId', this.validateAuth, async (req, res) => {
+    // TODO: 
+    router.get('/forumposts/:accountId', this.validateAuth, (req, res) => {
       console.log("Want some info, huh?!");
     
-      const accountId = req.params.accountId;
-      if (req['user'] != null){
-        // Not null
-        const oAuthID = req['user'].id;
-    
-        this.Accounts.validateAccount(res, accountId, oAuthID);
-      }
+      const aAccountId = req.params.accountId;
+      let aOauthId = req['user'].id;
+      
+      this.Accounts.validateAccount(res, aAccountId, aOauthId)
+      .then(isValid => {
+        if (isValid) {
+          // Account is valid, retrieve forum posts
+          this.ForumPosts.retrieveAllMyForumPosts(res, { accountId: aAccountId });
+        } else {
+          // Account is not valid, redirect
+          res.redirect('/#/postIndex');
+        }
+      })
+      .catch(error => {
+        console.error("An error occurred:", error);
+        // Handle the error
+        res.redirect('/#/postIndex');
+      });
+      
 
     });
     
