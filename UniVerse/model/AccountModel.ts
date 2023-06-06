@@ -45,7 +45,7 @@ class AccountModel {
             if (err) {
                 console.error("cannot update acocunt");
             } else {
-                console.log("ACcount updated")
+                console.log("Account updated");
             }     
         });
     }
