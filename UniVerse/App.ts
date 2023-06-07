@@ -59,10 +59,7 @@ class App {
   private validateAuth(req, res, next):void {
     if (req.isAuthenticated()) {
        console.log("user is authenticated");
-      //  session.userOpenId = sha512.sha512(req.user.id);
-      //  session.userName = req.user.displayName;
-      //  session.email = req.user.emails[0].value;
-      // console.log("sha 512 code is "+sha512.sha512(req.user.id));
+  
         return next(); // pass the control to the next middleware or route handler in the chain.
       }
     console.log("user is not authenticated");
@@ -76,16 +73,6 @@ class App {
     
     router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-
-    // router.get('/auth/google/callback', 
-    // passport.authenticate('google', 
-    //   { failureRedirect: '/failure' , successRedirect: '/#/postindex'}
-    // ),
-    // (req, res) => {
-    //   console.log("successfully authenticated user and returned to callback page.");
-    //   console.log("redirecting to /postindex");
-    //   res.redirect('/postindex');
-    // } 
     router.get('/auth/google/callback', 
     passport.authenticate('google', 
       // { failureRedirect: '/#/', successRedirect: '/#/'}
@@ -100,20 +87,11 @@ class App {
         image: req['user'].photos[0].value
       }
 
-      
-      // session.account = account;
-
-      // res.cookie('account', JSON.stringify(account), { httpOnly: true });
-      // res.cookie('account', 'MOOSE', { httpOnly: true });
-
 
       res.redirect('/#/');
     }
     );
 
-  // Configure API endpoints.
-  // private routes(): void {
-  //   let router = express.Router();
 
     // ACCOUNT
     router.post('/accounts/', (req, res) => {
@@ -146,55 +124,12 @@ class App {
       this.Accounts.viewProfile(res, oAuthId, username, imageUrl);
     });
 
-    // using the account like api testing some stuff out
-    // router.get('/account/', this.validateAuth, (req, res) => {
-    //   console.log("getting user info");
-    //   let auserName = req['user'].displayName;
-    //   console.log("display name "+ auserName + " " + auserID + "\n " + req['user']);
-    //   // res.send({
-    //   //   userId : req.user.userId,
-    //   //   userName : session.userName,
-    //   //   userEmail : session.email
-    //   // });
-    // })
 
 
     // when want to get account data
     router.get('/getCurrentAccount', this.validateAuth, (req, res) => {
       console.log("sending user info to create post");
 
-
-      // res.send({
-      //   userId : req['user'].id,
-      //   userName : req['user'].displayName,
-      //   userEmail : req['user'].photos[0].value
-      // });
-
-    //   var userJsonObj = {
-    //     id: ,
-    //     username: {type: String, required: true},
-    //     fname: {type: String, required: true},
-    //     lname: {type: String, required: true},
-    //     email: {type: String, required: true},
-    //     oAuthId: req['user'].id,
-    //     department: {type: String, required: true}
-
-
-    //     "userId" : userId,
-    //     "userName" : jsonObj.userName,
-    //     "userPassword" : jsonObj.userPassword,
-    //     "accountId" : accountId,
-    //     "tailers" : [],
-    //     "tailee" : [],
-    //     "about" : jsonObj.about,
-    //     "achievement" : [],
-    //     "posts" : [],
-    //     "openToWork" : jsonObj.openToWork,
-    //     "verified" : jsonObj.verified,
-    //     "verificationBadgeId" : jsonObj.verificationBadgeId,
-    //     "email" : jsonObj.email,
-    //     "profilePic" : jsonObj.profilePic
-    // }
     })
 
     
@@ -214,19 +149,6 @@ class App {
         res.send('{"id":"' + id + '"}');
     });
 
-    // router.post('/forumpostsTest/:id', (req, res) => {
-    //   // GUIDs (Globally Unique Identifiers)
-    //   const id = req.params.id;
-    //   console.log(req.body);
-    //     var postJsonObj  = req.body;
-    //     postJsonObj.id = id;
-    //     this.ForumPosts.model.create([postJsonObj], (err) => {
-    //       if (err) {
-    //           console.log('forumPosts creation failed');
-    //       }
-    //   });
-    //     res.send('{"id":"' + id + '"}');
-    // });
     
     router.get('/forumpost/:id', (req, res) => {
       var forumpostId = req.params.id;
@@ -245,7 +167,6 @@ class App {
     });
 
       
-    // TODO: 
     router.get('/forumposts/:accountId', this.validateAuth, async (req, res) => {
       console.log("Want some info, huh?!");
     

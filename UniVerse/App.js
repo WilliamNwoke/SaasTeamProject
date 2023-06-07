@@ -83,10 +83,6 @@ var App = /** @class */ (function () {
     App.prototype.validateAuth = function (req, res, next) {
         if (req.isAuthenticated()) {
             console.log("user is authenticated");
-            //  session.userOpenId = sha512.sha512(req.user.id);
-            //  session.userName = req.user.displayName;
-            //  session.email = req.user.emails[0].value;
-            // console.log("sha 512 code is "+sha512.sha512(req.user.id));
             return next(); // pass the control to the next middleware or route handler in the chain.
         }
         console.log("user is not authenticated");
@@ -97,15 +93,6 @@ var App = /** @class */ (function () {
         var _this = this;
         var router = express.Router();
         router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-        // router.get('/auth/google/callback', 
-        // passport.authenticate('google', 
-        //   { failureRedirect: '/failure' , successRedirect: '/#/postindex'}
-        // ),
-        // (req, res) => {
-        //   console.log("successfully authenticated user and returned to callback page.");
-        //   console.log("redirecting to /postindex");
-        //   res.redirect('/postindex');
-        // } 
         router.get('/auth/google/callback', passport.authenticate('google', 
         // { failureRedirect: '/#/', successRedirect: '/#/'}
         { failureRedirect: '/' }), function (req, res) {
@@ -115,14 +102,8 @@ var App = /** @class */ (function () {
                 username: req['user'].displayName,
                 image: req['user'].photos[0].value
             };
-            // session.account = account;
-            // res.cookie('account', JSON.stringify(account), { httpOnly: true });
-            // res.cookie('account', 'MOOSE', { httpOnly: true });
             res.redirect('/#/');
         });
-        // Configure API endpoints.
-        // private routes(): void {
-        //   let router = express.Router();
         // ACCOUNT
         router.post('/accounts/', function (req, res) {
             var id = (0, uuid_1.v4)();
@@ -150,48 +131,9 @@ var App = /** @class */ (function () {
             console.log('Query account id via OAuthId: ' + oAuthId);
             _this.Accounts.viewProfile(res, oAuthId, username, imageUrl);
         });
-        // using the account like api testing some stuff out
-        // router.get('/account/', this.validateAuth, (req, res) => {
-        //   console.log("getting user info");
-        //   let auserName = req['user'].displayName;
-        //   console.log("display name "+ auserName + " " + auserID + "\n " + req['user']);
-        //   // res.send({
-        //   //   userId : req.user.userId,
-        //   //   userName : session.userName,
-        //   //   userEmail : session.email
-        //   // });
-        // })
         // when want to get account data
         router.get('/getCurrentAccount', this.validateAuth, function (req, res) {
             console.log("sending user info to create post");
-            // res.send({
-            //   userId : req['user'].id,
-            //   userName : req['user'].displayName,
-            //   userEmail : req['user'].photos[0].value
-            // });
-            //   var userJsonObj = {
-            //     id: ,
-            //     username: {type: String, required: true},
-            //     fname: {type: String, required: true},
-            //     lname: {type: String, required: true},
-            //     email: {type: String, required: true},
-            //     oAuthId: req['user'].id,
-            //     department: {type: String, required: true}
-            //     "userId" : userId,
-            //     "userName" : jsonObj.userName,
-            //     "userPassword" : jsonObj.userPassword,
-            //     "accountId" : accountId,
-            //     "tailers" : [],
-            //     "tailee" : [],
-            //     "about" : jsonObj.about,
-            //     "achievement" : [],
-            //     "posts" : [],
-            //     "openToWork" : jsonObj.openToWork,
-            //     "verified" : jsonObj.verified,
-            //     "verificationBadgeId" : jsonObj.verificationBadgeId,
-            //     "email" : jsonObj.email,
-            //     "profilePic" : jsonObj.profilePic
-            // }
         });
         // POST
         router.post('/forumposts/', function (req, res) {
@@ -216,11 +158,10 @@ var App = /** @class */ (function () {
             console.log('Query All ForumPosts');
             _this.ForumPosts.retrieveAllForumPosts(res);
         });
-        router.delete('forumposts/:id', function (req, res) {
+        router.delete('forumpost/:id', function (req, res) {
             console.log('Delete forumpost with id: ' + req.params.id);
             _this.ForumPosts.deleteForumPost(res, { id: req.params.id });
         });
-        // TODO: 
         router.get('/forumposts/:accountId', this.validateAuth, function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var accountId, oAuthID;
             return __generator(this, function (_a) {
