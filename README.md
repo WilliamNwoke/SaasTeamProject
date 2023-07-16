@@ -1,4 +1,4 @@
-#### Check out live site here: https://universe0.azurewebsites.net/
+#### Check it out the live here: https://universe0.azurewebsites.net/
 
 #### Navigate to Universe Directory And Follow Below Instructions:
 
