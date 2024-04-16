@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Mongoose = require("mongoose");
-var DataAccess_1 = require("../DataAccess");
-var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
-var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
-var NotifcationModel = /** @class */ (function () {
-    function NotifcationModel() {
+const Mongoose = require("mongoose");
+const DataAccess_1 = require("../DataAccess");
+let mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
+let mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
+class NotifcationModel {
+    constructor() {
         this.createSchema();
         this.createModel();
     }
-    NotifcationModel.prototype.createSchema = function () {
+    createSchema() {
         this.schema = new Mongoose.Schema({
             id: { type: String, required: true },
             forumpostId: { type: String, required: true },
@@ -19,10 +19,10 @@ var NotifcationModel = /** @class */ (function () {
             likes: { type: Number, required: true },
             dislikes: { type: Number, required: true },
         }, { collection: 'notifications' });
-    };
-    NotifcationModel.prototype.createModel = function () {
+    }
+    createModel() {
         this.model = mongooseConnection.model("Notifcations", this.schema);
-    };
+    }
     // async createNotification(response: any, commentData: Object): Promise<any>{
     //     var commentMod = new this.model(commentData);
     //     return commentMod.save((err, comment) => {
@@ -35,22 +35,22 @@ var NotifcationModel = /** @class */ (function () {
     //     });
     // }
     // public createNotification(): void{}
-    NotifcationModel.prototype.removeNotification = function (response, filter) {
+    removeNotification(response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, notification) {
+        query.exec((err, notification) => {
             if (err) {
                 console.log("Error finding notification");
             }
             else {
-                notification.remove(function (err, notification) {
+                notification.remove((err, notification) => {
                     console.log("removed");
                 });
             }
         });
-    };
-    NotifcationModel.prototype.viewNotification = function (response, filter) {
+    }
+    viewNotification(response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, notification) {
+        query.exec((err, notification) => {
             if (err) {
                 console.log("Error finding notification");
             }
@@ -59,10 +59,10 @@ var NotifcationModel = /** @class */ (function () {
                 response.json(notification);
             }
         });
-    };
-    NotifcationModel.prototype.viewAllNotifications = function (response, filter) {
+    }
+    viewAllNotifications(response, filter) {
         var query = this.model.find(filter);
-        query.exec(function (err, notification) {
+        query.exec((err, notification) => {
             if (err) {
                 console.log("Error finding notification");
             }
@@ -71,8 +71,7 @@ var NotifcationModel = /** @class */ (function () {
                 response.json(notification);
             }
         });
-    };
+    }
     // TODO: complete this method to have notification time
-    NotifcationModel.prototype.notificationTimer = function () { };
-    return NotifcationModel;
-}());
+    notificationTimer() { }
+}

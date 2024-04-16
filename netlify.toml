@@ -1,0 +1,4 @@
+[build]
+    base = "Universe-app"
+    command = "npm run build:prod"
+    publish = "UniVerse/angularDis/"

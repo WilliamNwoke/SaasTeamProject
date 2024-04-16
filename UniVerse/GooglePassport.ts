@@ -17,9 +17,9 @@ class GooglePassport {
         passport.use(new GoogleStrategy({
                 clientID: this.clientId,
                 clientSecret: this.secretId,
-                callbackURL: "https://universe0.azurewebsites.net/auth/google/callback"
-                //  callbackURL: "http://localhost:8080/auth/google/callback"
-//                profileFields: ['id', 'displayName', 'emails']
+                // callbackURL: "https://universe0.azurewebsites.net/auth/google/callback"
+                 callbackURL: "http://localhost:8080/auth/google/callback"
+            //    profileFields: ['id', 'displayName', 'emails']
             },
             (accessToken, refreshToken, profile, done) => {
                 console.log("inside new password google strategy");
